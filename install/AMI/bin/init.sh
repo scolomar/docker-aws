@@ -23,16 +23,23 @@ test -n "$template" 		|| exit 100                             ;
 test -n "$TypeManager"      	|| exit 100    				;
 test -n "$TypeWorker"      	|| exit 100    				;
 #########################################################################
-caps=CAPABILITY_IAM							;
-s3domain=$s3name.s3.$s3region.amazonaws.com				;
-template_url=https://$s3domain/$docker_branch/$template			;
+caps=CAPABILITY_IAM                                                     ;
+path=$AWS/install/AMI/CloudFormation                                    ;
+s3domain=$s3name.s3.$s3region.amazonaws.com                             ;
+template_url=https://$s3domain/$docker_branch/$template                 ;
+uuid=$( uuidgen )                                                       ;
 #########################################################################
-file=$template								;
-path=$AWS/install/AMI/CloudFormation					;
-uuid=$( uuidgen )							;
-curl --output $uuid https://$domain/$path/$file				;
-aws s3 cp $uuid s3://$s3name/$docker_branch/$file --acl public-read	;
-rm --force ./$uuid							;
+curl --output $uuid https://$domain/$path/$template                     ;
+aws s3 cp $uuid s3://$s3name/$docker_branch/$template --acl public-read ;
+rm --force ./$uuid                                                      ;
+#########################################################################
+while true                                                              ;
+do                                                                      \
+  aws s3 ls $s3name/$docker_branch/$template                            \
+  |                                                                     \
+    grep $template && break                                             ;
+  sleep 10                                                              ;
+done                                                                    ;
 #########################################################################
 aws cloudformation create-stack 					\
   --capabilities 							\
