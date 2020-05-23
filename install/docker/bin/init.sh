@@ -14,7 +14,7 @@ test -n "$mode"                 && export mode           || exit 100    ;
 test -n "$stack"                && export stack          || exit 100    ;       
 #########################################################################
 file=functions.sh                                                       ;
-path=$AWS/common                                 			;
+path=$AWS/lib                                 			;
 uuid=$( uuidgen )							;
 curl --output $uuid https://$domain/$path/$file                         ;
 source ./$uuid                                                          ;

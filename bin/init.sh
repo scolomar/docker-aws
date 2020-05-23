@@ -30,7 +30,7 @@ test -n "$template"             && export template	 || exit 100    ;
 test -n "$username"             && export username	 || exit 100    ;
 #########################################################################
 file=functions.sh                                                       ;
-path=$AWS/common                                 			;
+path=$AWS/lib                                 			;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
