@@ -34,7 +34,7 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 debug=false                                                             \
 debug=true                                                              \
-docker_branch=v0.9                                                      \
+docker_branch=v1.0                                                      \
 HostedZoneName=example.com                                              \
 HostedZoneName=sebastian-colomar.com                                    \
 mode=kubernetes                                                         \
