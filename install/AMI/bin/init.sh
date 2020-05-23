@@ -31,7 +31,7 @@ file=$template								;
 path=$AWS/install/AMI/CloudFormation					;
 uuid=$( uuidgen )							;
 curl --output $uuid https://$domain/$path/$file				;
-aws s3 cp $uuid s3://$s3domain/v$docker_branch/$file --acl public-read	;
+aws s3 cp $uuid s3://$s3domain/$docker_branch/$file --acl public-read	;
 rm --force ./$uuid							;
 #########################################################################
 aws cloudformation create-stack 					\
