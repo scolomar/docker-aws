@@ -33,6 +33,8 @@ export AWS=secobau/docker-aws/$docker_branch                            \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
+export docker_branch                                                    \
+&&                                                                      \
 export domain=raw.githubusercontent.com                                 \
 &&                                                                      \
 export HostedZoneName                                                   \
@@ -47,7 +49,13 @@ export RecordSetName2                                                   \
 &&                                                                      \
 export RecordSetName3                                                   \
 &&                                                                      \
+export s3name=docker-aws                                                \
+&&                                                                      \
+export s3region=ap-south-1                                              \
+&&                                                                      \
 export stack                                                            \
+&&                                                                      \
+export template=cloudformation-https.yaml                               \
 &&                                                                      \
 export TypeManager                                                      \
 &&                                                                      \

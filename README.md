@@ -66,7 +66,13 @@ export RecordSetName3                                                   \
 &&                                                                      \
 export repository                                                       \
 &&                                                                      \
+export s3name=docker-aws                                                \
+&&                                                                      \
+export s3region=ap-south-1                                              \
+&&                                                                      \
 export stack                                                            \
+&&                                                                      \
+export template=cloudformation-https.yaml                               \
 &&                                                                      \
 export TypeManager                                                      \
 &&                                                                      \

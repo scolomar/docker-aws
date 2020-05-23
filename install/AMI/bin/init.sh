@@ -7,20 +7,23 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug" 		|| exit 100				;
+test -n "$docker_branch"	|| exit 100				;
 test -n "$HostedZoneName" 	|| exit 100                             ;
 test -n "$Identifier" 		|| exit 100                             ;
 test -n "$KeyName" 		|| exit 100                             ;
 test -n "$RecordSetName1" 	|| exit 100                             ;
 test -n "$RecordSetName2" 	|| exit 100                             ;
 test -n "$RecordSetName3" 	|| exit 100                             ;
+test -n "$s3name" 		|| exit 100                             ;
+test -n "$s3region" 		|| exit 100                             ;
 test -n "$stack" 		|| exit 100                             ;
+test -n "$template" 		|| exit 100                             ;
 test -n "$TypeManager"      	|| exit 100    				;
 test -n "$TypeWorker"      	|| exit 100    				;
 #########################################################################
 caps=CAPABILITY_IAM                                                     ;
-s3domain=docker-aws.s3.ap-south-1.amazonaws.com				;
-#########################################################################
-template=https://$s3domain/cloudformation-https.yaml       		;
+s3domain=$s3name.s3.$s3region.amazonaws.com				;
+template_url=https://$s3domain/$docker_branch/$template			;
 #########################################################################
 aws cloudformation create-stack 					\
   --capabilities 							\
@@ -37,7 +40,7 @@ aws cloudformation create-stack 					\
   --stack-name 								\
     $stack 								\
   --template-url 						 	\
-    $template 								\
+    $template_url							\
   --output 								\
     text 								\
 									;

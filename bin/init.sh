@@ -22,7 +22,10 @@ test -n "$RecordSetName1"       && export RecordSetName1 || exit 100    ;
 test -n "$RecordSetName2"       && export RecordSetName2 || exit 100    ;
 test -n "$RecordSetName3"       && export RecordSetName3 || exit 100    ;
 test -n "$repository"           && export repository  	 || exit 100    ;
+test -n "$s3name"		&& export s3name  	 || exit 100    ;
+test -n "$s3region"		&& export s3region  	 || exit 100    ;
 test -n "$stack"                && export stack		 || exit 100    ;
+test -n "$template"             && export template	 || exit 100    ;
 test -n "$username"             && export username	 || exit 100    ;
 #########################################################################
 file=functions.sh                                                       ;
