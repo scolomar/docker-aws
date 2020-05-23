@@ -21,7 +21,7 @@
 update_version()
 {
 	local	version=$1
-	local	old_version=v0.7
+	local	old_version=v0.8
 	local	template=cloudformation-https.yaml
 
 
