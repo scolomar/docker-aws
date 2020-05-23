@@ -54,7 +54,6 @@ export docker_branch                                                    \
 &&                                                                      \
 export docker_repository                                                \
 &&                                                                      \
-export docker_username                                                  \
 &&                                                                      \
 export domain=raw.githubusercontent.com                                 \
 &&                                                                      \
