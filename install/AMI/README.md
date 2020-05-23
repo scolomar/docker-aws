@@ -39,7 +39,6 @@ export docker_branch                                                    \
 &&                                                                      \
 export docker_repository                                                \
 &&                                                                      \
-&&                                                                      \
 export domain=raw.githubusercontent.com                                 \
 &&                                                                      \
 export HostedZoneName                                                   \
