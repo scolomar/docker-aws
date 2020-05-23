@@ -13,7 +13,7 @@ debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
-docker_branch=v1.0                                                      \
+docker_branch=cf-blue                                                      \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
 repository=myproject                                                    \
@@ -45,7 +45,7 @@ export stack                                                            \
 export username                                                         \
                                                                         ;
 #########################################################################
-path=$AWS/bin                                                           \
+path=$AWS/app/bin                                                       \
 &&                                                                      \
 file=init.sh                                                            \
 &&                                                                      \

@@ -23,29 +23,29 @@ test -n "$template" 		|| exit 100                             ;
 test -n "$TypeManager"      	|| exit 100    				;
 test -n "$TypeWorker"      	|| exit 100    				;
 #########################################################################
-prefix=$( echo $template | cut --delimiter . --field 1 )                ;
-suffix=$( echo $template | cut --delimiter . --field 2 )                ;
-template=$prefix.$suffix                                                ;
+prefix=$( echo $template | cut --delimiter . --field 1 )		;
+suffix=$( echo $template | cut --delimiter . --field 2 )		;
+template=$prefix.$suffix						;
 #########################################################################
-caps=CAPABILITY_IAM                                                     ;
-path=$AWS/install/AMI/CloudFormation                                    ;
-s3domain=$s3name.s3.$s3region.amazonaws.com                             ;
-template_url=https://$s3domain/$docker_branch/$template                 ;
-uuid=$( uuidgen )                                                       ;
+caps=CAPABILITY_IAM							;
+path=$AWS/install/AMI/CloudFormation					;
+s3domain=$s3name.s3.$s3region.amazonaws.com				;
+template_url=https://$s3domain/$docker_branch/$template			;
+uuid=$( uuidgen )							;
 #########################################################################
-curl --output $uuid https://$domain/$path/$template                     ;
-aws s3 cp $uuid s3://$s3name/$docker_branch/$template --acl public-read ;
-rm --force ./$uuid                                                      ;
+curl --output $uuid https://$domain/$path/$template			;
+aws s3 cp $uuid s3://$s3name/$docker_branch/$template --acl public-read	;
+rm --force ./$uuid							;
 #########################################################################
-while true                                                              ;
-do                                                                      \
-  aws s3 ls $s3name/$docker_branch/$template                            \
-  |                                                                     \
-    grep $template && break                                             ;
-  sleep 10                                                              ;
-done                                                                    ;
+while true 								;
+do 									\
+  aws s3 ls $s3name/$docker_branch/$template				\
+  |									\
+    grep $template && break						;
+  sleep 10 								;
+done									;
 #########################################################################
-aws cloudformation create-stack 					\
+aws cloudformation update-stack 					\
   --capabilities 							\
     $caps 								\
   --parameters 								\
@@ -65,17 +65,17 @@ aws cloudformation create-stack 					\
     text 								\
 									;
 #########################################################################
-while true 								;
-do 									\
-  aws cloudformation describe-stacks 					\
-    --query 								\
-      "Stacks[].StackStatus" 						\
-    --output 								\
-      text 								\
-    --stack-name 							\
-      $stack 								\
-  | 									\
-    grep CREATE_COMPLETE && break 					;
-  sleep 100 								;
-done									;
+while true                                                              ;
+do                                                                      \
+  aws cloudformation describe-stacks                                    \
+    --query                                                             \
+      "Stacks[].StackStatus"                                            \
+    --output                                                            \
+      text                                                              \
+    --stack-name                                                        \
+      $stack                                                            \
+  |                                                                     \
+    grep UPDATE_COMPLETE && break                                       ;
+  sleep 10                                                             ;
+done                                                                    ;
 #########################################################################

@@ -15,7 +15,7 @@ debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
-docker_branch=v1.0                                                      \
+docker_branch=cf-blue                                                      \
 HostedZoneName=example.com                                              \
 HostedZoneName=sebastian-colomar.com                                    \
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         \
@@ -99,6 +99,61 @@ chmod +x ./$file                                                        \
 &&                                                                      \
 nohup ./$file                                                           &
 #########################################################################
+
+
+```
+
+
+If you are running a BLUE/GREEN deployment the following commands will be useful.
+
+The following command will swap the load balancer so as to point to the BLUE deployment:
+```BASH
+
+
+#########################################################################
+path=$AWS/install/AMI/bin                                               \
+&&                                                                      \
+file=init-blue.sh                                                       \
+&&                                                                      \
+date=$( date +%F_%H%M )                                                 \
+&&                                                                      \
+mkdir $date                                                             \
+&&                                                                      \
+cd $date                                                                \
+&&                                                                      \
+curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
+chmod +x ./$file                                                        \
+&&                                                                      \
+nohup ./$file                                                           &
+#########################################################################
+
+
+
+```
+
+The following command will swap back the load balancer so as to point again to the GREEN deployment:
+```BASH
+
+
+#########################################################################
+path=$AWS/install/AMI/bin                                               \
+&&                                                                      \
+file=init-green.sh                                                      \
+&&                                                                      \
+date=$( date +%F_%H%M )                                                 \
+&&                                                                      \
+mkdir $date                                                             \
+&&                                                                      \
+cd $date                                                                \
+&&                                                                      \
+curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
+chmod +x ./$file                                                        \
+&&                                                                      \
+nohup ./$file                                                           &
+#########################################################################
+
 
 
 ```
