@@ -45,7 +45,7 @@ export stack                                                            \
 export username                                                         \
                                                                         ;
 #########################################################################
-path=$AWS/bin                                                           \
+path=$AWS/app/bin                                                       \
 &&                                                                      \
 file=init.sh                                                            \
 &&                                                                      \
