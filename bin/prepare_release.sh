@@ -28,6 +28,7 @@ update_version()
 	local	template_local=./install/AMI/CloudFormation/$template
 	sed "/docker_branch=/s/$old_version/v$version/"			\
 			-i ./app/README.md				\
+			-i ./demo/README.md				\
 			-i ./install/AMI/README.md			\
 			-i ./install/docker/README.md			\
 			-i ./README.md
