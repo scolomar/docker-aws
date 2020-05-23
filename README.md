@@ -104,6 +104,33 @@ nohup ./$file                                                           &
 ```
 
 
+The following command will swap the load balancers for BLUE/GREEN deployments:
+```BASH
+
+
+#########################################################################
+path=$AWS/install/AMI/bin                                               \
+&&                                                                      \
+file=init-blue.sh                                                       \
+&&                                                                      \
+date=$( date +%F_%H%M )                                                 \
+&&                                                                      \
+mkdir $date                                                             \
+&&                                                                      \
+cd $date                                                                \
+&&                                                                      \
+curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
+chmod +x ./$file                                                        \
+&&                                                                      \
+nohup ./$file                                                           &
+#########################################################################
+
+
+
+```
+
+
 You can optionally remove the AWS infrastructure created in CloudFormation otherwise you might be charged for any created object:
 
 
