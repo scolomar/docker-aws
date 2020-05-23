@@ -32,8 +32,8 @@ RecordSetName2=<service-2>
 RecordSetName3=<service-3>
 repository=<github-repository>
 stack=<stack>
-TypeManager=<type>			# t3a.nano
-TypeWorker=<type>			# t3a.nano
+TypeManager=<type>		# t3a.nano
+TypeWorker=<type>		# t3a.nano
 username=<github-username>
 
 
