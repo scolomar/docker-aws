@@ -104,7 +104,9 @@ nohup ./$file                                                           &
 ```
 
 
-The following command will swap the load balancers for BLUE/GREEN deployments:
+If you are running a BLUE/GREEN deployment the following commands will be useful.
+
+The following command will swap the load balancer so as to point to the BLUE deployment:
 ```BASH
 
 
@@ -112,6 +114,32 @@ The following command will swap the load balancers for BLUE/GREEN deployments:
 path=$AWS/install/AMI/bin                                               \
 &&                                                                      \
 file=init-blue.sh                                                       \
+&&                                                                      \
+date=$( date +%F_%H%M )                                                 \
+&&                                                                      \
+mkdir $date                                                             \
+&&                                                                      \
+cd $date                                                                \
+&&                                                                      \
+curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
+chmod +x ./$file                                                        \
+&&                                                                      \
+nohup ./$file                                                           &
+#########################################################################
+
+
+
+```
+
+The following command will swap back the load balancer so as to point again to the GREEN deployment:
+```BASH
+
+
+#########################################################################
+path=$AWS/install/AMI/bin                                               \
+&&                                                                      \
+file=init-green.sh                                                      \
 &&                                                                      \
 date=$( date +%F_%H%M )                                                 \
 &&                                                                      \
