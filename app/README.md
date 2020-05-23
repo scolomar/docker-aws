@@ -14,6 +14,8 @@ debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
 docker_branch=v1.1                                                      \
+docker_repository=docker-aws                                            \
+docker_username=secobau                                                 \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
 repository=myproject                                                    \
@@ -26,7 +28,7 @@ username=secobau                                                        \
 #########################################################################
 export apps                                                             \
 &&                                                                      \
-export AWS=secobau/docker-aws/$docker_branch                            \
+export AWS=$docker_username/$docker_repository/$docker_branch           \
 &&                                                                      \
 export branch                                                           \
 &&                                                                      \

@@ -35,6 +35,8 @@ You may also configure the variables so as to customize the setup:
 debug=false                                                             \
 debug=true                                                              \
 docker_branch=v1.1                                                      \
+docker_repository=docker-aws                                            \
+docker_username=secobau                                                 \
 HostedZoneName=example.com                                              \
 HostedZoneName=sebastian-colomar.com                                    \
 mode=kubernetes                                                         \
@@ -43,7 +45,7 @@ stack=mystack                                                           \
 stack=proxy2aws                                                         \
                                                                         ;
 #########################################################################
-export AWS=secobau/docker-aws/$docker_branch                            \
+export AWS=$docker_username/$docker_repository/$docker_branch           \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
