@@ -6,8 +6,10 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
+test -n "$AWS"	 		|| exit 100				;
 test -n "$debug" 		|| exit 100				;
 test -n "$docker_branch"	|| exit 100				;
+test -n "$domain" 		|| exit 100				;
 test -n "$HostedZoneName" 	|| exit 100                             ;
 test -n "$Identifier" 		|| exit 100                             ;
 test -n "$KeyName" 		|| exit 100                             ;
@@ -21,9 +23,16 @@ test -n "$template" 		|| exit 100                             ;
 test -n "$TypeManager"      	|| exit 100    				;
 test -n "$TypeWorker"      	|| exit 100    				;
 #########################################################################
-caps=CAPABILITY_IAM                                                     ;
+caps=CAPABILITY_IAM							;
 s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$docker_branch/$template			;
+#########################################################################
+file=$template								;
+path=$AWS/install/AMI/CloudFormation					;
+uuid=$( uuidgen )							;
+curl --output $uuid https://$domain/$path/$file				;
+aws s3 cp $uuid s3://$s3domain/v$docker_branch/$file --acl public-read	;
+rm --force ./$uuid							;
 #########################################################################
 aws cloudformation create-stack 					\
   --capabilities 							\

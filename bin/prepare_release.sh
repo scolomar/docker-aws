@@ -21,13 +21,8 @@
 update_version()
 {
 	local	version=$1
-	local	old_version=v0.1
-	local	s3name=docker-aws
-	local	s3region=ap-south-1
-	local	template=cloudformation-https.yaml
+	local	old_version=v0.2
 
-	local	s3domain=$s3name.s3.$s3region.amazonaws.com
-	local	template_local=./install/AMI/CloudFormation/$template
 	sed "/docker_branch=/s/$old_version/v$version/"			\
 			-i ./app/README.md				\
 			-i ./install/AMI/README.md			\
@@ -37,8 +32,6 @@ update_version()
 			-i $template_local
 	sed "/old_version/s/$old_version/v$version/"			\
 			-i ./bin/prepare_release.sh
-	aws s3 cp $template_local s3://$s3domain/v$version/$template 	\
-			--acl public-read
 }
 
 
