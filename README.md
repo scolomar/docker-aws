@@ -48,6 +48,8 @@ export debug                                                            \
 &&                                                                      \
 export deploy                                                           \
 &&                                                                      \
+export docker_branch                                                    \
+&&                                                                      \
 export domain=raw.githubusercontent.com                                 \
 &&                                                                      \
 export HostedZoneName                                                   \

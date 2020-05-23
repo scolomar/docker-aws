@@ -11,6 +11,7 @@ test -n "$AWS"	                && export AWS            || exit 100    ;
 test -n "$branch"               && export branch         || exit 100    ;
 test -n "$debug"                && export debug          || exit 100    ;
 test -n "$deploy" 		&& export deploy	 || exit 100	;
+test -n "$docker_branch"        && export docker_branch  || exit 100    ;
 test -n "$domain" 		&& export domain	 || exit 100	;
 test -n "$HostedZoneName"       && export HostedZoneName || exit 100    ;
 test -n "$Identifier"           && export Identifier	 || exit 100    ; 
