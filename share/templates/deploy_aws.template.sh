@@ -67,7 +67,7 @@ fpath=${AWS}/bin
 fname=init.sh
 date=$( date +%F_%H%M )
 path=$HOME/.${repository}/var/
-mkdir -p ${path}/${date}
+mkdir --parents ${path}/${date}
 cd	${path}/${date}
 curl --remote-name https://${domain}/${fpath}/${fname}
 chmod +x ./${fname}
