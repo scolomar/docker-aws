@@ -10,7 +10,9 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 debug=false                                                             \
 debug=true                                                              \
-docker_branch=v1.1                                                      \
+docker_branch=master                                                      \
+docker_repository=docker-aws                                            \
+docker_username=secobau                                                 \
 HostedZoneName=example.com                                              \
 HostedZoneName=sebastian-colomar.com                                    \
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         \
@@ -29,11 +31,13 @@ TypeManager=t3a.nano                                                    \
 TypeWorker=t3a.nano                                                     \
                                                                         ;
 #########################################################################
-export AWS=secobau/docker-aws/$docker_branch                            \
+export AWS=$docker_username/$docker_repository/$docker_branch           \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
 export docker_branch                                                    \
+&&                                                                      \
+export docker_repository                                                \
 &&                                                                      \
 export domain=raw.githubusercontent.com                                 \
 &&                                                                      \
@@ -49,7 +53,7 @@ export RecordSetName2                                                   \
 &&                                                                      \
 export RecordSetName3                                                   \
 &&                                                                      \
-export s3name=docker-aws                                                \
+export s3name=$docker_repository                                        \
 &&                                                                      \
 export s3region=ap-south-1                                              \
 &&                                                                      \
