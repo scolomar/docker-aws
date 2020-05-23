@@ -21,7 +21,7 @@
 update_version()
 {
 	local	version=$1
-	local	old_version=use-forks
+	local	old_version=master
 	local	template=cloudformation-https.yaml
 	local	template_blue=cloudformation-https-blue.yaml
 
