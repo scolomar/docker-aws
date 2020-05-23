@@ -26,15 +26,15 @@ update_version()
 
 
 	local	template_local=./install/AMI/CloudFormation/$template
-	sed "/docker_branch=/s/$old_version/v$version/"			\
+	sed "/docker_branch=/s/$old_version/$version/"			\
 			-i ./app/README.md				\
 			-i ./demo/README.md				\
 			-i ./install/AMI/README.md			\
 			-i ./install/docker/README.md			\
 			-i ./README.md
-	sed "/docker-aws/s/$old_version/v$version/"			\
+	sed "/docker-aws/s/$old_version/$version/"			\
 			-i $template_local
-	sed "/old_version/s/$old_version/v$version/"			\
+	sed "/old_version/s/$old_version/$version/"			\
 			-i ./bin/prepare_release.sh
 }
 
