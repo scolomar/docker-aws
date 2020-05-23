@@ -21,7 +21,7 @@
 update_version()
 {
 	local	version=$1
-	local	old_version=master
+	local	old_version=v0.1
 
 	sed "/docker_branch=/s/$old_version/v$version/"			\
 			-i ./app/README.md				\
