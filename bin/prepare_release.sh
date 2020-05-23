@@ -21,13 +21,16 @@
 update_version()
 {
 	local	version=$1
-	local	old_version=v0.2
+	local	old_version=v0.3
+	local	template=cloudformation-https.yaml
 
+
+	local	template_local=./install/AMI/CloudFormation/$template
 	sed "/docker_branch=/s/$old_version/v$version/"			\
 			-i ./app/README.md				\
 			-i ./install/AMI/README.md			\
 			-i ./install/docker/README.md			\
-			-i ./README.md				
+			-i ./README.md
 	sed "/docker-aws/s/$old_version/v$version/"			\
 			-i $template_local
 	sed "/old_version/s/$old_version/v$version/"			\
