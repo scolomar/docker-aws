@@ -311,37 +311,37 @@ Parameters:
     Type: Number
     
   PortListenerWorker1:
-    Default: 8443
+    Default: 443
     Description: >
       The listening port for Listener Worker 1.
     Type: Number
     
   PortListenerWorker1QA:
-    Default: 443
+    Default: 8443
     Description: >
       The listening port for Listener Worker 1 - QA.
     Type: Number
     
   PortListenerWorker2:
-    Default: 8443
+    Default: 443
     Description: >
       The listening port for Listener Worker 2.
     Type: Number
     
   PortListenerWorker2QA:
-    Default: 443
+    Default: 8443
     Description: >
       The listening port for Listener Worker 2 - QA.
     Type: Number
     
   PortListenerWorker3:
-    Default: 8443
+    Default: 443
     Description: >
       The listening port for Listener Worker 3.
     Type: Number
     
   PortListenerWorker3QA:
-    Default: 443
+    Default: 8443
     Description: >
       The listening port for Listener Worker 3 - QA.
     Type: Number
@@ -698,9 +698,9 @@ Resources:
         - ForwardConfig:
             TargetGroups:
             - TargetGroupArn: !Ref TargetGroupWorker1A
-              Weight: 1
-            - TargetGroupArn: !Ref TargetGroupWorker1B
               Weight: 0
+            - TargetGroupArn: !Ref TargetGroupWorker1B
+              Weight: 1
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker1
       Port: !Ref PortListenerWorker1
@@ -732,9 +732,9 @@ Resources:
         - ForwardConfig:
             TargetGroups:
             - TargetGroupArn: !Ref TargetGroupWorker2A
-              Weight: 1
-            - TargetGroupArn: !Ref TargetGroupWorker2B
               Weight: 0
+            - TargetGroupArn: !Ref TargetGroupWorker2B
+              Weight: 1
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker2
       Port: !Ref PortListenerWorker2
@@ -766,9 +766,9 @@ Resources:
         - ForwardConfig:
             TargetGroups:
             - TargetGroupArn: !Ref TargetGroupWorker3A
-              Weight: 1
-            - TargetGroupArn: !Ref TargetGroupWorker3B
               Weight: 0
+            - TargetGroupArn: !Ref TargetGroupWorker3B
+              Weight: 1
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker3
       Port: !Ref PortListenerWorker3
