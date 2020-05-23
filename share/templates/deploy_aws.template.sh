@@ -63,12 +63,13 @@ export username
 ################################################################################
 ##	run								      ##
 ################################################################################
-path=${AWS}/bin
+fpath=${AWS}/bin
 fname=init.sh
 date=$( date +%F_%H%M )
-mkdir	${date}
-cd	${date}
-curl --remote-name https://${domain}/${path}/${fname}
+path=/var/tmp/${repository}
+mkdir -p ${path}/${date}
+cd	${path}/${date}
+curl --remote-name https://${domain}/${fpath}/${fname}
 chmod +x ./${fname}
 nohup	./${fname} &
 
