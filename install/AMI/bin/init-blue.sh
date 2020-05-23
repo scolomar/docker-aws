@@ -65,3 +65,17 @@ aws cloudformation update-stack 					\
     text 								\
 									;
 #########################################################################
+while true                                                              ;
+do                                                                      \
+  aws cloudformation describe-stacks                                    \
+    --query                                                             \
+      "Stacks[].StackStatus"                                            \
+    --output                                                            \
+      text                                                              \
+    --stack-name                                                        \
+      $stack                                                            \
+  |                                                                     \
+    grep UPDATE_COMPLETE && break                                       ;
+  sleep 100                                                             ;
+done                                                                    ;
+#########################################################################
