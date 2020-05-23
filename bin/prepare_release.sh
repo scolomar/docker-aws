@@ -23,9 +23,11 @@ update_version()
 	local	version=$1
 	local	old_version=cf-blue
 	local	template=cloudformation-https.yaml
+	local	template_blue=cloudformation-https-blue.yaml
 
 
 	local	template_local=./install/AMI/CloudFormation/$template
+	local	template_local_blue=./install/AMI/CloudFormation/$template_blue
 	sed "/docker_branch=/s/$old_version/$version/"			\
 			-i ./app/README.md				\
 			-i ./demo/README.md				\
@@ -34,6 +36,8 @@ update_version()
 			-i ./README.md
 	sed "/docker-aws/s/$old_version/$version/"			\
 			-i $template_local
+	sed "/docker-aws/s/$old_version/$version/"			\
+			-i $template_local_blue
 	sed "/old_version/s/$old_version/$version/"			\
 			-i ./bin/prepare_release.sh
 }
