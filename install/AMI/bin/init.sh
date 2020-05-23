@@ -23,6 +23,10 @@ test -n "$template" 		|| exit 100                             ;
 test -n "$TypeManager"      	|| exit 100    				;
 test -n "$TypeWorker"      	|| exit 100    				;
 #########################################################################
+prefix=$( echo $template | cut --delimiter . --field 1 )                ;
+suffix=$( echo $template | cut --delimiter . --field 2 )                ;
+template=$prefix.$suffix                                                ;
+#########################################################################
 caps=CAPABILITY_IAM                                                     ;
 path=$AWS/install/AMI/CloudFormation                                    ;
 s3domain=$s3name.s3.$s3region.amazonaws.com                             ;
