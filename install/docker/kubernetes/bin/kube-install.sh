@@ -13,7 +13,7 @@ test -n "$domain"               || exit 100                             ;
 file=kubernetes.repo							;
 repos=yum.repos.d							;
 #########################################################################
-path=$AWS/install/docker/kubernetes/etc/$repos					;
+path=$AWS/etc/$repos							;
 uuid=$( uuidgen )							;
 curl --output $uuid https://$domain/$path/$file                         ;
 mv $uuid /etc/$repos/$file						;
