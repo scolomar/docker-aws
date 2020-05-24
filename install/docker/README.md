@@ -59,9 +59,9 @@ export stack                                                            \
 &&                                                                      \
                                                                         ;
 #########################################################################
-path=$AWS/install/docker/bin                                            \
+path=$AWS/bin                                                           \
 &&                                                                      \
-file=init.sh                                                            \
+file=cluster-init.sh                                                    \
 &&                                                                      \
 date=$( date +%F_%H%M )                                                 \
 &&                                                                      \

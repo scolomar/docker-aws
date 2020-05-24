@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/docker/bin/init.sh
+#	./bin/cluster-init.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
