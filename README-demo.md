@@ -72,7 +72,7 @@ export s3region=ap-south-1                                              \
 &&                                                                      \
 export stack                                                            \
 &&                                                                      \
-export template=cloudformation-https.yaml                               \
+export template=https.yaml                               \
 &&                                                                      \
 export TypeManager                                                      \
 &&                                                                      \

@@ -29,8 +29,8 @@ test -n "$stack"                && export stack		 || exit 100    ;
 test -n "$template"             && export template	 || exit 100    ;
 test -n "$username"             && export username	 || exit 100    ;
 #########################################################################
-file=functions.sh                                                       ;
-path=$AWS/lib                                 			;
+file=common-functions.sh						;
+path=$AWS/lib								;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
@@ -45,8 +45,8 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-file=init.sh                                               		;
-path=$AWS/install/AMI/bin						;
+file=aws-init.sh                                               		;
+path=$AWS/bin								;
 #########################################################################
 output="								\
   $(									\

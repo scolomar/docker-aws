@@ -78,7 +78,7 @@ export s3region=ap-south-1                                              \
 &&                                                                      \
 export stack                                                            \
 &&                                                                      \
-export template=cloudformation-https.yaml                               \
+export template=https.yaml                               \
 &&                                                                      \
 export TypeManager                                                      \
 &&                                                                      \
@@ -115,9 +115,9 @@ The following command will swap the load balancer so as to point to the BLUE dep
 
 
 #########################################################################
-path=$AWS/install/AMI/bin                                               \
+path=$AWS/bin                                                           \
 &&                                                                      \
-file=init-blue.sh                                                       \
+file=aws-target-blue.sh                                                 \
 &&                                                                      \
 date=$( date +%F_%H%M )                                                 \
 &&                                                                      \
@@ -141,9 +141,9 @@ The following command will swap back the load balancer so as to point again to t
 
 
 #########################################################################
-path=$AWS/install/AMI/bin                                               \
+path=$AWS/bin                                                           \
 &&                                                                      \
-file=init-green.sh                                                      \
+file=aws-target-green.sh                                                \
 &&                                                                      \
 date=$( date +%F_%H%M )                                                 \
 &&                                                                      \

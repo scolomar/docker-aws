@@ -1,5 +1,5 @@
 #!/bin/sh -x
-#	./install/AMI/bin/node.sh
+#	./bin/aws-node-ami.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #

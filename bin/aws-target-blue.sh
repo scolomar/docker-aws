@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/AMI/bin/init.sh
+#	./bin/aws-target-blue.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -23,17 +23,17 @@ test -n "$template" 		|| exit 100                             ;
 test -n "$TypeManager"      	|| exit 100    				;
 test -n "$TypeWorker"      	|| exit 100    				;
 #########################################################################
-prefix=$( echo $template | cut --delimiter . --field 1 )		;
-suffix=$( echo $template | cut --delimiter . --field 2 )		;
-template=$prefix.$suffix						;
-#########################################################################
 caps=CAPABILITY_IAM							;
-path=$AWS/install/AMI/CloudFormation					;
+path=$AWS/etc/aws							;
 s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$docker_branch/$template			;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$template			;
+sed --in-place /Weight/s/0/blue/  $uuid					;
+sed --in-place /Weight/s/1/green/ $uuid					;
+sed --in-place /Weight/s/blue/1/  $uuid					;
+sed --in-place /Weight/s/green/0/ $uuid					;
 aws s3 cp $uuid s3://$s3name/$docker_branch/$template --acl public-read	;
 rm --force ./$uuid							;
 #########################################################################

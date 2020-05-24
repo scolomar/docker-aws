@@ -22,17 +22,17 @@ update_version()
 {
 	local	version=$1
 	local	old_version=master
-	local	template=cloudformation-https.yaml
-	local	template_blue=cloudformation-https-blue.yaml
+	local	template=https.yaml
+	local	template_blue=https-blue.yaml
 
 
-	local	template_local=./install/AMI/CloudFormation/$template
-	local	template_local_blue=./install/AMI/CloudFormation/$template_blue
+	local	template_local=./etc/aws/$template
+	local	template_local_blue=./etc/aws/$template_blue
 	sed "/docker_branch=/s/$old_version/$version/"			\
-			-i ./app/README.md				\
-			-i ./demo/README.md				\
-			-i ./install/AMI/README.md			\
-			-i ./install/docker/README.md			\
+			-i ./README-app.md				\
+			-i ./README-aws.md				\
+			-i ./README-cluster.md				\
+			-i ./README-demo.md				\
 			-i ./README.md
 	sed "/docker-aws/s/$old_version/$version/"			\
 			-i $template_local

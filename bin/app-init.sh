@@ -17,8 +17,8 @@ test -n "$repository"           && export repository     || exit 100    ;
 test -n "$stack"                && export stack          || exit 100    ;
 test -n "$username"             && export username       || exit 100    ;
 #########################################################################
-file=functions.sh                                                       ;
-path=$AWS/lib                                 			;
+file=common-functions.sh						;
+path=$AWS/lib                                 				;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
@@ -33,7 +33,7 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-file=app-deploy-ssm.sh      	                                        ;
+file=app-deploy.sh      	                                        ;
 path=$AWS/bin                                 				;
 #########################################################################
 export deploy_file=app-config-deploy.sh                                     ;

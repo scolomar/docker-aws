@@ -13,11 +13,11 @@ test -n "$HostedZoneName"	&& export HostedZoneName || exit 100    ;
 test -n "$mode"                 && export mode           || exit 100    ;       
 test -n "$stack"                && export stack          || exit 100    ;       
 #########################################################################
-file=functions.sh                                                       ;
-path=$AWS/lib                                 			;
+file=common-functions.sh						;
+path=$AWS/lib                                 				;
 uuid=$( uuidgen )							;
-curl --output $uuid https://$domain/$path/$file                         ;
-source ./$uuid                                                          ;
+curl --output $uuid https://$domain/$path/$file				;
+source ./$uuid								;
 rm --force ./$uuid							;
 #########################################################################
 export -f encode_string							;

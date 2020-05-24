@@ -59,16 +59,16 @@ export s3region=ap-south-1                                              \
 &&                                                                      \
 export stack                                                            \
 &&                                                                      \
-export template=cloudformation-https.yaml                               \
+export template=https.yaml                               \
 &&                                                                      \
 export TypeManager                                                      \
 &&                                                                      \
 export TypeWorker                                                       \
                                                                         ;
 #########################################################################
-path=$AWS/install/AMI/bin                                               \
+path=$AWS/bin                                               		\
 &&                                                                      \
-file=init.sh                                                            \
+file=aws-init.sh                                                        \
 &&                                                                      \
 date=$( date +%F_%H%M )                                                 \
 &&                                                                      \
