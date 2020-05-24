@@ -28,7 +28,7 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-file=init.sh                                               		;
-path=$AWS/install/docker/$mode/bin					;
+file=cluster-$mode-init.sh						;
+path=$AWS/bin								;
 exec_remote_file $domain $file $path					;
 #########################################################################

@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/docker/kubernetes/bin/init.sh
+#	./bin/cluster-kubernetes-init.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -16,7 +16,7 @@ export=" 								\
   export debug=$debug 							\
 "									;
 log=/root/kubernetes-install.log                              		;
-path=$AWS/install/docker/kubernetes/bin					;
+path=$AWS/bin								;
 sleep=10								;
 #########################################################################
 export=" 								\
@@ -26,7 +26,7 @@ export=" 								\
   && 									\
   export domain=$domain							\
 "									;
-file=kube-install.sh							;
+file=cluster-kubernetes-install.sh					;
 targets="								\
 	InstanceManager1						\
 	InstanceManager2						\
@@ -44,13 +44,13 @@ export=" 								\
   && 									\
   export log=$log							\
 "									;
-file=leader.sh								;
+file=cluster-kubernetes-leader.sh					;
 targets="								\
 	InstanceManager1						\
 "									;
 send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
-file=kube-wait.sh							;
+file=cluster-kubernetes-wait.sh						;
 send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
 command="								\
@@ -101,7 +101,7 @@ export=" 								\
   &&									\
   export token_token=$token_token					\
 "									;
-file=manager.sh								;
+file=cluster-kubernetes-manager.sh					;
 targets="								\
 	InstanceManager2						\
 	InstanceManager3						\
@@ -113,7 +113,7 @@ unset token_certificate							;
 export=" 								\
   $export								\
 "									;
-file=worker.sh								;
+file=cluster-kubernetes-worker.sh					;
 targets="								\
 	InstanceWorker1							\
 	InstanceWorker2							\

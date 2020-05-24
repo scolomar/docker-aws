@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/docker/kubernetes/bin/manager.sh
+#	./bin/cluster-kubernetes-manager.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #

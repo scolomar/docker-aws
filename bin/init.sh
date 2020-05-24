@@ -55,8 +55,8 @@ output="								\
 "									;
 echo $output
 #########################################################################
-file=init.sh                                               		;
-path=$AWS/install/docker/$mode/bin					;
+file=cluster-init.sh							;
+path=$AWS/bin								;
 #########################################################################
 output="								\
   $(									\
