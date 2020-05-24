@@ -34,7 +34,7 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 debug=false                                                             \
 debug=true                                                              \
-docker_branch=master                                                      \
+docker_branch=v2.0                                                      \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
 HostedZoneName=example.com                                              \
