@@ -47,9 +47,9 @@ export stack                                                            \
 export username                                                         \
                                                                         ;
 #########################################################################
-path=$AWS/app/bin                                                       \
+path=$AWS/bin                                                           \
 &&                                                                      \
-file=init.sh                                                            \
+file=app-init.sh                                                        \
 &&                                                                      \
 date=$( date +%F_%H%M )                                                 \
 &&                                                                      \

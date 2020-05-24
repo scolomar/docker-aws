@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./app/bin/config-remove.sh
+#	./bin/app-config-remove.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #

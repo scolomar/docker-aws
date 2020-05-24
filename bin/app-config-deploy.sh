@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./app/bin/config-deploy.sh
+#	./bin/app-config-deploy.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #

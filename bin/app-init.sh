@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./app/bin/init.sh
+#	./bin/app-init.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -33,8 +33,8 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-file=deploy-ssm.sh      	                                        ;
-path=$AWS/app/bin                                 			;
+file=app-deploy-ssm.sh      	                                        ;
+path=$AWS/bin                                 				;
 #########################################################################
 export deploy_file=config-deploy.sh                                     ;
 export deploy_path=$path						;
@@ -46,8 +46,8 @@ output="								\
 "									;
 echo $output
 #########################################################################
-export deploy_file=deploy-$mode.sh					;
-export deploy_path=$AWS/app/bin						;
+export deploy_file=app-deploy-$mode.sh					;
+export deploy_path=$AWS/bin						;
 #########################################################################
 output="								\
   $(									\
