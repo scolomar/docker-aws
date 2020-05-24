@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./app/kubernetes/bin/deploy.sh
+#	./app/bin/deploy-kubernetes.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #

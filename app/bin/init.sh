@@ -36,7 +36,7 @@ export -f service_wait_targets						;
 file=deploy-ssm.sh      	                                        ;
 path=$AWS/app/bin                                 			;
 #########################################################################
-export deploy_file=deploy-config.sh                                     ;
+export deploy_file=config-deploy.sh                                     ;
 export deploy_path=$path						;
 #########################################################################
 output="								\
@@ -46,8 +46,8 @@ output="								\
 "									;
 echo $output
 #########################################################################
-export deploy_file=deploy.sh						;
-export deploy_path=$AWS/app/$mode/bin					;
+export deploy_file=deploy-$mode.sh					;
+export deploy_path=$AWS/app/bin						;
 #########################################################################
 output="								\
   $(									\
@@ -56,7 +56,7 @@ output="								\
 "									;
 echo $output
 #########################################################################
-export deploy_file=remove-config.sh                                     ;
+export deploy_file=config-remove.sh                                     ;
 export deploy_path=$path						;
 #########################################################################
 output="								\

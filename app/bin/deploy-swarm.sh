@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./app/swarm/bin/deploy.sh
+#	./app/bin/deploy-swarm.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
