@@ -10,7 +10,7 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 apps=" app1.yml app2.yml app3.yml "                                     \
 apps=" aws2cloud.yaml aws2prem.yaml "                                   \
-branch=master                                                           \
+branch=v7.0                                                             \
 debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
