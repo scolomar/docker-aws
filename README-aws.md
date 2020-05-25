@@ -6,27 +6,24 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-# Identifier is the ID of the certificate in case you are using HTTPS   #
-#########################################################################
 debug=false                                                             \
 debug=true                                                              \
-docker_branch=v2.3                                                      \
+docker_branch=master                                                      \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
-HostedZoneName=example.com                                              \
+domain=raw.githubusercontent.com                                        \
 HostedZoneName=sebastian-colomar.com                                    \
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         \
-KeyName=mySSHpublicKey                                                  \
 KeyName=proxy2aws                                                       \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
-RecordSetName1=service-1                                                \
 RecordSetName1=aws2cloud                                                \
-RecordSetName2=service-2                                                \
 RecordSetName2=aws2prem                                                 \
 RecordSetName3=service-3                                                \
-stack=mystack                                                           \
+s3name=docker-aws                                                       \
+s3region=ap-south-1                                                     \
 stack=proxy2aws                                                         \
+template=https.yaml                                                     \
 TypeManager=t3a.nano                                                    \
 TypeWorker=t3a.nano                                                     \
                                                                         ;
@@ -39,7 +36,7 @@ export docker_branch                                                    \
 &&                                                                      \
 export docker_repository                                                \
 &&                                                                      \
-export domain=raw.githubusercontent.com                                 \
+export domain                                                           \
 &&                                                                      \
 export HostedZoneName                                                   \
 &&                                                                      \
@@ -53,13 +50,13 @@ export RecordSetName2                                                   \
 &&                                                                      \
 export RecordSetName3                                                   \
 &&                                                                      \
-export s3name=$docker_repository                                        \
+export s3name                                                           \
 &&                                                                      \
-export s3region=ap-south-1                                              \
+export s3region                                                         \
 &&                                                                      \
 export stack                                                            \
 &&                                                                      \
-export template=https.yaml                               \
+export template                                                         \
 &&                                                                      \
 export TypeManager                                                      \
 &&                                                                      \
@@ -67,10 +64,8 @@ export TypeWorker                                                       \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
 file=aws-init.sh                                                        \
-&&                                                                      \
-path=$AWS/bin                                               		\
+path=$AWS/bin                                                           \
                                                                         ;
 #########################################################################
 mkdir $date                                                             \
@@ -96,8 +91,8 @@ You can optionally remove the AWS infrastructure created in CloudFormation other
 
 
 #########################################################################
-## TO REMOVE THE CLOUDFORMATION STACK                           	#
-aws cloudformation delete-stack --stack-name $stack             	;
+## TO REMOVE THE CLOUDFORMATION STACK                                   #
+aws cloudformation delete-stack --stack-name $stack                     ;
 #########################################################################
 
 
