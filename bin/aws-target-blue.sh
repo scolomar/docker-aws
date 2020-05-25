@@ -34,7 +34,7 @@ sed --in-place /Weight/s/0/blue/  $uuid					;
 sed --in-place /Weight/s/1/green/ $uuid					;
 sed --in-place /Weight/s/blue/1/  $uuid					;
 sed --in-place /Weight/s/green/0/ $uuid					;
-aws s3 cp $uuid s3://$s3name/$docker_branch/$template --acl public-read	;
+aws s3 cp $uuid s3://$s3name/$docker_branch/$template 			;
 rm --force ./$uuid							;
 #########################################################################
 while true 								;

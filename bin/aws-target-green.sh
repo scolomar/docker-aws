@@ -30,7 +30,7 @@ template_url=https://$s3domain/$docker_branch/$template			;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$template			;
-aws s3 cp $uuid s3://$s3name/$docker_branch/$template --acl public-read	;
+aws s3 cp $uuid s3://$s3name/$docker_branch/$template 			;
 rm --force ./$uuid							;
 #########################################################################
 while true 								;
