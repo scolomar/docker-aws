@@ -8,39 +8,31 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 # Identifier is the ID of the certificate in case you are using HTTPS   #
 #########################################################################
-apps=" app1.yml app2.yml app3.yml "                                     \
-apps=" aws2cloud.yaml aws2prem.yaml "                                   \
-branch=v7.0                                                             \
+apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
+branch=master                                                             \
 debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
-docker_branch=v2.3                                                      \
+docker_branch=master                                                      \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
 domain=raw.githubusercontent.com                                        \
-HostedZoneName=example.com                                              \
 HostedZoneName=sebastian-colomar.com                                    \
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         \
-KeyName=mySSHpublicKey                                                  \
 KeyName=proxy2aws                                                       \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
-RecordSetName1=service-1                                                \
 RecordSetName1=aws2cloud                                                \
-RecordSetName2=service-2                                                \
 RecordSetName2=aws2prem                                                 \
 RecordSetName3=service-3                                                \
-repository=myproject                                                    \
 repository=proxy2aws                                                    \
 s3name=docker-aws                                                       \
 s3region=ap-south-1                                                     \
-stack=mystack                                                           \
 stack=proxy2aws                                                         \
 template=https.yaml                                                     \
 TypeManager=t3a.nano                                                    \
 TypeWorker=t3a.nano                                                     \
-username=johndoe                                                        \
 username=secobau                                                        \
                                                                         ;
 #########################################################################
@@ -92,9 +84,7 @@ export username                                                         \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
 file=init.sh                                                            \
-&&                                                                      \
 path=$AWS/bin                                                           \
                                                                         ;
 #########################################################################
@@ -121,9 +111,7 @@ The following command will swap the load balancer so as to point to the BLUE dep
 
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
 file=aws-target-blue.sh                                                 \
-&&                                                                      \
 path=$AWS/bin                                                           \
                                                                         ;
 #########################################################################
@@ -148,9 +136,7 @@ The following command will swap back the load balancer so as to point again to t
 
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
 file=aws-target-green.sh                                                \
-&&                                                                      \
 path=$AWS/bin                                                           \
                                                                         ;
 #########################################################################
