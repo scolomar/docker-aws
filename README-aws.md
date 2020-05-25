@@ -66,12 +66,13 @@ export TypeManager                                                      \
 export TypeWorker                                                       \
                                                                         ;
 #########################################################################
-path=$AWS/bin                                               		\
+date=$( date +%F_%H%M )                                                 \
 &&                                                                      \
 file=aws-init.sh                                                        \
 &&                                                                      \
-date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
+path=$AWS/bin                                               		\
+                                                                        ;
+#########################################################################
 mkdir $date                                                             \
 &&                                                                      \
 cd $date                                                                \
