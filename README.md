@@ -18,6 +18,7 @@ deploy=release                                                          \
 docker_branch=v2.3                                                      \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
+domain=raw.githubusercontent.com                                        \
 HostedZoneName=example.com                                              \
 HostedZoneName=sebastian-colomar.com                                    \
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         \
@@ -32,8 +33,11 @@ RecordSetName2=aws2prem                                                 \
 RecordSetName3=service-3                                                \
 repository=myproject                                                    \
 repository=proxy2aws                                                    \
+s3name=docker-aws                                                       \
+s3region=ap-south-1                                                     \
 stack=mystack                                                           \
 stack=proxy2aws                                                         \
+template=https.yaml                                                     \
 TypeManager=t3a.nano                                                    \
 TypeWorker=t3a.nano                                                     \
 username=johndoe                                                        \
@@ -54,7 +58,7 @@ export docker_branch                                                    \
 &&                                                                      \
 export docker_repository                                                \
 &&                                                                      \
-export domain=raw.githubusercontent.com                                 \
+export domain                                                           \
 &&                                                                      \
 export HostedZoneName                                                   \
 &&                                                                      \
@@ -72,13 +76,13 @@ export RecordSetName3                                                   \
 &&                                                                      \
 export repository                                                       \
 &&                                                                      \
-export s3name=$docker_repository                                        \
+export s3name                                                           \
 &&                                                                      \
-export s3region=ap-south-1                                              \
+export s3region                                                         \
 &&                                                                      \
 export stack                                                            \
 &&                                                                      \
-export template=https.yaml                               \
+export template                                                         \
 &&                                                                      \
 export TypeManager                                                      \
 &&                                                                      \
@@ -87,12 +91,13 @@ export TypeWorker                                                       \
 export username                                                         \
                                                                         ;
 #########################################################################
-path=$AWS/bin                                                           \
+date=$( date +%F_%H%M )                                                 \
 &&                                                                      \
 file=init.sh                                                            \
 &&                                                                      \
-date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
 mkdir $date                                                             \
 &&                                                                      \
 cd $date                                                                \
@@ -115,12 +120,13 @@ The following command will swap the load balancer so as to point to the BLUE dep
 
 
 #########################################################################
-path=$AWS/bin                                                           \
+date=$( date +%F_%H%M )                                                 \
 &&                                                                      \
 file=aws-target-blue.sh                                                 \
 &&                                                                      \
-date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
 mkdir $date                                                             \
 &&                                                                      \
 cd $date                                                                \
@@ -141,12 +147,13 @@ The following command will swap back the load balancer so as to point again to t
 
 
 #########################################################################
-path=$AWS/bin                                                           \
+date=$( date +%F_%H%M )                                                 \
 &&                                                                      \
 file=aws-target-green.sh                                                \
 &&                                                                      \
-date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
 mkdir $date                                                             \
 &&                                                                      \
 cd $date                                                                \
