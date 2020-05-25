@@ -197,13 +197,13 @@ Metadata:
 Parameters:
 
   HostedZoneName:
-    Default: 'sebastian-colomar.com'
+    Default: ''
     Description: >
       The name of the hosted zone that you want to create records in.
     Type: String
 
   Identifier:
-    Default: 'c3f3310b-f4ed-4874-8849-bd5c2cfe001f'
+    Default: ''
     Description: >
       The Identifier of the certificate you want to use.
     Type: String
