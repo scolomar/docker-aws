@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./bin/app-init.sh
+#	./bin/app-init-deploy.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -33,23 +33,12 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
+file=app-deploy.sh      	                                        ;
 path=$AWS/bin                                 				;
 #########################################################################
-file=app-init-config-deploy.sh      	                                ;
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
+export deploy_file=app-deploy-$mode.sh					;
+export deploy_path=$AWS/bin						;
 #########################################################################
-file=app-init-deploy.sh      	                                	;
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-#########################################################################
-file=app-init-config-remove.sh      	                                ;
 output="								\
   $(									\
     exec_remote_file $domain $file $path 				; 
