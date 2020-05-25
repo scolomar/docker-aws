@@ -6,8 +6,6 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-# Identifier is the ID of the certificate in case you are using HTTPS   #
-#########################################################################
 apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
 branch=master                                                             \
 debug=false                                                             \
