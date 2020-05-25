@@ -78,13 +78,17 @@ nohup ./$file                                                           &
 
 ```
 
-In order to destroy you infrastructure you can run the following command from your Cloud9 instance:
-```bash
 
-aws cloudformation delete-stack                                                         \
-        --stack-name                                                                    \
-                $stack                                                                  \
-                                                                                        ;
+You can optionally remove the AWS infrastructure created in CloudFormation otherwise you might be charged for any created object:
+
+
+```BASH
+
+
+#########################################################################
+## TO REMOVE THE CLOUDFORMATION STACK                                   #
+aws cloudformation delete-stack --stack-name $stack                     ;
+#########################################################################
 
 
 ```

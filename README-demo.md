@@ -7,7 +7,7 @@ You may also configure the variables so as to customize the setup:
 
 #########################################################################
 apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
-branch=master                                                           \
+branch=master                                                             \
 debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
@@ -164,6 +164,7 @@ You can optionally remove the AWS infrastructure created in CloudFormation other
 ## TO REMOVE THE CLOUDFORMATION STACK                                   #
 aws cloudformation delete-stack --stack-name $stack                     ;
 #########################################################################
+
 
 
 ```

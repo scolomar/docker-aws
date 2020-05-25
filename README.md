@@ -98,7 +98,9 @@ nohup ./$file                                                           &
 #########################################################################
 
 
+
 ```
+
 
 
 If you are running a BLUE/GREEN deployment the following commands will be useful.
@@ -167,5 +169,6 @@ aws cloudformation delete-stack --stack-name $stack                     ;
 
 
 ```
+
 
 
