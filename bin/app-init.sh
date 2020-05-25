@@ -44,7 +44,6 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
-echo $output
 #########################################################################
 export deploy_file=app-deploy-$mode.sh					;
 export deploy_path=$AWS/bin						;
@@ -54,7 +53,6 @@ output="								\
     exec_remote_file $domain $file $path 				; 
   )									\
 "									;
-echo $output
 #########################################################################
 export deploy_file=app-config-remove.sh                                     ;
 export deploy_path=$path						;
@@ -64,5 +62,4 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
-echo $output
 #########################################################################

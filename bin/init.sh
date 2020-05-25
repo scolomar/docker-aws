@@ -14,10 +14,10 @@ test -n "$deploy" 		&& export deploy	 || exit 100	;
 test -n "$docker_branch"        && export docker_branch  || exit 100    ;
 test -n "$domain" 		&& export domain	 || exit 100	;
 test -n "$HostedZoneName"       && export HostedZoneName || exit 100    ;
-test -n "$Identifier"           && export Identifier	 || exit 100    ; 
+test -n "$Identifier"           && export Identifier	 || exit 100    ;
 test -n "$TypeManager"		&& export TypeManager	 || exit 100 	;
 test -n "$TypeWorker"		&& export TypeWorker	 || exit 100 	;
-test -n "$KeyName"	        && export KeyName	 || exit 100    ; 
+test -n "$KeyName"	        && export KeyName	 || exit 100    ;
 test -n "$mode"                 && export mode		 || exit 100    ;
 test -n "$RecordSetName1"       && export RecordSetName1 || exit 100    ;
 test -n "$RecordSetName2"       && export RecordSetName2 || exit 100    ;
@@ -53,7 +53,6 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
-echo $output
 #########################################################################
 file=cluster-init.sh							;
 path=$AWS/bin								;
@@ -63,7 +62,6 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
-echo $output
 #########################################################################
 file=app-init.sh                                               		;
 path=$AWS/bin								;
@@ -73,5 +71,4 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
-echo $output
 #########################################################################
