@@ -6,39 +6,39 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-# Identifier is the ID of the certificate in case you are using HTTPS   #
-#########################################################################
+apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
+branch=master                                                           \
 debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
-docker_branch=v2.3                                                      \
+docker_branch=master                                                      \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
-HostedZoneName=example.com                                              \
+domain=raw.githubusercontent.com                                        \
 HostedZoneName=sebastian-colomar.com                                    \
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         \
-KeyName=mySSHpublicKey                                                  \
 KeyName=proxy2aws                                                       \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
-RecordSetName1=service-1                                                \
 RecordSetName1=dockercoins                                              \
-RecordSetName2=service-2                                                \
 RecordSetName2=petclinic                                                \
-RecordSetName3=service-3                                                \
 RecordSetName3=php                                                      \
-stack=mystack                                                           \
+repository=proxy2aws                                                    \
+s3name=docker-aws                                                       \
+s3region=ap-south-1                                                     \
 stack=docker                                                            \
-TypeManager=t3a.micro                                                   \
+template=https.yaml                                                     \
+TypeManager=t3a.nano                                                    \
 TypeWorker=t3a.micro                                                    \
+username=secobau                                                        \
                                                                         ;
 #########################################################################
-export apps=" dockercoins.yaml petclinic.yaml php.yaml "                \
+export apps                                                             \
 &&                                                                      \
 export AWS=$docker_username/$docker_repository/$docker_branch           \
 &&                                                                      \
-export branch=$docker_branch                                            \
+export branch                                                           \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
@@ -48,7 +48,7 @@ export docker_branch                                                    \
 &&                                                                      \
 export docker_repository                                                \
 &&                                                                      \
-export domain=raw.githubusercontent.com                                 \
+export domain                                                           \
 &&                                                                      \
 export HostedZoneName                                                   \
 &&                                                                      \
@@ -64,29 +64,80 @@ export RecordSetName2                                                   \
 &&                                                                      \
 export RecordSetName3                                                   \
 &&                                                                      \
-export repository=docker-aws                                            \
+export repository                                                       \
 &&                                                                      \
-export s3name=$docker_repository                                        \
+export s3name                                                           \
 &&                                                                      \
-export s3region=ap-south-1                                              \
+export s3region                                                         \
 &&                                                                      \
 export stack                                                            \
 &&                                                                      \
-export template=https.yaml                               \
+export template                                                         \
 &&                                                                      \
 export TypeManager                                                      \
 &&                                                                      \
 export TypeWorker                                                       \
 &&                                                                      \
-export username=secobau                                                 \
+export username                                                         \
                                                                         ;
 #########################################################################
-path=$AWS/bin                                                           \
-&&                                                                      \
-file=init.sh                                                            \
-&&                                                                      \
 date=$( date +%F_%H%M )                                                 \
+file=init.sh                                                            \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
+mkdir $date                                                             \
 &&                                                                      \
+cd $date                                                                \
+&&                                                                      \
+curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
+chmod +x ./$file                                                        \
+&&                                                                      \
+nohup ./$file                                                           &
+#########################################################################
+
+
+
+```
+
+If you are running a BLUE/GREEN deployment the following commands will be useful.
+
+The following command will swap the load balancer so as to point to the BLUE deployment:
+```BASH
+
+
+#########################################################################
+date=$( date +%F_%H%M )                                                 \
+file=aws-target-blue.sh                                                 \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
+mkdir $date                                                             \
+&&                                                                      \
+cd $date                                                                \
+&&                                                                      \
+curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
+chmod +x ./$file                                                        \
+&&                                                                      \
+nohup ./$file                                                           &
+#########################################################################
+
+
+
+```
+
+The following command will swap back the load balancer so as to point again to the GREEN deployment:
+```BASH
+
+
+#########################################################################
+date=$( date +%F_%H%M )                                                 \
+file=aws-target-green.sh                                                \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
 mkdir $date                                                             \
 &&                                                                      \
 cd $date                                                                \
