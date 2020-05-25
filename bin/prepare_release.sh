@@ -21,7 +21,7 @@
 update_version()
 {
 	local	version=$1
-	local	old_version=master
+	local	old_version=v2.3
 	local	template=https.yaml
 
 	local	template_local=./etc/aws/$template
