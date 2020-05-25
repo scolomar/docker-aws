@@ -34,14 +34,13 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 debug=false                                                             \
 debug=true                                                              \
-docker_branch=v2.3                                                      \
+docker_branch=master                                                      \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
-HostedZoneName=example.com                                              \
+domain=raw.githubusercontent.com                                        \
 HostedZoneName=sebastian-colomar.com                                    \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
-stack=mystack                                                           \
 stack=proxy2aws                                                         \
                                                                         ;
 #########################################################################
@@ -49,7 +48,7 @@ export AWS=$docker_username/$docker_repository/$docker_branch           \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
-export domain=raw.githubusercontent.com                                 \
+export domain                                                           \
 &&                                                                      \
 export HostedZoneName                                                   \
 &&                                                                      \
@@ -59,12 +58,11 @@ export stack                                                            \
 &&                                                                      \
                                                                         ;
 #########################################################################
-path=$AWS/bin                                                           \
-&&                                                                      \
-file=cluster-init.sh                                                    \
-&&                                                                      \
 date=$( date +%F_%H%M )                                                 \
-&&                                                                      \
+file=cluster-init.sh                                                    \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
 mkdir $date                                                             \
 &&                                                                      \
 cd $date                                                                \
