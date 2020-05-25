@@ -6,23 +6,20 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-apps=" app1.yml app2.yml app3.yml "                                     \
-apps=" aws2cloud.yaml aws2prem.yaml "                                   \
+apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
 branch=master                                                           \
 debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
-docker_branch=v2.3                                                      \
+docker_branch=master                                                      \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
+domain=raw.githubusercontent.com                                        \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
-repository=myproject                                                    \
 repository=proxy2aws                                                    \
-stack=mystack                                                           \
 stack=proxy2aws                                                         \
-username=johndoe                                                        \
 username=secobau                                                        \
                                                                         ;
 #########################################################################
@@ -36,7 +33,7 @@ export debug                                                            \
 &&                                                                      \
 export deploy                                                           \
 &&                                                                      \
-export domain=raw.githubusercontent.com                                 \
+export domain                                                           \
 &&                                                                      \
 export mode                                                             \
 &&                                                                      \
@@ -47,12 +44,65 @@ export stack                                                            \
 export username                                                         \
                                                                         ;
 #########################################################################
-path=$AWS/bin                                                           \
-&&                                                                      \
-file=app-init.sh                                                        \
-&&                                                                      \
 date=$( date +%F_%H%M )                                                 \
+file=init.sh                                                            \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
+mkdir $date                                                             \
 &&                                                                      \
+cd $date                                                                \
+&&                                                                      \
+curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
+chmod +x ./$file                                                        \
+&&                                                                      \
+nohup ./$file                                                           &
+#########################################################################
+
+
+
+```
+
+
+
+If you are running a BLUE/GREEN deployment the following commands will be useful.
+
+The following command will swap the load balancer so as to point to the BLUE deployment:
+```BASH
+
+
+#########################################################################
+date=$( date +%F_%H%M )                                                 \
+file=aws-target-blue.sh                                                 \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
+mkdir $date                                                             \
+&&                                                                      \
+cd $date                                                                \
+&&                                                                      \
+curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
+chmod +x ./$file                                                        \
+&&                                                                      \
+nohup ./$file                                                           &
+#########################################################################
+
+
+
+```
+
+The following command will swap back the load balancer so as to point again to the GREEN deployment:
+```BASH
+
+
+#########################################################################
+date=$( date +%F_%H%M )                                                 \
+file=aws-target-green.sh                                                \
+path=$AWS/bin                                                           \
+                                                                        ;
+#########################################################################
 mkdir $date                                                             \
 &&                                                                      \
 cd $date                                                                \
