@@ -18,8 +18,9 @@ spec:
         service: petclinic
     spec:
       containers:
-      - name: petclinic
+      -
         image: secobau/petclinic
+        name: petclinic
 ---
 apiVersion: v1
 kind: Service
@@ -27,8 +28,9 @@ metadata:
   name: petclinic
 spec:
   ports:
-  - port: 8080
+  -
     nodePort: 30002
+    port: 8080
   selector:
     service: petclinic
   type: NodePort

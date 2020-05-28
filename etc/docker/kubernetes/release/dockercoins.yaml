@@ -17,8 +17,9 @@ spec:
         service: rng
     spec:
       containers:
-      - name: rng
+      -
         image: secobau/dockercoins:rng-1.1
+        name: rng
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,8 +36,9 @@ spec:
         service: hasher
     spec:
       containers:
-      - name: hasher
+      -
         image: secobau/dockercoins:hasher-1.3
+        name: hasher
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -53,8 +55,9 @@ spec:
         service: redis
     spec:
       containers:
-      - name: redis
+      -
         image: redis
+        name: redis
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -71,8 +74,9 @@ spec:
         service: webui
     spec:
       containers:
-      - name: webui
+      -
         image: secobau/dockercoins:webui-1.3
+        name: webui
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -89,8 +93,9 @@ spec:
         service: worker
     spec:
       containers:
-      - name: worker
+      -
         image: secobau/dockercoins:worker-1.0
+        name: worker
 ---
 apiVersion: v1
 kind: Service
@@ -128,8 +133,9 @@ metadata:
   name: webui
 spec:
   ports:
-  - port: 80
+  -
     nodePort: 30001
+    port: 80
   selector:
     service: webui
   type: NodePort

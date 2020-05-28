@@ -17,8 +17,9 @@ spec:
         service: rng-blue
     spec:
       containers:
-      - name: rng-blue
+      -
         image: secobau/dockercoins-rng:release-1.1
+        name: rng-blue
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,8 +36,9 @@ spec:
         service: hasher-blue
     spec:
       containers:
-      - name: hasher-blue
+      -
         image: secobau/dockercoins-hasher:release-1.1
+        name: hasher-blue
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -53,8 +55,9 @@ spec:
         service: redis-blue
     spec:
       containers:
-      - name: redis-blue
+      -
         image: redis
+        name: redis-blue
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -71,8 +74,9 @@ spec:
         service: webui-blue
     spec:
       containers:
-      - name: webui-blue
+      -
         image: secobau/dockercoins-webui:release-1.1
+        name: webui-blue
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -89,8 +93,9 @@ spec:
         service: worker-blue
     spec:
       containers:
-      - name: worker-blue
+      -
         image: secobau/dockercoins-worker:release-1.1
+        name: worker-blue
 ---
 apiVersion: v1
 kind: Service
@@ -128,8 +133,9 @@ metadata:
   name: webui-blue
 spec:
   ports:
-  - port: 80
+  -
     nodePort: 31001
+    port: 80
   selector:
     service: webui-blue
   type: NodePort
