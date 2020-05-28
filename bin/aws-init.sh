@@ -24,6 +24,7 @@ test -n "$TypeManager"      	|| exit 100    				;
 test -n "$TypeWorker"      	|| exit 100    				;
 #########################################################################
 caps=CAPABILITY_IAM							;
+NodeInstallUrlPath=https://$domain/$AWS/bin				;
 path=$AWS/etc/aws							;
 s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$docker_branch/$template			;
@@ -50,6 +51,7 @@ aws cloudformation create-stack 					\
     ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=Identifier,ParameterValue=$Identifier			\
     ParameterKey=KeyName,ParameterValue=$KeyName			\
+    ParameterKey=NodeInstallUrlPath,ParameterValue=$NodeInstallUrlPath	\
     ParameterKey=RecordSetName1,ParameterValue=$RecordSetName1		\
     ParameterKey=RecordSetName2,ParameterValue=$RecordSetName2		\
     ParameterKey=RecordSetName3,ParameterValue=$RecordSetName3		\
