@@ -6,28 +6,17 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$apps"	                && export apps              || exit 100 ;
 test -n "$AWS"	                && export AWS               || exit 100 ;
-test -n "$branch_app"           && export branch_app        || exit 100 ;
-test -n "$debug"                && export debug             || exit 100 ;
-test -n "$deploy" 		&& export deploy	    || exit 100	;
 test -n "$branch_docker_aws"    && export branch_docker_aws || exit 100 ;
 test -n "$domain" 		&& export domain	    || exit 100	;
-test -n "$HostedZoneName"       && export HostedZoneName    || exit 100 ;
-test -n "$Identifier"           && export Identifier	    || exit 100 ;
-test -n "$TypeManager"		&& export TypeManager	    || exit 100 ;
-test -n "$TypeWorker"		&& export TypeWorker	    || exit 100 ;
-test -n "$KeyName"	        && export KeyName	    || exit 100 ;
-test -n "$mode"                 && export mode		    || exit 100 ;
-test -n "$RecordSetName1"       && export RecordSetName1    || exit 100 ;
-test -n "$RecordSetName2"       && export RecordSetName2    || exit 100 ;
-test -n "$RecordSetName3"       && export RecordSetName3    || exit 100 ;
-test -n "$repository"           && export repository  	    || exit 100 ;
-test -n "$s3name"		&& export s3name  	    || exit 100 ;
-test -n "$s3region"		&& export s3region  	    || exit 100 ;
-test -n "$stack"                && export stack		    || exit 100 ;
-test -n "$template"             && export template	    || exit 100 ;
-test -n "$username"             && export username	    || exit 100 ;
+#########################################################################
+file=env.conf								;
+path=$AWS/etc/docker-aws						;
+uuid=$( uuidgen )							;
+#########################################################################
+curl --output $uuid https://$domain/$path/$file                         ;
+source ./$uuid                                                          ;
+rm --force ./$uuid							;
 #########################################################################
 file=common-functions.sh						;
 path=$AWS/lib								;
