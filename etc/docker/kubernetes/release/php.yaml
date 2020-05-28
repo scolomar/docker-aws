@@ -18,8 +18,9 @@ spec:
         service: php
     spec:
       containers:
-      - name: php
+      -
         image: secobau/php:rc-apache-1.1
+        name: php
 ---
 apiVersion: v1
 kind: Service
@@ -27,8 +28,9 @@ metadata:
   name: php
 spec:
   ports:
-  - port: 80
+  -
     nodePort: 30003
+    port: 80
   selector:
     service: php
   type: NodePort

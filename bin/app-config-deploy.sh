@@ -6,7 +6,7 @@
 #########################################################################
 set +x && test "$debug" = true && set -x 				;
 #########################################################################
-test -n "$branch"	|| exit 100					;
+test -n "$branch_app"	|| exit 100					;
 test -n "$debug"	|| exit 100					;
 test -n "$repository"	|| exit 100					;
 test -n "$username"	|| exit 100					;
@@ -17,7 +17,7 @@ umask_old=$( umask ) 							;
 #########################################################################
 umask $umask_new							;
 uuid=$( uuidgen )							;
-git clone --single-branch --branch $branch				\
+git clone --single-branch --branch $branch_app				\
   https://github.com/$username/$repository /root/$uuid			;
 for folder in $folders 							;
 do 									\

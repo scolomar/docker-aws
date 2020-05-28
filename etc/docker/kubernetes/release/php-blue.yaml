@@ -18,8 +18,9 @@ spec:
         service: php-blue
     spec:
       containers:
-      - name: php-blue
+      -
         image: secobau/php:rc-apache-1.1
+        name: php-blue
 ---
 apiVersion: v1
 kind: Service
@@ -27,8 +28,9 @@ metadata:
   name: php-blue
 spec:
   ports:
-  - port: 80
+  -
     nodePort: 31003
+    port: 80
   selector:
     service: php-blue
   type: NodePort

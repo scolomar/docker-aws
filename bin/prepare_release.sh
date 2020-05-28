@@ -25,7 +25,7 @@ update_version()
 	local	template=https.yaml
 
 	local	template_local=./etc/aws/$template
-	sed "/docker_branch=/s/$old_version/$version/"			\
+	sed "/branch_docker_aws=/s/$old_version/$version/"		\
 			-i ./README-app.md				\
 			-i ./README-aws.md				\
 			-i ./README-cluster.md				\

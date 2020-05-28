@@ -8,7 +8,7 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 debug=false                                                             \
 debug=true                                                              \
-docker_branch=master                                                      \
+branch_docker_aws=master                                                \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
 domain=raw.githubusercontent.com                                        \
@@ -28,11 +28,11 @@ TypeManager=t3a.nano                                                    \
 TypeWorker=t3a.nano                                                     \
                                                                         ;
 #########################################################################
-export AWS=$docker_username/$docker_repository/$docker_branch           \
+export AWS=$docker_username/$docker_repository/$branch_docker_aws       \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
-export docker_branch                                                    \
+export branch_docker_aws                                                \
 &&                                                                      \
 export docker_repository                                                \
 &&                                                                      \
