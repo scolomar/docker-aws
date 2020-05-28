@@ -10,7 +10,7 @@ You may also configure the variables so as to customize the setup:
 
 
 #########################################################################
-branch_docker_aws=use-vars-file                                                \
+branch_docker_aws=master                                                \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
 domain=raw.githubusercontent.com                                        \
