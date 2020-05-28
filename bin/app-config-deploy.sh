@@ -17,7 +17,7 @@ umask_old=$( umask ) 							;
 #########################################################################
 umask $umask_new							;
 uuid=$( uuidgen )							;
-git clone --single-branch --branch_app $branch_app			\
+git clone --single-branch --branch $branch_app				\
   https://github.com/$username/$repository /root/$uuid			;
 for folder in $folders 							;
 do 									\
