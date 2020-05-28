@@ -7,12 +7,12 @@ You may also configure the variables so as to customize the setup:
 
 #########################################################################
 apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
-branch=master                                                             \
+branch_app=master                                                       \
 debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
-docker_branch=master                                                      \
+branch_docker_aws=master                                                \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
 domain=raw.githubusercontent.com                                        \
@@ -36,15 +36,15 @@ username=secobau                                                        \
 #########################################################################
 export apps                                                             \
 &&                                                                      \
-export AWS=$docker_username/$docker_repository/$docker_branch           \
+export AWS=$docker_username/$docker_repository/$branch_docker_aws       \
 &&                                                                      \
-export branch                                                           \
+export branch_app                                                       \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
 export deploy                                                           \
 &&                                                                      \
-export docker_branch                                                    \
+export branch_docker_aws                                                \
 &&                                                                      \
 export docker_repository                                                \
 &&                                                                      \

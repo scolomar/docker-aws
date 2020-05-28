@@ -7,7 +7,7 @@
 set +x && test "$debug" = true && set -x 				;
 #########################################################################
 test -n "$apps"		|| exit 100					;
-test -n "$branch"	|| exit 100					;
+test -n "$branch_app"	|| exit 100					;
 test -n "$debug"	|| exit 100					;
 test -n "$deploy"	|| exit 100					;
 test -n "$deploy_file"	|| exit 100					;
@@ -37,7 +37,7 @@ export=" 								\
   &&									\
   export apps=$apps							\
   &&									\
-  export branch=$branch							\
+  export branch_app=$branch_app						\
   &&									\
   export deploy=$deploy							\
   &&									\
