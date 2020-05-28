@@ -10,79 +10,13 @@ You may also configure the variables so as to customize the setup:
 
 
 #########################################################################
-apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
-branch_app=master                                                       \
-debug=false                                                             \
-debug=true                                                              \
-deploy=latest                                                           \
-deploy=release                                                          \
-branch_docker_aws=master                                                \
+branch_docker_aws=use-vars-file                                                \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
 domain=raw.githubusercontent.com                                        \
-HostedZoneName=sebastian-colomar.com                                    \
-Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         \
-KeyName=proxy2aws                                                       \
-mode=kubernetes                                                         \
-mode=swarm                                                              \
-RecordSetName1=aws2cloud                                                \
-RecordSetName2=aws2prem                                                 \
-RecordSetName3=service-3                                                \
-repository=proxy2aws                                                    \
-s3name=docker-aws                                                       \
-s3region=ap-south-1                                                     \
-stack=proxy2aws                                                         \
-template=https.yaml                                                     \
-TypeManager=t3a.nano                                                    \
-TypeWorker=t3a.nano                                                     \
-username=secobau                                                        \
                                                                         ;
 #########################################################################
-export apps                                                             \
-&&                                                                      \
 export AWS=$docker_username/$docker_repository/$branch_docker_aws       \
-&&                                                                      \
-export branch_app                                                       \
-&&                                                                      \
-export debug                                                            \
-&&                                                                      \
-export deploy                                                           \
-&&                                                                      \
-export branch_docker_aws                                                \
-&&                                                                      \
-export docker_repository                                                \
-&&                                                                      \
-export domain                                                           \
-&&                                                                      \
-export HostedZoneName                                                   \
-&&                                                                      \
-export Identifier                                                       \
-&&                                                                      \
-export KeyName                                                          \
-&&                                                                      \
-export mode                                                             \
-&&                                                                      \
-export RecordSetName1                                                   \
-&&                                                                      \
-export RecordSetName2                                                   \
-&&                                                                      \
-export RecordSetName3                                                   \
-&&                                                                      \
-export repository                                                       \
-&&                                                                      \
-export s3name                                                           \
-&&                                                                      \
-export s3region                                                         \
-&&                                                                      \
-export stack                                                            \
-&&                                                                      \
-export template                                                         \
-&&                                                                      \
-export TypeManager                                                      \
-&&                                                                      \
-export TypeWorker                                                       \
-&&                                                                      \
-export username                                                         \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
