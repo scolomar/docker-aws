@@ -11,6 +11,8 @@ You may also configure the variables so as to customize the setup:
 
 #########################################################################
 branch_docker_aws=master                                                \
+debug=false                                                             \
+debug=true                                                              \
 docker_repository=docker-aws                                            \
 docker_username=secobau                                                 \
 domain=raw.githubusercontent.com                                        \
