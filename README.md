@@ -24,10 +24,6 @@ export branch_docker_aws                                                \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
-export docker_repository                                                \
-&&                                                                      \
-export docker_username                                                  \
-&&                                                                      \
 export domain                                                           \
                                                                         ;
 #########################################################################
