@@ -20,7 +20,11 @@ domain=raw.githubusercontent.com                                        \
 #########################################################################
 export AWS=$docker_username/$docker_repository/$branch_docker_aws       \
 &&                                                                      \
+export branch_docker_aws                                                \
+&&                                                                      \
 export debug                                                            \
+&&                                                                      \
+export domain                                                           \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
