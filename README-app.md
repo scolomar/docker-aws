@@ -6,7 +6,7 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-branch_docker_aws=master                                                \
+branch_docker_aws=v3.0                                                \
 debug=false                                                             \
 debug=true                                                              \
 domain=raw.githubusercontent.com                                        \
