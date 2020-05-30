@@ -13,9 +13,13 @@ You may also configure the variables so as to customize the setup:
 branch_docker_aws=master                                                \
 debug=false                                                             \
 debug=true                                                              \
-repository_docker_aws=docker-aws                                        \
-username_docker_aws=secobau                                             \
 domain=raw.githubusercontent.com                                        \
+HostedZoneName=sebastian-colomar.com                                    \
+mode=kubernetes                                                         \
+mode=swarm                                                              \
+repository_docker_aws=docker-aws                                        \
+stack=proxy2aws                                                         \
+username_docker_aws=secobau                                             \
                                                                         ;
 #########################################################################
 export AWS=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
@@ -25,6 +29,10 @@ export branch_docker_aws                                                \
 export debug                                                            \
 &&                                                                      \
 export domain                                                           \
+&&                                                                      \
+export HostedZoneName                                                   \
+&&                                                                      \
+export stack                                                            \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
