@@ -39,7 +39,9 @@ domain=raw.githubusercontent.com                                        \
 HostedZoneName=sebastian-colomar.com                                    \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
+repository_docker_aws=docker-aws                                        \
 stack=proxy2aws                                                         \
+username_docker_aws=secobau                                             \
                                                                         ;
 #########################################################################
 export AWS=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
