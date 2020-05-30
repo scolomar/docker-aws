@@ -10,7 +10,7 @@ test -n "$AWS"	                && export AWS               || exit 100 ;
 test -n "$branch_docker_aws"    && export branch_docker_aws || exit 100 ;
 test -n "$domain" 		&& export domain	    || exit 100	;
 #########################################################################
-file=env.conf								;
+file=env-aws.conf							;
 path=$AWS/etc/docker-aws						;
 uuid=$( uuidgen )							;
 #########################################################################
