@@ -10,7 +10,7 @@ You may also configure the variables so as to customize the setup:
 
 
 #########################################################################
-branch_docker_aws=http                                                \
+branch_docker_aws=master                                                \
 debug=false                                                             \
 debug=true                                                              \
 repository_docker_aws=docker-aws                                        \
