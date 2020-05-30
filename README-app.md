@@ -6,26 +6,19 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
-branch_app=master                                                       \
+branch_docker_aws=master                                                \
 debug=false                                                             \
 debug=true                                                              \
-branch_docker_aws=master                                                \
-repository_docker_aws=docker-aws                                        \
-username_docker_aws=secobau                                             \
 domain=raw.githubusercontent.com                                        \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
-repository_app=proxy2aws                                                \
 stack=proxy2aws                                                         \
-username_app=secobau                                                    \
+username_docker_aws=secobau                                             \
                                                                         ;
 #########################################################################
-export apps                                                             \
-&&                                                                      \
 export AWS=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
 &&                                                                      \
-export branch_app                                                       \
+export branch_docker_aws                                                \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
@@ -33,11 +26,7 @@ export domain                                                           \
 &&                                                                      \
 export mode                                                             \
 &&                                                                      \
-export repository_app                                                   \
-&&                                                                      \
 export stack                                                            \
-&&                                                                      \
-export username_app                                                     \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
