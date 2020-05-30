@@ -12,7 +12,7 @@ debug=true                                                              \
 domain=raw.githubusercontent.com                                        \
 HostedZoneName=sebastian-colomar.com                                    \
 repository_docker_aws=docker-aws                                        \
-stack=proxy2aws                                                         \
+stack=docker                                                            \
 username_docker_aws=secobau                                             \
                                                                         ;
 #########################################################################
