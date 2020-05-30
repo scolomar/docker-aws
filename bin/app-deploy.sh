@@ -38,8 +38,6 @@ export=" 								\
   &&									\
   export branch_app=$branch_app						\
   &&									\
-  export deploy=$deploy							\
-  &&									\
   export domain=$domain							\
   &&									\
   export mode=$mode							\
