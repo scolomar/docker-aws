@@ -12,6 +12,7 @@ debug=true                                                              \
 domain=raw.githubusercontent.com                                        \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
+repository_docker_aws=docker-aws                                        \
 stack=proxy2aws                                                         \
 username_docker_aws=secobau                                             \
                                                                         ;
