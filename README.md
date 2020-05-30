@@ -13,20 +13,16 @@ You may also configure the variables so as to customize the setup:
 branch_docker_aws=http                                                \
 debug=false                                                             \
 debug=true                                                              \
-docker_repository=docker-aws                                            \
-docker_username=secobau                                                 \
+repository_docker_aws=docker-aws                                        \
+username_docker_aws=secobau                                             \
 domain=raw.githubusercontent.com                                        \
                                                                         ;
 #########################################################################
-export AWS=$docker_username/$docker_repository/$branch_docker_aws       \
+export AWS=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
 &&                                                                      \
 export branch_docker_aws                                                \
 &&                                                                      \
 export debug                                                            \
-&&                                                                      \
-export docker_repository                                                \
-&&                                                                      \
-export docker_username                                                  \
 &&                                                                      \
 export domain                                                           \
                                                                         ;

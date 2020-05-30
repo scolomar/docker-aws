@@ -13,8 +13,8 @@ debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
 branch_docker_aws=master                                                \
-docker_repository=docker-aws                                            \
-docker_username=secobau                                                 \
+repository_docker_aws=docker-aws                                        \
+username_docker_aws=secobau                                             \
 domain=raw.githubusercontent.com                                        \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
@@ -25,7 +25,7 @@ username=secobau                                                        \
 #########################################################################
 export apps                                                             \
 &&                                                                      \
-export AWS=$docker_username/$docker_repository/$branch_docker_aws       \
+export AWS=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
 &&                                                                      \
 export branch_app                                                       \
 &&                                                                      \
