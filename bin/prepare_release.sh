@@ -21,20 +21,13 @@
 update_version()
 {
 	local	version=$1
-	local	old_version=v2.3
-	local	template=https.yaml
+	local	old_version=master
 
-	local	template_local=./etc/aws/$template
 	sed "/branch_docker_aws=/s/$old_version/$version/"		\
 			-i ./README-app.md				\
 			-i ./README-aws.md				\
 			-i ./README-cluster.md				\
-			-i ./README-demo.md				\
 			-i ./README.md
-	sed "/docker-aws/s/$old_version/$version/"			\
-			-i $template_local
-	sed "/old_version/s/$old_version/$version/"			\
-			-i ./bin/prepare_release.sh
 }
 
 
