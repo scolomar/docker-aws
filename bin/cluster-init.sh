@@ -6,12 +6,17 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$AWS"	                && export AWS            || exit 100    ;
-test -n "$debug"                && export debug          || exit 100    ;
-test -n "$domain" 		&& export domain         || exit 100    ;
-test -n "$HostedZoneName"	&& export HostedZoneName || exit 100    ;
-test -n "$mode"                 && export mode           || exit 100    ;       
-test -n "$stack"                && export stack          || exit 100    ;       
+test -n "$AWS"	                && export AWS               || exit 100 ;
+test -n "$branch_docker_aws"    && export branch_docker_aws || exit 100 ;
+test -n "$domain" 		&& export domain	    || exit 100	;
+#########################################################################
+file=env.conf								;
+path=$AWS/etc/docker-aws						;
+uuid=$( uuidgen )							;
+#########################################################################
+curl --output $uuid https://$domain/$path/$file                         ;
+source ./$uuid                                                          ;
+rm --force ./$uuid							;
 #########################################################################
 file=common-functions.sh						;
 path=$AWS/lib                                 				;
