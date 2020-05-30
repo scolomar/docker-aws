@@ -10,17 +10,15 @@ apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
 branch_app=master                                                       \
 debug=false                                                             \
 debug=true                                                              \
-deploy=latest                                                           \
-deploy=release                                                          \
 branch_docker_aws=master                                                \
 repository_docker_aws=docker-aws                                        \
 username_docker_aws=secobau                                             \
 domain=raw.githubusercontent.com                                        \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
-repository_app=proxy2aws                                                    \
+repository_app=proxy2aws                                                \
 stack=proxy2aws                                                         \
-username_app=secobau                                                        \
+username_app=secobau                                                    \
                                                                         ;
 #########################################################################
 export apps                                                             \
@@ -31,17 +29,15 @@ export branch_app                                                       \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
-export deploy                                                           \
-&&                                                                      \
 export domain                                                           \
 &&                                                                      \
 export mode                                                             \
 &&                                                                      \
-export repository_app                                                       \
+export repository_app                                                   \
 &&                                                                      \
 export stack                                                            \
 &&                                                                      \
-export username_app                                                         \
+export username_app                                                     \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \

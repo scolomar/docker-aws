@@ -10,7 +10,6 @@ test -n "$apps"                 && export apps           || exit 100    ;
 test -n "$AWS"	                && export AWS            || exit 100    ;
 test -n "$branch_app"           && export branch_app     || exit 100    ;
 test -n "$debug"                && export debug          || exit 100    ;
-test -n "$deploy"               && export deploy         || exit 100    ;
 test -n "$domain"               && export domain         || exit 100    ;
 test -n "$mode"                 && export mode           || exit 100    ;
 test -n "$repository_app"       && export repository_app || exit 100    ;

@@ -10,8 +10,6 @@ apps=" aws2cloud.yaml aws2prem.yaml app3.yml "                          \
 branch_app=master                                                       \
 debug=false                                                             \
 debug=true                                                              \
-deploy=latest                                                           \
-deploy=release                                                          \
 branch_docker_aws=master                                                \
 repository_docker_aws=docker-aws                                        \
 username_docker_aws=secobau                                             \
@@ -41,8 +39,6 @@ export AWS=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
 export branch_app                                                       \
 &&                                                                      \
 export debug                                                            \
-&&                                                                      \
-export deploy                                                           \
 &&                                                                      \
 export branch_docker_aws                                                \
 &&                                                                      \

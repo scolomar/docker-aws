@@ -9,7 +9,6 @@ set +x && test "$debug" = true && set -x 				;
 test -n "$apps"			|| exit 100				;
 test -n "$branch_app"		|| exit 100				;
 test -n "$debug"		|| exit 100				;
-test -n "$deploy"		|| exit 100				;
 test -n "$domain"		|| exit 100				;
 test -n "$mode"			|| exit 100				;
 test -n "$repository_app"	|| exit 100				;
@@ -24,7 +23,7 @@ apps="									\
         --decode                                        		\
   )									\
 "                                                                      	;
-path=$username_app/$repository_app/$branch_app/etc/docker/$mode/$deploy	;
+path=$username_app/$repository_app/$branch_app/etc/docker/$mode		;
 #########################################################################
 for app in $apps							;
 do 									\

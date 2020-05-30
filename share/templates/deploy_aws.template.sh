@@ -7,7 +7,7 @@
 
 
 ## The docker-compose file has to be in this route:
-## /etc/docker/${mode}/${deploy}/<docker-compose>
+## /etc/docker/${mode}/<docker-compose>
 
 ## The init script is in this route:
 ## https://${domain}/${path}/${fname}
@@ -20,7 +20,6 @@
 apps=" <docker-compose> "
 branch=<git-branch>		# Current branch or tag
 debug=<debug>			# values: true, false
-deploy=<deploy>
 docker_branch=<secobau/docker-aws branch>
 HostedZoneName=<example.com>
 ## Identifier is the ID of the certificate in case you are using HTTPS
@@ -44,7 +43,6 @@ export apps
 export AWS=secobau/docker/${docker_branch}/AWS
 export branch
 export debug
-export deploy
 export domain=raw.githubusercontent.com
 export HostedZoneName
 export Identifier
