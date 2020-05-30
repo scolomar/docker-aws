@@ -18,7 +18,7 @@ HostedZoneName=sebastian-colomar.com                                    \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
 repository_docker_aws=docker-aws                                        \
-stack=proxy2aws                                                         \
+stack=docker                                                            \
 username_docker_aws=secobau                                             \
                                                                         ;
 #########################################################################
@@ -67,7 +67,6 @@ The following command will swap the load balancer so as to point to the BLUE dep
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
 file=aws-target-blue.sh                                                 \
-path=$AWS/bin                                                           \
                                                                         ;
 #########################################################################
 mkdir $date                                                             \
@@ -96,7 +95,6 @@ The following command will swap back the load balancer so as to point again to t
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
 file=aws-target-green.sh                                                \
-path=$AWS/bin                                                           \
                                                                         ;
 #########################################################################
 mkdir $date                                                             \
