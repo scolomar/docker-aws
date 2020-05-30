@@ -32,6 +32,8 @@ export domain                                                           \
 &&                                                                      \
 export HostedZoneName                                                   \
 &&                                                                      \
+export mode                                                             \
+&&                                                                      \
 export stack                                                            \
                                                                         ;
 #########################################################################
