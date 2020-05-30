@@ -6,7 +6,7 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$AWS"	                && export AWS               || exit 100 ;
+test -n "$A"	                && export A                 || exit 100 ;
 test -n "$branch_docker_aws"    && export branch_docker_aws || exit 100 ;
 test -n "$debug" 		&& export debug	            || exit 100	;
 test -n "$domain" 		&& export domain	    || exit 100	;
@@ -14,7 +14,7 @@ test -n "$HostedZoneName"	&& export HostedZoneName    || exit 100 ;
 test -n "$stack"                && export stack	            || exit 100	;
 #########################################################################
 file=env-aws.conf							;
-path=$AWS/etc/docker-aws						;
+path=$A/etc/docker-aws							;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
@@ -22,8 +22,8 @@ source ./$uuid                                                          ;
 rm --force ./$uuid							;
 #########################################################################
 caps=CAPABILITY_IAM							;
-NodeInstallUrlPath=https://$domain/$AWS/bin				;
-path=$AWS/etc/aws							;
+NodeInstallUrlPath=https://$domain/$A/bin				;
+path=$A/etc/aws								;
 s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$branch_docker_aws/$template		;
 uuid=$( uuidgen )							;

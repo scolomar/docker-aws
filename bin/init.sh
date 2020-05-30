@@ -6,7 +6,7 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$AWS"	                && export AWS               || exit 100 ;
+test -n "$A"	                && export A                 || exit 100 ;
 test -n "$branch_docker_aws"    && export branch_docker_aws || exit 100 ;
 test -n "$debug" 		&& export debug	            || exit 100	;
 test -n "$domain" 		&& export domain	    || exit 100	;
@@ -15,7 +15,7 @@ test -n "$mode"                 && export mode	            || exit 100	;
 test -n "$stack"                && export stack	            || exit 100	;
 #########################################################################
 file=common-functions.sh						;
-path=$AWS/lib								;
+path=$A/lib								;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
@@ -31,7 +31,7 @@ export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
 file=aws-init.sh                                               		;
-path=$AWS/bin								;
+path=$A/bin								;
 #########################################################################
 output="								\
   $(									\
@@ -40,7 +40,7 @@ output="								\
 "									;
 #########################################################################
 file=cluster-init.sh							;
-path=$AWS/bin								;
+path=$A/bin								;
 #########################################################################
 output="								\
   $(									\
@@ -49,7 +49,7 @@ output="								\
 "									;
 #########################################################################
 file=app-init.sh                                               		;
-path=$AWS/bin								;
+path=$A/bin								;
 #########################################################################
 output="								\
   $(									\

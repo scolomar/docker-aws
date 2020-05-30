@@ -6,14 +6,14 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$AWS"	                && export AWS               || exit 100 ;
+test -n "$A"	                && export A                 || exit 100 ;
 test -n "$debug" 		&& export debug	            || exit 100	;
 test -n "$domain" 		&& export domain	    || exit 100	;
 test -n "$mode"                 && export mode	            || exit 100	;
 test -n "$stack"                && export stack	            || exit 100	;
 #########################################################################
 file=env-app.conf							;
-path=$AWS/etc/docker-aws						;
+path=$A/etc/docker-aws							;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
@@ -21,7 +21,7 @@ source ./$uuid                                                          ;
 rm --force ./$uuid							;
 #########################################################################
 file=common-functions.sh						;
-path=$AWS/lib                                 				;
+path=$A/lib                                 				;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
@@ -36,7 +36,7 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-path=$AWS/bin                                 				;
+path=$A/bin                                 				;
 #########################################################################
 file=app-init-config-deploy.sh      	                                ;
 output="								\

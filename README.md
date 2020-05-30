@@ -26,7 +26,7 @@ stack=docker                                                            \
 username_docker_aws=secobau                                             \
                                                                         ;
 #########################################################################
-export AWS=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
+export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
 &&                                                                      \
 export branch_docker_aws                                                \
 &&                                                                      \
@@ -43,7 +43,7 @@ export stack                                                            \
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
 file=init.sh                                                            \
-path=$AWS/bin                                                           \
+path=$A/bin                                                             \
                                                                         ;
 #########################################################################
 mkdir $date                                                             \

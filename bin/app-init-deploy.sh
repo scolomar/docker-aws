@@ -7,7 +7,7 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$apps"                 && export apps           || exit 100    ;
-test -n "$AWS"	                && export AWS            || exit 100    ;
+test -n "$A"	                && export A              || exit 100    ;
 test -n "$branch_app"           && export branch_app     || exit 100    ;
 test -n "$debug"                && export debug          || exit 100    ;
 test -n "$domain"               && export domain         || exit 100    ;
@@ -17,7 +17,7 @@ test -n "$stack"                && export stack          || exit 100    ;
 test -n "$username_app"         && export username_app   || exit 100    ;
 #########################################################################
 file=common-functions.sh						;
-path=$AWS/lib                                 				;
+path=$A/lib                                 				;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
@@ -33,10 +33,10 @@ export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
 file=app-deploy.sh      	                                        ;
-path=$AWS/bin                                 				;
+path=$A/bin                                 				;
 #########################################################################
 export deploy_file=app-deploy-$mode.sh					;
-export deploy_path=$AWS/bin						;
+export deploy_path=$A/bin						;
 #########################################################################
 output="								\
   $(									\

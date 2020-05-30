@@ -6,7 +6,7 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$AWS"			|| exit 100				;
+test -n "$A"			|| exit 100				;
 test -n "$debug"		|| exit 100				;
 test -n "$domain"		|| exit 100				;
 test -n "$HostedZoneName"	|| exit 100				;
@@ -16,13 +16,13 @@ export=" 								\
   export debug=$debug 							\
 "									;
 log=/root/kubernetes-install.log                              		;
-path=$AWS/bin								;
+path=$A/bin								;
 sleep=10								;
 #########################################################################
 export=" 								\
   $export								\
   && 									\
-  export AWS=$AWS							\
+  export A=$A								\
   && 									\
   export domain=$domain							\
 "									;
