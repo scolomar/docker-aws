@@ -14,9 +14,9 @@ test -n "$deploy_file"	|| exit 100					;
 test -n "$deploy_path"	|| exit 100					;
 test -n "$domain"	|| exit 100					;
 test -n "$mode"		|| exit 100					;
-test -n "$repository"	|| exit 100					;
+test -n "$repository_app"	|| exit 100					;
 test -n "$stack"	|| exit 100					;
-test -n "$username"	|| exit 100					;
+test -n "$username_app"	|| exit 100					;
 #########################################################################
 apps=$(									\
   encode_string "$apps"							\
@@ -45,9 +45,9 @@ export=" 								\
   &&									\
   export mode=$mode							\
   &&									\
-  export repository=$repository						\
+  export repository_app=$repository_app						\
   &&									\
-  export username=$username						\
+  export username_app=$username_app						\
 "									;
 send_remote_file $domain "$export" $file $path $sleep $stack "$targets" ;
 #########################################################################

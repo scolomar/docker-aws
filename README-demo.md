@@ -24,14 +24,14 @@ mode=swarm                                                              \
 RecordSetName1=dockercoins                                              \
 RecordSetName2=petclinic                                                \
 RecordSetName3=php                                                      \
-repository=proxy2aws                                                    \
+repository_app=proxy2aws                                                    \
 s3name=docker-aws                                                       \
 s3region=ap-south-1                                                     \
 stack=docker                                                            \
 template=https.yaml                                                     \
 TypeManager=t3a.nano                                                    \
 TypeWorker=t3a.micro                                                    \
-username=secobau                                                        \
+username_app=secobau                                                        \
                                                                         ;
 #########################################################################
 export apps                                                             \
@@ -64,7 +64,7 @@ export RecordSetName2                                                   \
 &&                                                                      \
 export RecordSetName3                                                   \
 &&                                                                      \
-export repository                                                       \
+export repository_app                                                       \
 &&                                                                      \
 export s3name                                                           \
 &&                                                                      \
@@ -78,7 +78,7 @@ export TypeManager                                                      \
 &&                                                                      \
 export TypeWorker                                                       \
 &&                                                                      \
-export username                                                         \
+export username_app                                                         \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \

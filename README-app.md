@@ -18,9 +18,9 @@ username_docker_aws=secobau                                             \
 domain=raw.githubusercontent.com                                        \
 mode=kubernetes                                                         \
 mode=swarm                                                              \
-repository=proxy2aws                                                    \
+repository_app=proxy2aws                                                    \
 stack=proxy2aws                                                         \
-username=secobau                                                        \
+username_app=secobau                                                        \
                                                                         ;
 #########################################################################
 export apps                                                             \
@@ -37,11 +37,11 @@ export domain                                                           \
 &&                                                                      \
 export mode                                                             \
 &&                                                                      \
-export repository                                                       \
+export repository_app                                                       \
 &&                                                                      \
 export stack                                                            \
 &&                                                                      \
-export username                                                         \
+export username_app                                                         \
                                                                         ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \

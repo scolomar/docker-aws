@@ -6,14 +6,14 @@
 #########################################################################
 set +x && test "$debug" = true && set -x 				;
 #########################################################################
-test -n "$apps"		|| exit 100					;
-test -n "$branch_app"	|| exit 100					;
-test -n "$debug"	|| exit 100					;
-test -n "$deploy"	|| exit 100					;
-test -n "$domain"	|| exit 100					;
-test -n "$mode"		|| exit 100					;
-test -n "$repository"	|| exit 100					;
-test -n "$username"	|| exit 100					;
+test -n "$apps"			|| exit 100				;
+test -n "$branch_app"		|| exit 100				;
+test -n "$debug"		|| exit 100				;
+test -n "$deploy"		|| exit 100				;
+test -n "$domain"		|| exit 100				;
+test -n "$mode"			|| exit 100				;
+test -n "$repository_app"	|| exit 100				;
+test -n "$username_app"		|| exit 100				;
 #########################################################################
 apps="									\
   $(                                                   			\
@@ -24,7 +24,7 @@ apps="									\
         --decode                                        		\
   )									\
 "                                                                      	;
-path=$username/$repository/$branch_app/etc/docker/$mode/$deploy		;
+path=$username_app/$repository_app/$branch_app/etc/docker/$mode/$deploy	;
 #########################################################################
 for app in $apps							;
 do 									\

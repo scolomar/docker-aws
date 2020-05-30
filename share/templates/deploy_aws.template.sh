@@ -30,11 +30,11 @@ mode=<mode>			# values: kubernetes, swarm
 RecordSetName1=<service-1>	# subdomain 1
 RecordSetName2=<service-2>
 RecordSetName3=<service-3>
-repository=<github-repository>
+repository_app=<github-repository>
 stack=<stack>
 TypeManager=<type>		# t3a.nano
 TypeWorker=<type>		# t3a.nano
-username=<github-username>
+username_app=<github-username>
 
 
 ################################################################################
@@ -53,11 +53,11 @@ export mode
 export RecordSetName1
 export RecordSetName2
 export RecordSetName3
-export repository
+export repository_app
 export stack
 export TypeManager
 export TypeWorker
-export username
+export username_app
 
 
 ################################################################################
@@ -66,7 +66,7 @@ export username
 fpath=${AWS}/bin
 fname=init.sh
 date=$( date +%F_%H%M )
-path=$HOME/.${repository}/var/
+path=$HOME/.${repository_app}/var/
 mkdir --parents ${path}/${date}
 cd	${path}/${date}
 curl --remote-name https://${domain}/${fpath}/${fname}
