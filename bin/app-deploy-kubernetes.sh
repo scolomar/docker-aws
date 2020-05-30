@@ -49,7 +49,7 @@ for app in $apps							;
 do 									\
   prefix=$( echo $app | cut --delimiter . --field 1 )			;
   suffix=$( echo $app | cut --delimiter . --field 2 )			;
-  for name in $prefix $prefix-blue					;
+  for name in $prefix							;
   do									\
     uuid=$( uuidgen )							;
     curl --output $uuid https://$domain/$path/$name.$suffix     	;
