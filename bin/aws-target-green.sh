@@ -6,22 +6,17 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$AWS"	 		|| exit 100				;
-test -n "$debug" 		|| exit 100				;
-test -n "$branch_docker_aws"	|| exit 100				;
-test -n "$domain" 		|| exit 100				;
-test -n "$HostedZoneName" 	|| exit 100                             ;
-test -n "$Identifier" 		|| exit 100                             ;
-test -n "$KeyName" 		|| exit 100                             ;
-test -n "$RecordSetName1" 	|| exit 100                             ;
-test -n "$RecordSetName2" 	|| exit 100                             ;
-test -n "$RecordSetName3" 	|| exit 100                             ;
-test -n "$s3name" 		|| exit 100                             ;
-test -n "$s3region" 		|| exit 100                             ;
-test -n "$stack" 		|| exit 100                             ;
-test -n "$template" 		|| exit 100                             ;
-test -n "$TypeManager"      	|| exit 100    				;
-test -n "$TypeWorker"      	|| exit 100    				;
+test -n "$AWS"	                && export AWS               || exit 100 ;
+test -n "$branch_docker_aws"    && export branch_docker_aws || exit 100 ;
+test -n "$domain" 		&& export domain	    || exit 100	;
+#########################################################################
+file=env.conf								;
+path=$AWS/etc/docker-aws						;
+uuid=$( uuidgen )							;
+#########################################################################
+curl --output $uuid https://$domain/$path/$file                         ;
+source ./$uuid                                                          ;
+rm --force ./$uuid							;
 #########################################################################
 caps=CAPABILITY_IAM							;
 NodeInstallUrlPath=https://$domain/$AWS/bin                             ;
