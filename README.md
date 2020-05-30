@@ -14,7 +14,7 @@ You need to run the following commands from a terminal with enough AWS privilege
 
 
 #########################################################################
-branch_docker_aws=master                                                \
+branch_docker_aws=v3.1                                                \
 debug=false                                                             \
 debug=true                                                              \
 domain=raw.githubusercontent.com                                        \
