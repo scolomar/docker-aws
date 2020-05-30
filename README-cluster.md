@@ -32,11 +32,9 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
+branch_docker_aws=master                                                \
 debug=false                                                             \
 debug=true                                                              \
-branch_docker_aws=master                                                \
-repository_docker_aws=docker-aws                                        \
-username_docker_aws=secobau                                             \
 domain=raw.githubusercontent.com                                        \
 HostedZoneName=sebastian-colomar.com                                    \
 mode=kubernetes                                                         \
@@ -45,6 +43,8 @@ stack=proxy2aws                                                         \
                                                                         ;
 #########################################################################
 export AWS=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
+&&                                                                      \
+export branch_docker_aws                                                \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \
