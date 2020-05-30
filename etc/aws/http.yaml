@@ -42,6 +42,9 @@ Metadata:
           - IpProtocolListenerWorker1
           - IpProtocolListenerWorker2
           - IpProtocolListenerWorker3
+          - MatcherTargetGroupWorker1
+          - MatcherTargetGroupWorker2
+          - MatcherTargetGroupWorker3
           - PortListenerKubeManager
           - PortListenerWorker1
           - PortListenerWorker1QA
@@ -111,6 +114,12 @@ Metadata:
         default: The IP protocol for Listener Worker 3
       KeyName:
         default: The name of the key pair
+      MatcherTargetGroupWorker1:
+        default: The HTTP codes to use when checking for a successful response from Worker Group 1
+      MatcherTargetGroupWorker2:
+        default: The HTTP codes to use when checking for a successful response from Worker Group 2
+      MatcherTargetGroupWorker3:
+        default: The HTTP codes to use when checking for a successful response from Worker Group 3
       NodeInstallUrlPath:
         default: The URL path to download the script for the common install of the nodes
       NodeInstallUrlFile:
@@ -290,6 +299,24 @@ Parameters:
     Default: proxy2aws
     Description: >
       The name of the key pair. You can create a key pair using CreateKeyPair or ImportKeyPair.
+    Type: String
+      
+  MatcherTargetGroupWorker1:
+    Default: "200-399"
+    Description: >
+      The HTTP codes to use when checking for a successful response from Worker Group 1.
+    Type: String
+    
+  MatcherTargetGroupWorker2:
+    Default: "200-399"
+    Description: >
+      The HTTP codes to use when checking for a successful response from Worker Group 2.
+    Type: String
+    
+  MatcherTargetGroupWorker3:
+    Default: "200-399"
+    Description: >
+      The HTTP codes to use when checking for a successful response from Worker Group 3.
     Type: String
     
   NodeInstallUrlPath:
@@ -1170,6 +1197,7 @@ Resources:
 
   TargetGroupWorker1A:
     Properties: 
+      Matcher: !Ref MatcherTargetGroupWorker1
       Port: !Ref PortTargetGroupWorker1A
       Protocol: !Ref ProtocolTargetGroupWorker1
       Targets: 
@@ -1182,6 +1210,7 @@ Resources:
 
   TargetGroupWorker1B:
     Properties: 
+      Matcher: !Ref MatcherTargetGroupWorker1
       Port: !Ref PortTargetGroupWorker1B
       Protocol: !Ref ProtocolTargetGroupWorker1
       Targets: 
@@ -1194,6 +1223,7 @@ Resources:
 
   TargetGroupWorker2A:
     Properties: 
+      Matcher: !Ref MatcherTargetGroupWorker2
       Port: !Ref PortTargetGroupWorker2A
       Protocol: !Ref ProtocolTargetGroupWorker2
       Targets: 
@@ -1206,6 +1236,7 @@ Resources:
 
   TargetGroupWorker2B:
     Properties: 
+      Matcher: !Ref MatcherTargetGroupWorker2
       Port: !Ref PortTargetGroupWorker2B
       Protocol: !Ref ProtocolTargetGroupWorker2
       Targets: 
@@ -1218,6 +1249,7 @@ Resources:
 
   TargetGroupWorker3A:
     Properties: 
+      Matcher: !Ref MatcherTargetGroupWorker3
       Port: !Ref PortTargetGroupWorker3A
       Protocol: !Ref ProtocolTargetGroupWorker3
       Targets: 
@@ -1230,6 +1262,7 @@ Resources:
 
   TargetGroupWorker3B:
     Properties: 
+      Matcher: !Ref MatcherTargetGroupWorker3
       Port: !Ref PortTargetGroupWorker3B
       Protocol: !Ref ProtocolTargetGroupWorker3
       Targets: 
