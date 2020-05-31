@@ -13,14 +13,6 @@ test -n "$HostedZoneName"	&& export HostedZoneName    || exit 100 ;
 test -n "$mode"                 && export mode	            || exit 100	;
 test -n "$stack"                && export stack	            || exit 100	;
 #########################################################################
-file=env-cluster.conf							;
-path=$A/etc/docker-aws							;
-uuid=$( uuidgen )							;
-#########################################################################
-curl --output $uuid https://$domain/$path/$file                         ;
-source ./$uuid                                                          ;
-rm --force ./$uuid							;
-#########################################################################
 file=common-functions.sh						;
 path=$A/lib                                 				;
 uuid=$( uuidgen )							;
