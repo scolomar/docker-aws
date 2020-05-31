@@ -44,9 +44,9 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-file=aws-init.sh                                               		;
 path=$A/bin								;
 #########################################################################
+file=aws-init.sh                                               		;
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
@@ -54,8 +54,6 @@ output="								\
 "									;
 #########################################################################
 file=cluster-init.sh							;
-path=$A/bin								;
-#########################################################################
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
@@ -63,8 +61,6 @@ output="								\
 "									;
 #########################################################################
 file=app-init.sh                                               		;
-path=$A/bin								;
-#########################################################################
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
