@@ -60,6 +60,14 @@ export stack                                                            \
 &&                                                                      \
                                                                         ;
 #########################################################################
+file=env-cluster.conf							;
+path=$A/etc/docker-aws							;
+uuid=$( uuidgen )							;
+#########################################################################
+curl --output $uuid https://$domain/$path/$file                         ;
+source ./$uuid                                                          ;
+rm --force ./$uuid							;
+#########################################################################
 date=$( date +%F_%H%M )                                                 \
 file=cluster-init.sh                                                    \
 path=$A/bin                                                             \
