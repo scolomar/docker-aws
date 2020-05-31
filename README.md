@@ -14,32 +14,18 @@ You need to run the following commands from a terminal with enough AWS privilege
 
 
 #########################################################################
-export branch_docker_aws=master                                                \
-debug=false                                                             \
-debug=true                                                              \
-domain=raw.githubusercontent.com                                        \
-HostedZoneName=sebastian-colomar.com                                    \
-mode=kubernetes                                                         \
-mode=swarm                                                              \
-repository_docker_aws=docker-aws                                        \
-stack=docker                                                            \
-username_docker_aws=secobau                                             \
-                                                                        ;
+export branch_docker_aws=master                                         ;
+export debug=false                                                      ;
+export debug=true                                                       ;
+export domain=raw.githubusercontent.com                                 ;
+export HostedZoneName=sebastian-colomar.com                             ;
+export mode=kubernetes                                                  ;
+export mode=swarm                                                       ;
+export repository_docker_aws=docker-aws                                 ;
+export stack=docker                                                     ;
+export username_docker_aws=secobau                                      ;
 #########################################################################
-export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
-&&                                                                      \
-export branch_docker_aws                                                \
-&&                                                                      \
-export debug                                                            \
-&&                                                                      \
-export domain                                                           \
-&&                                                                      \
-export HostedZoneName                                                   \
-&&                                                                      \
-export mode                                                             \
-&&                                                                      \
-export stack                                                            \
-                                                                        ;
+export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws ;
 #########################################################################
 export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                  ;
 export KeyName=cloud9_mumbai_mgmt                                       ;
@@ -57,19 +43,14 @@ export branch_app=master                                                ;
 export repository_app=docker-aws                                        ;
 export username_app=secobau                                             ;
 #########################################################################
-date=$( date +%F_%H%M )                                                 \
-file=init.sh                                                            \
-path=$A/bin                                                             \
-                                                                        ;
+date=$( date +%F_%H%M )                                                 ;
+file=init.sh                                                            ;
+path=$A/bin                                                             ;
 #########################################################################
-mkdir $date                                                             \
-&&                                                                      \
-cd $date                                                                \
-&&                                                                      \
-curl --remote-name https://$domain/$path/$file                          \
-&&                                                                      \
-chmod +x ./$file                                                        \
-&&                                                                      \
+mkdir $date                                                             ;
+cd $date                                                                ;
+curl --remote-name https://$domain/$path/$file                          ;
+chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
 
@@ -87,18 +68,13 @@ The following command will swap the load balancer so as to point to the BLUE dep
 
 
 #########################################################################
-date=$( date +%F_%H%M )                                                 \
-file=aws-target-blue.sh                                                 \
-                                                                        ;
+date=$( date +%F_%H%M )                                                 ;
+file=aws-target-blue.sh                                                 ;
 #########################################################################
-mkdir $date                                                             \
-&&                                                                      \
-cd $date                                                                \
-&&                                                                      \
-curl --remote-name https://$domain/$path/$file                          \
-&&                                                                      \
-chmod +x ./$file                                                        \
-&&                                                                      \
+mkdir $date                                                             ;
+cd $date                                                                ;
+curl --remote-name https://$domain/$path/$file                          ;
+chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
 
@@ -115,18 +91,13 @@ The following command will swap back the load balancer so as to point again to t
 
 
 #########################################################################
-date=$( date +%F_%H%M )                                                 \
-file=aws-target-green.sh                                                \
-                                                                        ;
+date=$( date +%F_%H%M )                                                 ;
+file=aws-target-green.sh                                                ;
 #########################################################################
-mkdir $date                                                             \
-&&                                                                      \
-cd $date                                                                \
-&&                                                                      \
-curl --remote-name https://$domain/$path/$file                          \
-&&                                                                      \
-chmod +x ./$file                                                        \
-&&                                                                      \
+mkdir $date                                                             ;
+cd $date                                                                ;
+curl --remote-name https://$domain/$path/$file                          ;
+chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
 
