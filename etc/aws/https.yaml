@@ -296,7 +296,7 @@ Parameters:
     Type: String
     
   KeyName:
-    Default: docker
+    Default: ''
     Description: >
       The name of the key pair. You can create a key pair using CreateKeyPair or ImportKeyPair.
     Type: String
