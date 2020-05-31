@@ -50,14 +50,14 @@ curl --output $uuid https://$domain/$path/$file                         ;
 source ./$uuid                                                          ;
 rm --force ./$uuid							;
 #########################################################################
-file=env-app.conf							;
+file=env-cluster.conf							;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
 source ./$uuid                                                          ;
 rm --force ./$uuid							;
 #########################################################################
-file=env-cluster.conf							;
+file=env-app.conf							;
 uuid=$( uuidgen )							;
 #########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
