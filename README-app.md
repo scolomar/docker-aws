@@ -30,13 +30,10 @@ export mode                                                             \
 export stack                                                            \
                                                                         ;
 #########################################################################
-file=env-app.conf							;
-path=$A/etc/docker-aws							;
-uuid=$( uuidgen )							;
-#########################################################################
-curl --output $uuid https://$domain/$path/$file                         ;
-source ./$uuid                                                          ;
-rm --force ./$uuid							;
+export apps=" dockercoins.yaml petclinic.yaml php.yaml "                ;
+export branch_app=master                                                ;
+export repository_app=docker-aws                                        ;
+export username_app=secobau                                             ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
 file=app-init.sh                                                        \
