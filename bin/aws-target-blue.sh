@@ -54,6 +54,7 @@ aws cloudformation update-stack						\
     ParameterKey=RecordSetName1,ParameterValue=$RecordSetName1		\
     ParameterKey=RecordSetName2,ParameterValue=$RecordSetName2		\
     ParameterKey=RecordSetName3,ParameterValue=$RecordSetName3		\
+    ParameterKey=RecordSetNameKube,ParameterValue=$RecordSetNameKube	\
   --stack-name								\
     $stack								\
   --template-url							\

@@ -16,6 +16,7 @@ test -n "$KeyName"              && export KeyName	    || exit 100	;
 test -n "$RecordSetName1"	&& export RecordSetName1    || exit 100 ;
 test -n "$RecordSetName2"	&& export RecordSetName2    || exit 100 ;
 test -n "$RecordSetName3"	&& export RecordSetName3    || exit 100 ;
+test -n "$RecordSetNameKube"	&& export RecordSetNameKube || exit 100 ;
 test -n "$s3name"		&& export s3name    	    || exit 100 ;
 test -n "$s3region"		&& export s3region    	    || exit 100 ;
 test -n "$stack"                && export stack	            || exit 100	;
@@ -55,6 +56,7 @@ aws cloudformation create-stack 					\
     ParameterKey=RecordSetName1,ParameterValue=$RecordSetName1		\
     ParameterKey=RecordSetName2,ParameterValue=$RecordSetName2		\
     ParameterKey=RecordSetName3,ParameterValue=$RecordSetName3		\
+    ParameterKey=RecordSetNameKube,ParameterValue=$RecordSetNameKube	\
   --stack-name 								\
     $stack 								\
   --template-url 						 	\
