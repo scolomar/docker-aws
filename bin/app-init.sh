@@ -8,11 +8,11 @@ set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$A"	                && export A                 || exit 100 ;
 test -n "$apps" 		&& export apps	            || exit 100	;
-test -n "$branch_app" 	        && export branch_app	  || exit 100	;
+test -n "$branch_app" 	        && export branch_app	    || exit 100	;
 test -n "$debug" 		&& export debug	            || exit 100	;
 test -n "$domain" 		&& export domain	    || exit 100	;
 test -n "$mode"                 && export mode	            || exit 100	;
-test -n "$repository_app"       && export repository_app || exit 100	;
+test -n "$repository_app"       && export repository_app    || exit 100	;
 test -n "$stack"                && export stack	            || exit 100	;
 test -n "$username_app"         && export username_app	    || exit 100	;
 #########################################################################
