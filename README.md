@@ -10,7 +10,7 @@ You need to run the following commands from a terminal with enough AWS privilege
 
 
 #########################################################################
-export branch_docker_aws=master                                         ;
+export branch_docker_aws=v4.0                                         ;
 export debug=false                                                      ;
 export debug=true                                                       ;
 export domain=raw.githubusercontent.com                                 ;
