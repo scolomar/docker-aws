@@ -2,11 +2,7 @@ This project will allow you to deploy a containerized application in AWS on a pr
 
 
 The following script will first create the infrastructure and then deploy your application. 
-In order to customize the setup you should modify the variables in this page and also in the following folder:
-```BASH
-./etc/docker-aws/
-```
-
+In order to customize the setup you should modify the variables in this page.
 You need to run the following commands from a terminal with enough AWS privileges:
 
 ```BASH
