@@ -29,6 +29,14 @@ export HostedZoneName                                                   \
 export stack                                                            \
                                                                         ;
 #########################################################################
+file=env-aws.conf							;
+path=$A/etc/docker-aws							;
+uuid=$( uuidgen )							;
+#########################################################################
+curl --output $uuid https://$domain/$path/$file                         ;
+source ./$uuid                                                          ;
+rm --force ./$uuid							;
+#########################################################################
 date=$( date +%F_%H%M )                                                 \
 file=aws-init.sh                                                        \
 path=$A/bin                                                             \
