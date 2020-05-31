@@ -14,7 +14,7 @@ You need to run the following commands from a terminal with enough AWS privilege
 
 
 #########################################################################
-branch_docker_aws=master                                                \
+export branch_docker_aws=master                                                \
 debug=false                                                             \
 debug=true                                                              \
 domain=raw.githubusercontent.com                                        \
@@ -41,28 +41,21 @@ export mode                                                             \
 export stack                                                            \
                                                                         ;
 #########################################################################
-path=$A/etc/docker-aws							;
+export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                  ;
+export KeyName=cloud9_mumbai_mgmt                                       ;
+export RecordSetName1=dockercoins                                       ;
+export RecordSetName2=petclinic                                         ;
+export RecordSetName3=php                                               ;
+export s3name=docker-aws                                                ;
+export s3region=ap-south-1                                              ;
+export template=https.yaml                                              ;
+export TypeManager=t3a.nano                                             ;
+export TypeWorker=t3a.nano                                              ;
 #########################################################################
-file=env-aws.conf							;
-uuid=$( uuidgen )							;
-#########################################################################
-curl --output $uuid https://$domain/$path/$file                         ;
-source ./$uuid                                                          ;
-rm --force ./$uuid							;
-#########################################################################
-file=env-cluster.conf							;
-uuid=$( uuidgen )							;
-#########################################################################
-curl --output $uuid https://$domain/$path/$file                         ;
-source ./$uuid                                                          ;
-rm --force ./$uuid							;
-#########################################################################
-file=env-app.conf							;
-uuid=$( uuidgen )							;
-#########################################################################
-curl --output $uuid https://$domain/$path/$file                         ;
-source ./$uuid                                                          ;
-rm --force ./$uuid							;
+export apps=" dockercoins.yaml petclinic.yaml php.yaml "                ;
+export branch_app=master                                                ;
+export repository_app=docker-aws                                        ;
+export username_app=secobau                                             ;
 #########################################################################
 date=$( date +%F_%H%M )                                                 \
 file=init.sh                                                            \
