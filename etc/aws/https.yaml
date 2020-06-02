@@ -226,19 +226,6 @@ Parameters:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     
   InstanceManagerInstanceType:
-    AllowedValues:
-      - t2.nano
-      - t2.micro
-      - t3.small
-      - t3.medium
-      - t3.large
-      - t3a.nano
-      - t3a.micro
-      - t3a.small
-      - t3a.medium
-      - t3a.large
-    ConstraintDescription: >
-      Choose an instance type.
     Default: ''
     Description: >
       Select Amazon EC2 instance type for the Cluster Manager instances.
@@ -253,19 +240,6 @@ Parameters:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     
   InstanceWorkerInstanceType:
-    AllowedValues:
-      - t2.nano
-      - t2.micro
-      - t3.small
-      - t3.medium
-      - t3.large
-      - t3a.nano
-      - t3a.micro
-      - t3a.small
-      - t3a.medium
-      - t3a.large
-    ConstraintDescription: >
-      Choose an instance type.
     Default: ''
     Description: >
       Select Amazon EC2 instance type for the Cluster Worker instances.
