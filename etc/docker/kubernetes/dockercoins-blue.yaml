@@ -5,7 +5,7 @@
 ---
 apiVersion: v1
 kind: Namespace
-metada:
+metadata:
   name: blue
 ---
 apiVersion: apps/v1
