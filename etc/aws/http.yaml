@@ -482,7 +482,7 @@ Parameters:
     Type: String
     
   RecordSetNameKube:
-    Default: kube-apiserver
+    Default: ''
     Description: >
       The name of the Record Set for service 1.
     Type: String

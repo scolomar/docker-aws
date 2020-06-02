@@ -8,13 +8,14 @@ set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
 test -n "$HostedZoneName"       || exit 100                             ;
+test -n "$RecordSetNameKube"    || exit 100                             ;
 test -n "$log"                  || exit 100                             ;
 test -n "$token_certificate"    || exit 100                             ;
 test -n "$token_discovery"      || exit 100                             ;
 test -n "$token_token"       	|| exit 100                             ;
 #########################################################################
 ip=10.168.1.100                                                         ;
-kube=kube-apiserver.$HostedZoneName					;
+kube=$RecordSetNameKube.$HostedZoneName					;
 #########################################################################
 token_certificate="$(							\
 	echo								\

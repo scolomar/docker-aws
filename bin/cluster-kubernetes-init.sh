@@ -10,6 +10,7 @@ test -n "$A"			|| exit 100				;
 test -n "$debug"		|| exit 100				;
 test -n "$domain"		|| exit 100				;
 test -n "$HostedZoneName"	|| exit 100				;
+test -n "$RecordSetNameKube"	|| exit 100				;
 test -n "$stack"		|| exit 100				;
 #########################################################################
 export=" 								\
@@ -43,6 +44,8 @@ export=" 								\
   export HostedZoneName=$HostedZoneName					\
   && 									\
   export log=$log							\
+  && 									\
+  export RecordSetNameKube=$RecordSetNameKube				\
 "									;
 file=cluster-kubernetes-leader.sh					;
 targets="								\
