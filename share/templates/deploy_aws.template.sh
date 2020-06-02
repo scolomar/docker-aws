@@ -67,7 +67,7 @@ date=$( date +%F_%H%M )
 path=$HOME/.${repository_app}/var/
 mkdir --parents ${path}/${date}
 cd	${path}/${date}
-curl --remote-name https://${domain}/${fpath}/${fname}?$( uuidgen )
+curl --output ${fname} https://${domain}/${fpath}/${fname}?$( uuidgen )
 chmod +x ./${fname}
 nohup	./${fname} &
 

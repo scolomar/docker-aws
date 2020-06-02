@@ -46,7 +46,7 @@ path=$A/bin                                                             ;
 #########################################################################
 mkdir $date                                                             ;
 cd $date                                                                ;
-curl --remote-name https://$domain/$path/$file?$( uuidgen )             ;
+curl --outpute $file https://$domain/$path/$file?$( uuidgen )           ;
 chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
@@ -70,7 +70,7 @@ file=aws-target-blue.sh                                                 ;
 #########################################################################
 mkdir $date                                                             ;
 cd $date                                                                ;
-curl --remote-name https://$domain/$path/$file?$( uuidgen )             ;
+curl --outpute $file https://$domain/$path/$file?$( uuidgen )           ;
 chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
@@ -93,7 +93,7 @@ file=aws-target-green.sh                                                ;
 #########################################################################
 mkdir $date                                                             ;
 cd $date                                                                ;
-curl --remote-name https://$domain/$path/$file?$( uuidgen )             ;
+curl --outpute $file https://$domain/$path/$file?$( uuidgen )           ;
 chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
