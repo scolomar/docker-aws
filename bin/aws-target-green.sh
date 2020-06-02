@@ -31,7 +31,7 @@ s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$branch_docker_aws/$template		;
 uuid=$( uuidgen )							;
 #########################################################################
-curl --output $uuid https://$domain/$path/$template			;
+curl --output $uuid https://$domain/$path/$template?$( uuidgen )	;
 aws s3 cp $uuid s3://$s3name/$branch_docker_aws/$template 		;
 rm --force ./$uuid							;
 #########################################################################

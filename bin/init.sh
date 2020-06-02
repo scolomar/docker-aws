@@ -33,7 +33,7 @@ file=common-functions.sh						;
 path=$A/lib								;
 uuid=$( uuidgen )							;
 #########################################################################
-curl --output $uuid https://$domain/$path/$file                         ;
+curl --output $uuid https://$domain/$path/$file?$( uuidgen )            ;
 source ./$uuid                                                          ;
 rm --force ./$uuid							;
 #########################################################################

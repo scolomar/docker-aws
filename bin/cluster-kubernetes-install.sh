@@ -15,7 +15,7 @@ repos=yum.repos.d							;
 #########################################################################
 path=$A/etc/$repos							;
 uuid=$( uuidgen )							;
-curl --output $uuid https://$domain/$path/$file                         ;
+curl --output $uuid https://$domain/$path/$file?$( uuidgen )            ;
 mv $uuid /etc/$repos/$file						;
 #########################################################################
 yum install								\

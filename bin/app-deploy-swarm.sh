@@ -32,7 +32,7 @@ do 									\
   for name in $prefix							;
   do									\
     uuid=$( uuidgen )							;
-    curl --output $uuid https://$domain/$path/$name.$suffix     	;
+    curl --output $uuid https://$domain/$path/$name.$suffix?$( uuidgen );
     docker stack deploy --compose-file $uuid $name 			;
     rm --force $uuid							;
   done									;

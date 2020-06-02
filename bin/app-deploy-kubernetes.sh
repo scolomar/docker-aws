@@ -52,7 +52,7 @@ do 									\
   for name in $prefix							;
   do									\
     uuid=$( uuidgen )							;
-    curl --output $uuid https://$domain/$path/$name.$suffix     	;
+    curl --output $uuid https://$domain/$path/$name.$suffix?$( uuidgen );
     kubectl apply --filename $uuid --kubeconfig $kubeconfig		;
     rm --force $uuid							;
   done									;

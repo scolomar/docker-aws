@@ -35,7 +35,7 @@ path=$A/bin                                                             ;
 #########################################################################
 mkdir $date                                                             ;
 cd $date                                                                ;
-curl --remote-name https://$domain/$path/$file                          ;
+curl --remote-name https://$domain/$path/$file?$( uuidgen )             ;
 chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
