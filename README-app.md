@@ -6,7 +6,7 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-export branch_docker_aws=master                                         ;
+export branch_docker_aws=v4.2                                         ;
 export debug=false                                                      ;
 export debug=true                                                       ;
 export domain=raw.githubusercontent.com                                 ;
@@ -19,7 +19,7 @@ export username_docker_aws=secobau                                      ;
 export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws ;
 #########################################################################
 export apps=" dockercoins.yaml petclinic.yaml php.yaml "                ;
-export branch_app=master                                                ;
+export branch_app=v4.2                                                ;
 export repository_app=docker-aws                                        ;
 export username_app=secobau                                             ;
 #########################################################################
