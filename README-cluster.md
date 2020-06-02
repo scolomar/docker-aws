@@ -32,47 +32,28 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-branch_docker_aws=master                                                \
-debug=false                                                             \
-debug=true                                                              \
-domain=raw.githubusercontent.com                                        \
-HostedZoneName=sebastian-colomar.com                                    \
-mode=kubernetes                                                         \
-mode=swarm                                                              \
-repository_docker_aws=docker-aws                                        \
-stack=docker                                                            \
-username_docker_aws=secobau                                             \
-                                                                        ;
+export branch_docker_aws=master                                         ;
+export debug=false                                                      ;
+export debug=true                                                       ;
+export domain=raw.githubusercontent.com                                 ;
+export HostedZoneName=sebastian-colomar.com                             ;
+export mode=kubernetes                                                  ;
+export mode=swarm                                                       ;
+export RecordSetNameKube=kube-apiserver                                 ;
+export repository_docker_aws=docker-aws                                 ;
+export stack=docker                                                     ;
+export username_docker_aws=secobau                                      ;
 #########################################################################
-export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
-&&                                                                      \
-export branch_docker_aws                                                \
-&&                                                                      \
-export debug                                                            \
-&&                                                                      \
-export domain                                                           \
-&&                                                                      \
-export HostedZoneName                                                   \
-&&                                                                      \
-export mode                                                             \
-&&                                                                      \
-export stack                                                            \
-&&                                                                      \
-                                                                        ;
+export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws ;
 #########################################################################
-date=$( date +%F_%H%M )                                                 \
-file=cluster-init.sh                                                    \
-path=$A/bin                                                             \
-                                                                        ;
+date=$( date +%F_%H%M )                                                 ;
+file=cluster-init.sh                                                    ;
+path=$A/bin                                                             ;
 #########################################################################
-mkdir $date                                                             \
-&&                                                                      \
-cd $date                                                                \
-&&                                                                      \
-curl --remote-name https://$domain/$path/$file                          \
-&&                                                                      \
-chmod +x ./$file                                                        \
-&&                                                                      \
+mkdir $date                                                             ;
+cd $date                                                                ;
+curl --remote-name https://$domain/$path/$file                          ;
+chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
 

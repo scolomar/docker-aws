@@ -6,28 +6,16 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-branch_docker_aws=master                                                \
-debug=false                                                             \
-debug=true                                                              \
-domain=raw.githubusercontent.com                                        \
-HostedZoneName=sebastian-colomar.com                                    \
-repository_docker_aws=docker-aws                                        \
-stack=docker                                                            \
-username_docker_aws=secobau                                             \
-                                                                        ;
+export branch_docker_aws=master                                         ;
+export debug=false                                                      ;
+export debug=true                                                       ;
+export domain=raw.githubusercontent.com                                 ;
+export HostedZoneName=sebastian-colomar.com                             ;
+export repository_docker_aws=docker-aws                                 ;
+export stack=docker                                                     ;
+export username_docker_aws=secobau                                      ;
 #########################################################################
-export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws \
-&&                                                                      \
-export branch_docker_aws                                                \
-&&                                                                      \
-export debug                                                            \
-&&                                                                      \
-export domain                                                           \
-&&                                                                      \
-export HostedZoneName                                                   \
-&&                                                                      \
-export stack                                                            \
-                                                                        ;
+export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws ;
 #########################################################################
 export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                  ;
 export KeyName=cloud9_mumbai_mgmt                                       ;
@@ -41,19 +29,14 @@ export template=https.yaml                                              ;
 export TypeManager=t3a.nano                                             ;
 export TypeWorker=t3a.nano                                              ;
 #########################################################################
-date=$( date +%F_%H%M )                                                 \
-file=aws-init.sh                                                        \
-path=$A/bin                                                             \
-                                                                        ;
+date=$( date +%F_%H%M )                                                 ;
+file=aws-init.sh                                                        ;
+path=$A/bin                                                             ;
 #########################################################################
-mkdir $date                                                             \
-&&                                                                      \
-cd $date                                                                \
-&&                                                                      \
-curl --remote-name https://$domain/$path/$file                          \
-&&                                                                      \
-chmod +x ./$file                                                        \
-&&                                                                      \
+mkdir $date                                                             ;
+cd $date                                                                ;
+curl --remote-name https://$domain/$path/$file                          ;
+chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
 
