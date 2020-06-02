@@ -39,7 +39,7 @@ export domain=raw.githubusercontent.com                                 ;
 export HostedZoneName=sebastian-colomar.com                             ;
 export mode=kubernetes                                                  ;
 export mode=swarm                                                       ;
-export RecordSetNameKube=kube-apiserver                                 ;
+export RecordSetNameKube=$stack-kube-apiserver                          ;
 export repository_docker_aws=docker-aws                                 ;
 export stack=docker                                                     ;
 export username_docker_aws=secobau                                      ;
@@ -52,7 +52,7 @@ path=$A/bin                                                             ;
 #########################################################################
 mkdir $date                                                             ;
 cd $date                                                                ;
-curl --output $file https://$domain/$path/$file?$( uuidgen )           ;
+curl --output $file https://$domain/$path/$file?$( uuidgen )            ;
 chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################

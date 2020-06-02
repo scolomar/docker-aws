@@ -19,10 +19,10 @@ export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws ;
 #########################################################################
 export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                  ;
 export KeyName=cloud9_mumbai_mgmt                                       ;
-export RecordSetName1=dockercoins                                       ;
-export RecordSetName2=petclinic                                         ;
-export RecordSetName3=php                                               ;
-export RecordSetNameKube=kube-apiserver                                 ;
+export RecordSetName1=$stack-dockercoins                                ;
+export RecordSetName2=$stack-petclinic                                  ;
+export RecordSetName3=$stack-php                                        ;
+export RecordSetNameKube=$stack-kube-apiserver                          ;
 export s3name=docker-aws                                                ;
 export s3region=ap-south-1                                              ;
 export template=https.yaml                                              ;
@@ -35,7 +35,7 @@ path=$A/bin                                                             ;
 #########################################################################
 mkdir $date                                                             ;
 cd $date                                                                ;
-curl --output $file https://$domain/$path/$file?$( uuidgen )           ;
+curl --output $file https://$domain/$path/$file?$( uuidgen )            ;
 chmod +x ./$file                                                        ;
 nohup ./$file                                                           &
 #########################################################################
