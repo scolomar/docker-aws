@@ -239,7 +239,7 @@ Parameters:
       - t3a.large
     ConstraintDescription: >
       Choose an instance type.
-    Default: t3a.nano
+    Default: ''
     Description: >
       Select Amazon EC2 instance type for the Cluster Manager instances.
     Type: String
@@ -266,7 +266,7 @@ Parameters:
       - t3a.large
     ConstraintDescription: >
       Choose an instance type.
-    Default: t3a.nano
+    Default: ''
     Description: >
       Select Amazon EC2 instance type for the Cluster Worker instances.
     Type: String
