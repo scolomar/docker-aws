@@ -53,6 +53,7 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output								;
 #########################################################################
 file=cluster-init.sh							;
 output="								\
@@ -60,6 +61,7 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output								;
 #########################################################################
 file=app-init.sh                                               		;
 output="								\
@@ -67,4 +69,5 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output								;
 #########################################################################

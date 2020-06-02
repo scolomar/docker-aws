@@ -40,6 +40,7 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output								;
 #########################################################################
 file=app-init-deploy.sh      	                                	;
 output="								\
@@ -47,6 +48,7 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output								;
 #########################################################################
 file=app-init-config-remove.sh      	                                ;
 output="								\
@@ -54,4 +56,5 @@ output="								\
     exec_remote_file $domain $file $path 				; 
   )									\
 "									;
+echo $output								;
 #########################################################################
