@@ -21,7 +21,7 @@
 update_version()
 {
 	local	version=$1
-	local	old_version=master
+	local	old_version=$2
 
 	sed "/branch_app=/s/$old_version/$version/"			\
 			-i ./README-app.md				\
@@ -43,15 +43,16 @@ update_version()
 main()
 {
 	local	version=$1
+	local	oldversion=$2
 
-	update_version	${version}
+	update_version	${version} $oldversion
 }
 
 
 ################################################################################
 ##	run								      ##
 ################################################################################
-main	$1
+main	$1 $2
 
 
 ################################################################################
