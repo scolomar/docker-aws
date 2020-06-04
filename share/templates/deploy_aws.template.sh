@@ -7,7 +7,7 @@
 
 
 ## The docker-compose file has to be in this route:
-## /etc/docker/${mode}/<docker-compose>
+## ./etc/docker/${mode}/<docker-compose>
 
 ## The init script is in this route:
 ## https://${domain}/${path}/${fname}
@@ -17,44 +17,65 @@
 ################################################################################
 ##	variables							      ##
 ################################################################################
-apps=" <docker-compose> "
-branch=<git-branch>		# Current branch or tag
-debug=<debug>			# values: true, false
-docker_branch=<secobau/docker-aws branch>
+branch_docker_aws=v4.3
+debug=<debug>			## values: true, false
+domain=raw.githubusercontent.com
 HostedZoneName=<example.com>
-## Identifier is the ID of the certificate in case you are using HTTPS
+mode=<mode>			## values: kubernetes, swarm
+repository_docker_aws=docker-aws
+stack=<stack>
+username_docker_aws=secobau
+########################################
+A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws
+########################################
 Identifier=<xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx>
+## Identifier is the ID of the certificate in case you are using HTTPS
 KeyName=<mySSHpublicKey>
-mode=<mode>			# values: kubernetes, swarm
-RecordSetName1=<service-1>	# subdomain 1
+RecordSetName1=<service-1>	## subdomain 1
 RecordSetName2=<service-2>
 RecordSetName3=<service-3>
+RecordSetNameKube=<x>		## ?
+s3name=docker-aws
+s3region=<region>		## ap-south-1
+template=<x>			## ?
+TypeManager=<type>		## t3a.nano
+TypeWorker=<type>		## t3a.nano
+########################################
+apps=" <docker-compose-1.yaml> <docker-compose-2.yaml> <docker-compose-3.yaml> "
+branch_app=<git-branch>		## Current branch or tag
 repository_app=<github-repository>
-stack=<stack>
-TypeManager=<type>		# t3a.nano
-TypeWorker=<type>		# t3a.nano
 username_app=<github-username>
 
 
 ################################################################################
 ##	export								      ##
 ################################################################################
-export apps
-export AWS=secobau/docker-aws/${docker_branch}
-export branch
+export branch_docker_aws
 export debug
-export domain=raw.githubusercontent.com
+export domain
 export HostedZoneName
+export mode
+export repository_docker_aws
+export stack
+export username_docker_aws
+########################################
+export A
+########################################
 export Identifier
 export KeyName
-export mode
 export RecordSetName1
 export RecordSetName2
 export RecordSetName3
-export repository_app
-export stack
+export RecordSetNameKube
+export s3name
+export s3region
+export template
 export TypeManager
 export TypeWorker
+########################################
+export apps
+export branch_app
+export repository_app
 export username_app
 
 
