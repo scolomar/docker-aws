@@ -28,8 +28,8 @@ username_docker_aws=secobau
 ########################################
 A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws
 ########################################
-Identifier=<xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx>
 ## Identifier is the ID of the certificate in case you are using HTTPS
+Identifier=<xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx>
 KeyName=<mySSHpublicKey>
 RecordSetName1=<service-1>	## subdomain 1
 RecordSetName2=<service-2>
@@ -82,7 +82,7 @@ export username_app
 ################################################################################
 ##	run								      ##
 ################################################################################
-fpath=${AWS}/bin
+fpath=${A}/bin
 fname=init.sh
 date=$( date +%F_%H%M )
 path=$HOME/.${repository_app}/var/
