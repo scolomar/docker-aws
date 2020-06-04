@@ -40,7 +40,7 @@ username_app=<github-username>
 ##	export								      ##
 ################################################################################
 export apps
-export AWS=secobau/docker/${docker_branch}/AWS
+export AWS=secobau/docker-aws/${docker_branch}
 export branch
 export debug
 export domain=raw.githubusercontent.com
