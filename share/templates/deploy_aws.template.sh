@@ -34,12 +34,12 @@ KeyName=<mySSHpublicKey>
 RecordSetName1=<service-1>	## subdomain 1
 RecordSetName2=<service-2>
 RecordSetName3=<service-3>
-RecordSetNameKube=<service-kube>	## ?
+RecordSetNameKube=<service-kube>	## hostname for the kube API server
 s3name=docker-aws
 s3region=<region>		## ap-south-1
-template=https.yaml		## ?
-TypeManager=<type>		## t3a.nano
-TypeWorker=<type>		## t3a.nano
+template=https.yaml		## Cloudformation templates are in $A/etc/aws
+TypeManager=<type>		## minimum t3a.nano for Swarm or t3a.micro for Kubernetes
+TypeWorker=<type>		## minimum t3a.nano
 ########################################
 apps=" <docker-compose-1.yaml> <docker-compose-2.yaml> <docker-compose-3.yaml> "
 branch_app=<git-branch>		## Current branch or tag
