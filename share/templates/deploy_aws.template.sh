@@ -34,10 +34,10 @@ KeyName=<mySSHpublicKey>
 RecordSetName1=<service-1>	## subdomain 1
 RecordSetName2=<service-2>
 RecordSetName3=<service-3>
-RecordSetNameKube=<x>		## ?
+RecordSetNameKube=<service-kube>	## ?
 s3name=docker-aws
 s3region=<region>		## ap-south-1
-template=<x>			## ?
+template=https.yaml		## ?
 TypeManager=<type>		## t3a.nano
 TypeWorker=<type>		## t3a.nano
 ########################################
