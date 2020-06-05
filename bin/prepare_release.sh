@@ -1,5 +1,5 @@
 #!/bin/sh -x
-#	./bin/prepare_release.sh
+#	./bin/prepare_release.sh <version> <old_version>
 ################################################################################
 ##	Copyright (C) 2020	  Alejandro Colomar Andrés		      ##
 ##	Copyright (C) 2020	  Sebastian Francisco Colomar Bauza	      ##
@@ -52,6 +52,13 @@ main()
 ################################################################################
 ##	run								      ##
 ################################################################################
+params=2
+
+if [ "$#" -ne ${params} ]; then
+	echo	"Illegal number of parameters (Requires ${params})"
+	exit	64	## EX_USAGE /* command line usage error */
+fi
+
 main	$1 $2
 
 
