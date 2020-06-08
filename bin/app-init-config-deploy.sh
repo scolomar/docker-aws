@@ -1,20 +1,30 @@
 #!/bin/bash -x
 #	./bin/app-init-config-deploy.sh
-#########################################################################
-#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
-#      SPDX-License-Identifier:  GPL-2.0-only                           #
+################################################################################
+##       Copyright (C) 2020        Sebastian Francisco Colomar Bauza          ##
+##       Copyright (C) 2020        Alejandro Colomar Andrés                   ##
+##       SPDX-License-Identifier:  GPL-2.0-only                               ##
+################################################################################
+
+
+################################################################################
+##	source								      ##
+################################################################################
+source	lib/libalx/sh/sysexits.sh
+
+
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$apps"                 && export apps           || exit 100    ;
-test -n "$A"	                && export A            	 || exit 100    ;
-test -n "$branch_app"           && export branch_app     || exit 100    ;
-test -n "$debug"                && export debug          || exit 100    ;
-test -n "$domain"               && export domain         || exit 100    ;
-test -n "$mode"                 && export mode           || exit 100    ;
-test -n "$repository_app"       && export repository_app || exit 100    ;
-test -n "$stack"                && export stack          || exit 100    ;
-test -n "$username_app"         && export username_app   || exit 100    ;
+test -n "$apps"                 && export apps           || exit ${EX_USAGE};
+test -n "$A"	                && export A            	 || exit ${EX_USAGE};
+test -n "$branch_app"           && export branch_app     || exit ${EX_USAGE};
+test -n "$debug"                && export debug          || exit ${EX_USAGE};
+test -n "$domain"               && export domain         || exit ${EX_USAGE};
+test -n "$mode"                 && export mode           || exit ${EX_USAGE};
+test -n "$repository_app"       && export repository_app || exit ${EX_USAGE};
+test -n "$stack"                && export stack          || exit ${EX_USAGE};
+test -n "$username_app"         && export username_app   || exit ${EX_USAGE};
 #########################################################################
 file=common-functions.sh						;
 path=$A/lib                                 				;

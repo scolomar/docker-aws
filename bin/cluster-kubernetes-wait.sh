@@ -1,12 +1,22 @@
 #!/bin/bash -x
 #	./bin/cluster-kubernetes-wait.sh
-#########################################################################
-#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
-#      SPDX-License-Identifier:  GPL-2.0-only                           #
+################################################################################
+##       Copyright (C) 2020        Sebastian Francisco Colomar Bauza          ##
+##       Copyright (C) 2020        Alejandro Colomar Andrés                   ##
+##       SPDX-License-Identifier:  GPL-2.0-only                               ##
+################################################################################
+
+
+################################################################################
+##	source								      ##
+################################################################################
+source	lib/libalx/sh/sysexits.sh
+
+
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$debug"                || exit 100                             ;
+test -n "$debug"                || exit ${EX_USAGE}			;
 #########################################################################
 kubeconfig=/etc/kubernetes/admin.conf                   		;
 sleep=10								;

@@ -1,28 +1,38 @@
 #!/bin/bash -x
 #	./bin/aws-init.sh
-#########################################################################
-#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
-#      SPDX-License-Identifier:  GPL-2.0-only                           #
+################################################################################
+##       Copyright (C) 2020        Sebastian Francisco Colomar Bauza          ##
+##       Copyright (C) 2020        Alejandro Colomar Andrés                   ##
+##       SPDX-License-Identifier:  GPL-2.0-only                               ##
+################################################################################
+
+
+################################################################################
+##	source								      ##
+################################################################################
+source	lib/libalx/sh/sysexits.sh
+
+
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$A"	                && export A                 || exit 100 ;
-test -n "$branch_docker_aws"    && export branch_docker_aws || exit 100 ;
-test -n "$debug" 		&& export debug	            || exit 100	;
-test -n "$domain" 		&& export domain	    || exit 100	;
-test -n "$HostedZoneName"	&& export HostedZoneName    || exit 100 ;
-test -n "$Identifier"		&& export Identifier        || exit 100 ;
-test -n "$KeyName"              && export KeyName	    || exit 100	;
-test -n "$RecordSetName1"	&& export RecordSetName1    || exit 100 ;
-test -n "$RecordSetName2"	&& export RecordSetName2    || exit 100 ;
-test -n "$RecordSetName3"	&& export RecordSetName3    || exit 100 ;
-test -n "$RecordSetNameKube"	&& export RecordSetNameKube || exit 100 ;
-test -n "$s3name"		&& export s3name    	    || exit 100 ;
-test -n "$s3region"		&& export s3region    	    || exit 100 ;
-test -n "$stack"                && export stack	            || exit 100	;
-test -n "$template"		&& export template    	    || exit 100 ;
-test -n "$TypeManager"		&& export TypeManager 	    || exit 100 ;
-test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
+test -n "$A"	                && export A                 || exit ${EX_USAGE};
+test -n "$branch_docker_aws"    && export branch_docker_aws || exit ${EX_USAGE};
+test -n "$debug" 		&& export debug	            || exit ${EX_USAGE};
+test -n "$domain" 		&& export domain	    || exit ${EX_USAGE};
+test -n "$HostedZoneName"	&& export HostedZoneName    || exit ${EX_USAGE};
+test -n "$Identifier"		&& export Identifier        || exit ${EX_USAGE};
+test -n "$KeyName"              && export KeyName	    || exit ${EX_USAGE};
+test -n "$RecordSetName1"	&& export RecordSetName1    || exit ${EX_USAGE};
+test -n "$RecordSetName2"	&& export RecordSetName2    || exit ${EX_USAGE};
+test -n "$RecordSetName3"	&& export RecordSetName3    || exit ${EX_USAGE};
+test -n "$RecordSetNameKube"	&& export RecordSetNameKube || exit ${EX_USAGE};
+test -n "$s3name"		&& export s3name    	    || exit ${EX_USAGE};
+test -n "$s3region"		&& export s3region    	    || exit ${EX_USAGE};
+test -n "$stack"                && export stack	            || exit ${EX_USAGE};
+test -n "$template"		&& export template    	    || exit ${EX_USAGE};
+test -n "$TypeManager"		&& export TypeManager 	    || exit ${EX_USAGE};
+test -n "$TypeWorker"		&& export TypeWorker 	    || exit ${EX_USAGE};
 #########################################################################
 caps=CAPABILITY_IAM							;
 NodeInstallUrlPath=https://$domain/$A/bin				;

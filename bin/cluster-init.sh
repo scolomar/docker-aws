@@ -1,18 +1,28 @@
 #!/bin/bash -x
 #	./bin/cluster-init.sh
-#########################################################################
-#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
-#      SPDX-License-Identifier:  GPL-2.0-only                           #
+################################################################################
+##       Copyright (C) 2020        Sebastian Francisco Colomar Bauza          ##
+##       Copyright (C) 2020        Alejandro Colomar Andrés                   ##
+##       SPDX-License-Identifier:  GPL-2.0-only                               ##
+################################################################################
+
+
+################################################################################
+##	source								      ##
+################################################################################
+source	lib/libalx/sh/sysexits.sh
+
+
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$A"	                && export A                 || exit 100 ;
-test -n "$debug" 		&& export debug	            || exit 100	;
-test -n "$domain" 		&& export domain	    || exit 100	;
-test -n "$HostedZoneName"	&& export HostedZoneName    || exit 100 ;
-test -n "$RecordSetNameKube"	&& export RecordSetNameKube || exit 100 ;
-test -n "$mode"                 && export mode	            || exit 100	;
-test -n "$stack"                && export stack	            || exit 100	;
+test -n "$A"	                && export A                 || exit ${EX_USAGE};
+test -n "$debug" 		&& export debug	            || exit ${EX_USAGE};
+test -n "$domain" 		&& export domain	    || exit ${EX_USAGE};
+test -n "$HostedZoneName"	&& export HostedZoneName    || exit ${EX_USAGE};
+test -n "$RecordSetNameKube"	&& export RecordSetNameKube || exit ${EX_USAGE};
+test -n "$mode"                 && export mode	            || exit ${EX_USAGE};
+test -n "$stack"                && export stack	            || exit ${EX_USAGE};
 #########################################################################
 file=common-functions.sh						;
 path=$A/lib                                 				;

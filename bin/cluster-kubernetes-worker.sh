@@ -1,17 +1,27 @@
 #!/bin/bash -x
 #	./bin/cluster-kubernetes-worker.sh
-#########################################################################
-#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
-#      SPDX-License-Identifier:  GPL-2.0-only                           #
+################################################################################
+##       Copyright (C) 2020        Sebastian Francisco Colomar Bauza          ##
+##       Copyright (C) 2020        Alejandro Colomar Andrés                   ##
+##       SPDX-License-Identifier:  GPL-2.0-only                               ##
+################################################################################
+
+
+################################################################################
+##	source								      ##
+################################################################################
+source	lib/libalx/sh/sysexits.sh
+
+
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$debug"                || exit 100                             ;
-test -n "$HostedZoneName"       || exit 100                             ;
-test -n "$RecordSetNameKube"    || exit 100                             ;
-test -n "$log"                	|| exit 100                             ;
-test -n "$token_discovery"      || exit 100                             ;
-test -n "$token_token"          || exit 100                             ;
+test -n "$debug"                || exit ${EX_USAGE}			;
+test -n "$HostedZoneName"       || exit ${EX_USAGE}			;
+test -n "$RecordSetNameKube"    || exit ${EX_USAGE}			;
+test -n "$log"                	|| exit ${EX_USAGE}			;
+test -n "$token_discovery"      || exit ${EX_USAGE}			;
+test -n "$token_token"          || exit ${EX_USAGE}			;
 #########################################################################
 kube=$RecordSetNameKube.$HostedZoneName					;
 #########################################################################
