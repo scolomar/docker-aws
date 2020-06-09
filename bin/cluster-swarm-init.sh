@@ -1,13 +1,23 @@
 #!/bin/bash -x
 #	./bin/cluster-swarm-init.sh
-#########################################################################
-#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
-#      SPDX-License-Identifier:  GPL-2.0-only                           #
+################################################################################
+##       Copyright (C) 2020        Sebastian Francisco Colomar Bauza          ##
+##       Copyright (C) 2020        Alejandro Colomar Andrés                   ##
+##       SPDX-License-Identifier:  GPL-2.0-only                               ##
+################################################################################
+
+
+################################################################################
+##	source								      ##
+################################################################################
+source	lib/libalx/sh/sysexits.sh
+
+
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$debug"	|| exit 100					;
-test -n "$stack"	|| exit 100					;
+test -n "$debug"	|| exit ${EX_USAGE}				;
+test -n "$stack"	|| exit ${EX_USAGE}				;
 #########################################################################
 service=docker								;
 sleep=10								;

@@ -1,15 +1,25 @@
 #!/bin/bash -x
 #	./bin/app-config-deploy.sh
-#########################################################################
-#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
-#      SPDX-License-Identifier:  GPL-2.0-only                           #
+################################################################################
+##       Copyright (C) 2020        Sebastian Francisco Colomar Bauza          ##
+##       Copyright (C) 2020        Alejandro Colomar Andrés                   ##
+##       SPDX-License-Identifier:  GPL-2.0-only                               ##
+################################################################################
+
+
+################################################################################
+##	source								      ##
+################################################################################
+source	lib/libalx/sh/sysexits.sh
+
+
 #########################################################################
 set +x && test "$debug" = true && set -x 				;
 #########################################################################
-test -n "$branch_app"		|| exit 100				;
-test -n "$debug"		|| exit 100				;
-test -n "$repository_app"	|| exit 100				;
-test -n "$username_app"		|| exit 100				;
+test -n "$branch_app"		|| exit ${EX_USAGE}			;
+test -n "$debug"		|| exit ${EX_USAGE}			;
+test -n "$repository_app"	|| exit ${EX_USAGE}			;
+test -n "$username_app"		|| exit ${EX_USAGE}			;
 #########################################################################
 folders=" configs secrets " 						;
 umask_new=0077								;
