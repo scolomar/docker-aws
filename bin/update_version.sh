@@ -1,15 +1,18 @@
-#!/bin/sh -x
-#	./bin/prepare_release.sh <version> <old_version>
+#!/bin/bash -x
+#	./bin/prepare_release.sh [<version>]
 ################################################################################
 ##	Copyright (C) 2020	  Alejandro Colomar Andrés		      ##
 ##	Copyright (C) 2020	  Sebastian Francisco Colomar Bauza	      ##
 ##	SPDX-License-Identifier:  GPL-2.0-only				      ##
 ################################################################################
 ##
-## Prepare the repo for release
-## ============================
+## Update version numbers
+## ======================
 ##
-##  - Remove the files that shouldn't go into the release
+## This script should be run just after a new branch has been created, a
+## release is imminent, or a release has been made.
+## The default value for the version is the branch name.
+##
 ##  - Update version numbers
 ##
 ################################################################################
@@ -24,7 +27,7 @@ source	lib/libalx/sh/sysexits.sh
 ################################################################################
 ##	definitions							      ##
 ################################################################################
-ARGC=2
+MAX_ARGC=1
 
 
 ################################################################################
@@ -32,16 +35,15 @@ ARGC=2
 ################################################################################
 update_version()
 {
-	local	version=$1
-	local	old_version=$2
+	local	version="$1"
 
-	sed "/branch_app=/s/$old_version/$version/"			\
+	sed "/branch_app=/s/\".*\"/\"${version}\"/"			\
 			-i ./README-app.md				\
 			-i ./README-aws.md				\
 			-i ./README-cluster.md				\
 			-i ./README.md
 
-	sed "/branch_docker_aws=/s/$old_version/$version/"		\
+	sed "/branch_docker_aws=/s/\".*\"/\"${version}\"/"		\
 			-i ./README-app.md				\
 			-i ./README-aws.md				\
 			-i ./README-cluster.md				\
@@ -54,23 +56,27 @@ update_version()
 ################################################################################
 main()
 {
-	local	version=$1
-	local	oldversion=$2
+	local	version="$1"
+	local	argc="$2"
 
-	update_version	${version} $oldversion
+	if [ ${argc} -eq 0 ]; then
+		version="$(git branch --show-current)"
+	fi
+
+	update_version	${version}
 }
 
 
 ################################################################################
 ##	run								      ##
 ################################################################################
-argc="$#"
-if [ "${argc}" -ne ${ARGC} ]; then
-	echo	"Illegal number of parameters (Requires ${ARGC})"
+argc=$#
+if [ ${argc} -gt ${MAX_ARGC} ]; then
+	echo	"Illegal number of parameters (Accepts ${MAX_ARGC} or less)"
 	exit	${EX_USAGE}
 fi
 
-main	"$1" "$2"
+main	"$1" "${argc}"
 
 
 ################################################################################

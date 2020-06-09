@@ -10,7 +10,7 @@ You need to run the following commands from a terminal with enough AWS privilege
 
 
 #########################################################################
-export branch_docker_aws=master                                         ;
+export branch_docker_aws="master"                                       ;
 export debug=false                                                      ;
 export debug=true                                                       ;
 export domain=raw.githubusercontent.com                                 ;
@@ -36,7 +36,7 @@ export TypeManager=t3a.nano                                             ;
 export TypeWorker=t3a.nano                                              ;
 #########################################################################
 export apps=" dockercoins.yaml petclinic.yaml php.yaml "                ;
-export branch_app=master                                                ;
+export branch_app="master"                                              ;
 export repository_app=docker-aws                                        ;
 export username_app=secobau                                             ;
 #########################################################################

@@ -6,7 +6,7 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-export branch_docker_aws=master                                         ;
+export branch_docker_aws="master"                                       ;
 export debug=false                                                      ;
 export debug=true                                                       ;
 export domain=raw.githubusercontent.com                                 ;
