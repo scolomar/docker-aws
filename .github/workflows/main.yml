@@ -69,7 +69,7 @@ jobs:
     - name: Install aws + cluster + app
       run: |
         set -x
-        export branch_docker_aws=${GITHUB_REF##*/}
+        export branch_docker_aws=test
         export debug=false
         export debug=true
         export domain=raw.githubusercontent.com
@@ -77,7 +77,7 @@ jobs:
         export mode=kubernetes
         export mode=swarm
         export repository_docker_aws=docker-aws
-        export stack=${GITHUB_REF##*/}
+        export stack=test
         export username_docker_aws=secobau
         export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws
         export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f
@@ -92,7 +92,7 @@ jobs:
         export TypeManager=t3a.nano
         export TypeWorker=t3a.nano
         export apps=" dockercoins.yaml petclinic.yaml php.yaml "
-        export branch_app=${GITHUB_REF##*/}
+        export branch_app=test
         export repository_app=docker-aws
         export username_app=secobau
         date=$( date +%F_%H%M )
@@ -110,20 +110,20 @@ jobs:
       id: test
       run: |
         sleep 100
-        curl https://${GITHUB_REF##*/}-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
+        curl https://test-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
         out="$?"
         echo "::set-output name=result::$(echo ${out})"
 
     # Runs a set of commands using the runners shell
     - name: Remove the AWS infrastructure
       run: |
-        export stack=${GITHUB_REF##*/}
+        export stack=test
         aws cloudformation delete-stack --stack-name $stack
 
     # Runs a set of commands using the runners shell
     - name: Return the output of the test
       run: |
-        export stack=${GITHUB_REF##*/}
+        export stack=test
         aws cloudformation delete-stack --stack-name $stack
         out=${{ steps.test.outputs.result }}
         test $out -eq 0 && exit 0 || exit 1
