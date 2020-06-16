@@ -68,6 +68,7 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Install aws + cluster + app
       run: |
+        set -x
         export branch_docker_aws=${GITHUB_REF##*/}
         export debug=false
         export debug=true
