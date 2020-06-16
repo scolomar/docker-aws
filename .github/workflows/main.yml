@@ -1,0 +1,121 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  #push:
+  #  branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    #- uses: actions/checkout@v2
+
+    # Runs a single command using the runners shell
+    - name: Run a one-line script
+      run: echo Hello, world!
+
+    # Runs a set of commands using the runners shell
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+
+    - name: "Configure AWS Credentials" Action For GitHub Actions
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        # AWS Session Token
+        aws-session-token: # optional
+        # AWS Region, e.g. us-east-2
+        aws-region: ap-south-1
+        # Whether to set the AWS account ID for these credentials as a secret value, so that it is masked in logs. Valid values are 'true' and 'false'. Defaults to true
+        mask-aws-account-id: true
+        # Use the provided credentials to assume an IAM role and configure the Actions environment with the assumed role credentials rather than with the provided credentials
+        role-to-assume: # optional
+        # Role duration in seconds (default: 6 hours)
+        role-duration-seconds: # optional
+        # Role session name (default: GitHubActions)
+        role-session-name: # optional
+        # The external ID of the role to assume
+        role-external-id: # optional
+      
+    # Runs a set of commands using the runners shell
+    - name: Install aws + cluster + app
+      run: |
+        export branch_docker_aws=${GITHUB_REF##*/}
+        export debug=false
+        export debug=true
+        export domain=raw.githubusercontent.com
+        export HostedZoneName=sebastian-colomar.com
+        export mode=kubernetes
+        export mode=swarm
+        export repository_docker_aws=docker-aws
+        export stack=${GITHUB_REF##*/}
+        export username_docker_aws=secobau
+        export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws
+        export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f
+        export KeyName=cloud9_mumbai_mgmt
+        export RecordSetName1=$stack-dockercoins
+        export RecordSetName2=$stack-petclinic
+        export RecordSetName3=$stack-php
+        export RecordSetNameKube=$stack-kube-apiserver
+        export s3name=docker-aws
+        export s3region=ap-south-1
+        export template=https.yaml
+        export TypeManager=t3a.nano
+        export TypeWorker=t3a.nano
+        export apps=" dockercoins.yaml petclinic.yaml php.yaml "
+        export branch_app=${GITHUB_REF##*/}
+        export repository_app=docker-aws
+        export username_app=secobau
+        date=$( date +%F_%H%M )
+        file=init.sh
+        path=$A/bin
+        mkdir $date
+        cd $date
+        curl --output $file https://$domain/$path/$file?$( uuidgen )
+        chmod +x ./$file
+        ./$file
+        rm --force $file
+        
+    # Runs a set of commands using the runners shell
+    - name: Test the app
+      id: test
+      run: |
+        sleep 100
+        curl https://${GITHUB_REF##*/}-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
+        out="$?"
+        echo "::set-output name=result::$(echo ${out})"
+        
+    - name: Remove the AWS infrastructure
+      run: |
+        export stack=${GITHUB_REF##*/}
+        aws cloudformation delete-stack --stack-name $stack
+
+    - name: Return the output of the test
+      run: |
+        export stack=${GITHUB_REF##*/}
+        aws cloudformation delete-stack --stack-name $stack
+        out=${{ steps.test.outputs.result }}
+        test $out -eq 0 && exit 0 || exit 1
+
+        
+
+
+
+        
