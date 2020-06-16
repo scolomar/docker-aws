@@ -37,7 +37,10 @@ export TypeWorker=t3a.micro                                             ;
 export TypeManager=t3a.nano                                             ;
 export TypeWorker=t3a.nano                                              ;
 #########################################################################
-export apps=" dockercoins.yaml petclinic.yaml php.yaml "                ;
+export apps=""                                                          ;
+export apps=" $apps dockercoins.yaml "                                  ;
+export apps=" $apps petclinic.yaml "                                    ;
+export apps=" $apps php.yaml "                                          ;
 export branch_app=master                                                ;
 export repository_app=docker-aws                                        ;
 export username_app=secobau                                             ;
