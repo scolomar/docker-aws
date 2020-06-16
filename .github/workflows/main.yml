@@ -32,6 +32,7 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
 
+    # Runs a set of commands using the runners shell
     - name: "Configure AWS Credentials" Action For GitHub Actions
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -101,12 +102,14 @@ jobs:
         curl https://${GITHUB_REF##*/}-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
         out="$?"
         echo "::set-output name=result::$(echo ${out})"
-        
+
+    # Runs a set of commands using the runners shell
     - name: Remove the AWS infrastructure
       run: |
         export stack=${GITHUB_REF##*/}
         aws cloudformation delete-stack --stack-name $stack
 
+    # Runs a set of commands using the runners shell
     - name: Return the output of the test
       run: |
         export stack=${GITHUB_REF##*/}
