@@ -37,14 +37,6 @@ curl --output $uuid https://$domain/$path/$file?$( uuidgen )            ;
 source ./$uuid                                                          ;
 rm --force ./$uuid							;
 #########################################################################
-export -f encode_string							;
-export -f exec_remote_file						;
-export -f send_command							;
-export -f send_list_command						;
-export -f send_remote_file						;
-export -f send_wait_targets						;
-export -f service_wait_targets						;
-#########################################################################
 path=$A/bin								;
 #########################################################################
 file=aws-init.sh                                               		;
