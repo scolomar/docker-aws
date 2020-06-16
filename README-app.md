@@ -18,7 +18,10 @@ export username_docker_aws=secobau                                      ;
 #########################################################################
 export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws ;
 #########################################################################
-export apps=" dockercoins.yaml petclinic.yaml php.yaml "                ;
+export apps=""                                                          ;
+export apps=" $apps dockercoins.yaml "                                  ;
+export apps=" $apps petclinic.yaml "                                    ;
+export apps=" $apps php.yaml "                                          ;
 export branch_app=master                                                ;
 export repository_app=docker-aws                                        ;
 export username_app=secobau                                             ;
