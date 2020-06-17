@@ -51,7 +51,7 @@ aws cloudformation update-stack						\
   --capabilities							\
     $caps								\
   --parameters								\
-    ParameterKey=InstanceMasterInstanceType,ParameterValue=$TypeMaster\
+    ParameterKey=InstanceMasterInstanceType,ParameterValue=$TypeMaster	\
     ParameterKey=InstanceWorkerInstanceType,ParameterValue=$TypeWorker	\
     ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=Identifier,ParameterValue=$Identifier			\

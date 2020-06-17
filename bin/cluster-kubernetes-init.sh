@@ -29,9 +29,9 @@ export=" 								\
 "									;
 file=cluster-kubernetes-install.sh					;
 targets="								\
-	InstanceMaster1						\
-	InstanceMaster2						\
-	InstanceMaster3						\
+	InstanceMaster1							\
+	InstanceMaster2							\
+	InstanceMaster3							\
 	InstanceWorker1							\
 	InstanceWorker2							\
 	InstanceWorker3							\
@@ -49,7 +49,7 @@ export=" 								\
 "									;
 file=cluster-kubernetes-leader.sh					;
 targets="								\
-	InstanceMaster1						\
+	InstanceMaster1							\
 "									;
 send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
@@ -106,8 +106,8 @@ export=" 								\
 "									;
 file=cluster-kubernetes-manager.sh					;
 targets="								\
-	InstanceMaster2						\
-	InstanceMaster3						\
+	InstanceMaster2							\
+	InstanceMaster3							\
 "									;
 send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################

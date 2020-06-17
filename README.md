@@ -32,8 +32,8 @@ export RecordSetNameKube=$stack-kube-apiserver                          ;
 export s3name=docker-aws                                                ;
 export s3region=ap-south-1                                              ;
 export template=https.yaml                                              ;
-export TypeMaster=t3a.nano                                             ;
-export TypeMaster=t3a.micro                                            ;
+export TypeMaster=t3a.nano                                              ;
+export TypeMaster=t3a.micro                                             ;
 export TypeWorker=t3a.micro                                             ;
 export TypeWorker=t3a.nano                                              ;
 #########################################################################
