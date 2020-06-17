@@ -1,4 +1,4 @@
-This project will allow you to deploy a containerized application in AWS on a production-grade highly available and secure infrastructure consisting of private and public subnets, NAT gateways, security groups and application load balancers in order to ensure the isolation and resilience of the different components.
+This project will allow you to deploy a containerized application in a cluster of your choice.
 
 
 The following script will first create the infrastructure and then deploy your application. 
@@ -32,8 +32,8 @@ export RecordSetNameKube=$stack-kube-apiserver                          ;
 export s3name=docker-aws                                                ;
 export s3region=ap-south-1                                              ;
 export template=https.yaml                                              ;
-export TypeManager=t3a.nano                                             ;
-export TypeManager=t3a.micro                                            ;
+export TypeMaster=t3a.nano                                              ;
+export TypeMaster=t3a.micro                                             ;
 export TypeWorker=t3a.micro                                             ;
 export TypeWorker=t3a.nano                                              ;
 #########################################################################

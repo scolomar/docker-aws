@@ -38,7 +38,7 @@ RecordSetNameKube=<service-kube>	## hostname for the kube API server
 s3name=docker-aws
 s3region=<region>		## ap-south-1
 template=https.yaml		## Cloudformation templates are in $A/etc/aws
-TypeManager=<type>		## minimum t3a.nano for Swarm or t3a.micro for Kubernetes
+TypeMaster=<type>		## minimum t3a.nano for Swarm or t3a.micro for Kubernetes
 TypeWorker=<type>		## minimum t3a.nano
 ########################################
 apps=" <docker-compose-1.yaml> <docker-compose-2.yaml> <docker-compose-3.yaml> "
@@ -70,7 +70,7 @@ export RecordSetNameKube
 export s3name
 export s3region
 export template
-export TypeManager
+export TypeMaster
 export TypeWorker
 ########################################
 export apps

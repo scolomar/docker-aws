@@ -26,7 +26,7 @@ export=" 								\
 file=$deploy_file							;
 path=$deploy_path							;
 targets=" 								\
-  InstanceManager1 							\
+  InstanceMaster1 							\
 "			 						;
 #########################################################################
 sleep=10								;

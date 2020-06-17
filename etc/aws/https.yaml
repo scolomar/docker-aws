@@ -23,10 +23,10 @@ Metadata:
           - NodeInstallUrlFile
       -
         Label:
-          default: Cluster Manager Configuration
+          default: Cluster Master Configuration
         Parameters:
-          - InstanceManagerImageId
-          - InstanceManagerInstanceType
+          - InstanceMasterImageId
+          - InstanceMasterInstanceType
       -
         Label:
           default: Cluster Worker Configuration
@@ -38,35 +38,35 @@ Metadata:
           default: Network Configuration
         Parameters:
           - HostedZoneName
-          - IpProtocolListenerKubeManager
+          - IpProtocolListenerKubeMaster
           - IpProtocolListenerWorker1
           - IpProtocolListenerWorker2
           - IpProtocolListenerWorker3
           - HttpCodeTargetGroupWorker1
           - HttpCodeTargetGroupWorker2
           - HttpCodeTargetGroupWorker3
-          - PortListenerKubeManager
+          - PortListenerKubeMaster
           - PortListenerWorker1
           - PortListenerWorker1QA
           - PortListenerWorker2
           - PortListenerWorker2QA
           - PortListenerWorker3
           - PortListenerWorker3QA
-          - PortTargetGroupKubeManager
+          - PortTargetGroupKubeMaster
           - PortTargetGroupWorker1A
           - PortTargetGroupWorker1B
           - PortTargetGroupWorker2A
           - PortTargetGroupWorker2B
           - PortTargetGroupWorker3A
           - PortTargetGroupWorker3B
-          - PrivateIpAddressInstanceManager1
-          - PrivateIpAddressInstanceManager2
-          - PrivateIpAddressInstanceManager3
-          - ProtocolListenerKubeManager
+          - PrivateIpAddressInstanceMaster1
+          - PrivateIpAddressInstanceMaster2
+          - PrivateIpAddressInstanceMaster3
+          - ProtocolListenerKubeMaster
           - ProtocolListenerWorker1
           - ProtocolListenerWorker2
           - ProtocolListenerWorker3
-          - ProtocolTargetGroupKubeManager
+          - ProtocolTargetGroupKubeMaster
           - ProtocolTargetGroupWorker1
           - ProtocolTargetGroupWorker2
           - ProtocolTargetGroupWorker3
@@ -96,16 +96,16 @@ Metadata:
         default: The name of the hosted zone that you want to create records in
       Identifier:
         default: The Identifier of the certificate you want to use
-      InstanceManagerImageId:
-        default: AMI to use for Cluster Manager Instances
-      InstanceManagerInstanceType:
-        default: Cluster Manager Instance Size
+      InstanceMasterImageId:
+        default: AMI to use for Cluster Master Instances
+      InstanceMasterInstanceType:
+        default: Cluster Master Instance Size
       InstanceWorkerImageId:
         default: AMI to use for Cluster Worker Instances
       InstanceWorkerInstanceType:
         default: Cluster Worker Instance Size
-      IpProtocolListenerKubeManager:
-        default: The IP protocol for Listener Manager Kubernetes API Server
+      IpProtocolListenerKubeMaster:
+        default: The IP protocol for Listener Master Kubernetes API Server
       IpProtocolListenerWorker1:
         default: The IP protocol for Listener Worker 1
       IpProtocolListenerWorker2:
@@ -124,8 +124,8 @@ Metadata:
         default: The URL path to download the script for the common install of the nodes
       NodeInstallUrlFile:
         default: The name of the script for the common install of the nodes
-      PortListenerKubeManager:
-        default: The listening port for Listener Manager Kubernetes API Server
+      PortListenerKubeMaster:
+        default: The listening port for Listener Master Kubernetes API Server
       PortListenerWorker1:
         default: The listening port for Listener Worker 1
       PortListenerWorker1QA:
@@ -138,8 +138,8 @@ Metadata:
         default: The listening port for Listener Worker 3
       PortListenerWorker3QA:
         default: The listening port for Listener Worker 3 - QA
-      PortTargetGroupKubeManager:
-        default: The internal listening port for Target Group Manager Kubernetes API Server
+      PortTargetGroupKubeMaster:
+        default: The internal listening port for Target Group Master Kubernetes API Server
       PortTargetGroupWorker1A:
         default: The internal listening port for Target Group Worker 1 - Deployment A
       PortTargetGroupWorker1B:
@@ -152,22 +152,22 @@ Metadata:
         default: The internal listening port for Target Group Worker 3 - Deployment A
       PortTargetGroupWorker3B:
         default: The internal listening port for Target Group Worker 3 - Deployment B
-      PrivateIpAddressInstanceManager1:
-        default: The private IP address for Manager 1
-      PrivateIpAddressInstanceManager2:
-        default: The private IP address for Manager 2
-      PrivateIpAddressInstanceManager3:
-        default: The private IP address for Manager 3
-      ProtocolListenerKubeManager:
-        default: The protocol for Listener Manager Kubernetes API Server
+      PrivateIpAddressInstanceMaster1:
+        default: The private IP address for Master 1
+      PrivateIpAddressInstanceMaster2:
+        default: The private IP address for Master 2
+      PrivateIpAddressInstanceMaster3:
+        default: The private IP address for Master 3
+      ProtocolListenerKubeMaster:
+        default: The protocol for Listener Master Kubernetes API Server
       ProtocolListenerWorker1:
         default: The protocol for Listener Worker 1
       ProtocolListenerWorker2:
         default: The protocol for Listener Worker 2
       ProtocolListenerWorker3:
         default: The protocol for Listener Worker 3
-      ProtocolTargetGroupKubeManager:
-        default: The internal protocol for Target Group Manager Kubernetes API Server
+      ProtocolTargetGroupKubeMaster:
+        default: The internal protocol for Target Group Master Kubernetes API Server
       ProtocolTargetGroupWorker1:
         default: The internal protocol for Target Group Worker 1
       ProtocolTargetGroupWorker2:
@@ -217,18 +217,18 @@ Parameters:
       The Identifier of the certificate you want to use.
     Type: String
 
-  InstanceManagerImageId:
+  InstanceMasterImageId:
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
     Description: >
-      Select AMI to use for the Cluster Manager instances. 
+      Select AMI to use for the Cluster Master instances. 
       When it's left blank, the default AMI for your AWS region will be used. 
       When setting an AMI, it must be available in your current region.
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     
-  InstanceManagerInstanceType:
+  InstanceMasterInstanceType:
     Default: ''
     Description: >
-      Select Amazon EC2 instance type for the Cluster Manager instances.
+      Select Amazon EC2 instance type for the Cluster Master instances.
     Type: String
     
   InstanceWorkerImageId:
@@ -245,10 +245,10 @@ Parameters:
       Select Amazon EC2 instance type for the Cluster Worker instances.
     Type: String
     
-  IpProtocolListenerKubeManager:
+  IpProtocolListenerKubeMaster:
     Default: tcp
     Description: >
-      The IP protocol for Listener Manager Kubernetes API Server.
+      The IP protocol for Listener Master Kubernetes API Server.
     Type: String
     
   IpProtocolListenerWorker1:
@@ -305,10 +305,10 @@ Parameters:
       The name of the script for the common install of the nodes.
     Type: String
     
-  PortListenerKubeManager:
+  PortListenerKubeMaster:
     Default: 6443
     Description: >
-      The listening port for Listener Manager Kubernetes API Server.
+      The listening port for Listener Master Kubernetes API Server.
     Type: Number
     
   PortListenerWorker1:
@@ -347,10 +347,10 @@ Parameters:
       The listening port for Listener Worker 3 - QA.
     Type: Number
     
-  PortTargetGroupKubeManager:
+  PortTargetGroupKubeMaster:
     Default: 6443
     Description: >
-      The internal listening port for Target Group Manager Kubernetes API Server.
+      The internal listening port for Target Group Master Kubernetes API Server.
     Type: Number
     
   PortTargetGroupWorker1A:
@@ -389,28 +389,28 @@ Parameters:
       The internal listening port for Target Group Worker 3 - Deployment B.
     Type: Number
     
-  PrivateIpAddressInstanceManager1:
+  PrivateIpAddressInstanceMaster1:
     Default: 10.168.1.100
     Description: >
-      The private IP address for Manager 1.
+      The private IP address for Master 1.
     Type: String
     
-  PrivateIpAddressInstanceManager2:
+  PrivateIpAddressInstanceMaster2:
     Default: 10.168.3.100
     Description: >
-      The private IP address for Manager 2.
+      The private IP address for Master 2.
     Type: String
     
-  PrivateIpAddressInstanceManager3:
+  PrivateIpAddressInstanceMaster3:
     Default: 10.168.5.100
     Description: >
-      The private IP address for Manager 3.
+      The private IP address for Master 3.
     Type: String
     
-  ProtocolListenerKubeManager:
+  ProtocolListenerKubeMaster:
     Default: TCP
     Description: >
-      The protocol for Listener Manager Kubernetes API Server.
+      The protocol for Listener Master Kubernetes API Server.
     Type: String
     
   ProtocolListenerWorker1:
@@ -431,10 +431,10 @@ Parameters:
       The protocol for Listener Worker 3.
     Type: String
     
-  ProtocolTargetGroupKubeManager:
+  ProtocolTargetGroupKubeMaster:
     Default: TCP
     Description: >
-      The internal protocol for Target Group Manager Kubernetes API Server.
+      The internal protocol for Target Group Master Kubernetes API Server.
     Type: String
     
   ProtocolTargetGroupWorker1:
@@ -571,16 +571,16 @@ Resources:
       Domain: vpc
     Type: AWS::EC2::EIP
 
-  InstanceManager1:
+  InstanceMaster1:
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
-      ImageId: !Ref InstanceManagerImageId
-      InstanceType: !Ref InstanceManagerInstanceType
+      ImageId: !Ref InstanceMasterImageId
+      InstanceType: !Ref InstanceMasterInstanceType
       KeyName: !Ref KeyName
-      PrivateIpAddress: !Ref PrivateIpAddressInstanceManager1
+      PrivateIpAddress: !Ref PrivateIpAddressInstanceMaster1
       SecurityGroupIds:
         - !GetAtt VPC.DefaultSecurityGroup
-        - !Ref SecurityGroupKubeManager1
+        - !Ref SecurityGroupKubeMaster1
       SubnetId: !Ref SubnetPrivate1
       UserData:
         "Fn::Base64":
@@ -590,16 +590,16 @@ Resources:
             sudo yum install --assumeyes git && curl --remote-name ${NodeInstallUrlPath}/${NodeInstallUrlFile} && chmod +x ./${NodeInstallUrlFile} && ./${NodeInstallUrlFile} && rm --force ./${NodeInstallUrlFile}
     Type: AWS::EC2::Instance
             
-  InstanceManager2:
+  InstanceMaster2:
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
-      ImageId: !Ref InstanceManagerImageId
-      InstanceType: !Ref InstanceManagerInstanceType
+      ImageId: !Ref InstanceMasterImageId
+      InstanceType: !Ref InstanceMasterInstanceType
       KeyName: !Ref KeyName
-      PrivateIpAddress: !Ref PrivateIpAddressInstanceManager2
+      PrivateIpAddress: !Ref PrivateIpAddressInstanceMaster2
       SecurityGroupIds:
         - !GetAtt VPC.DefaultSecurityGroup
-        - !Ref SecurityGroupKubeManager2
+        - !Ref SecurityGroupKubeMaster2
       SubnetId: !Ref SubnetPrivate2
       UserData:
         "Fn::Base64":
@@ -609,16 +609,16 @@ Resources:
             sudo yum install --assumeyes git && curl --remote-name ${NodeInstallUrlPath}/${NodeInstallUrlFile} && chmod +x ./${NodeInstallUrlFile} && ./${NodeInstallUrlFile} && rm --force ./${NodeInstallUrlFile}
     Type: AWS::EC2::Instance
 
-  InstanceManager3:
+  InstanceMaster3:
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
-      ImageId: !Ref InstanceManagerImageId
-      InstanceType: !Ref InstanceManagerInstanceType
+      ImageId: !Ref InstanceMasterImageId
+      InstanceType: !Ref InstanceMasterInstanceType
       KeyName: !Ref KeyName
-      PrivateIpAddress: !Ref PrivateIpAddressInstanceManager3
+      PrivateIpAddress: !Ref PrivateIpAddressInstanceMaster3
       SecurityGroupIds:
         - !GetAtt VPC.DefaultSecurityGroup
-        - !Ref SecurityGroupKubeManager3
+        - !Ref SecurityGroupKubeMaster3
       SubnetId: !Ref SubnetPrivate3
       UserData:
         "Fn::Base64":
@@ -681,14 +681,14 @@ Resources:
   InternetGateway:
     Type: AWS::EC2::InternetGateway
 
-  ListenerKubeManager:
+  ListenerKubeMaster:
     Properties: 
       DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupKubeManager
+        - TargetGroupArn: !Ref TargetGroupKubeMaster
           Type: forward
-      LoadBalancerArn: !Ref LoadBalancerKubeManager
-      Port: !Ref PortListenerKubeManager
-      Protocol: !Ref ProtocolListenerKubeManager
+      LoadBalancerArn: !Ref LoadBalancerKubeMaster
+      Port: !Ref PortListenerKubeMaster
+      Protocol: !Ref ProtocolListenerKubeMaster
     Type: AWS::ElasticLoadBalancingV2::Listener
  
   ListenerWorker1:
@@ -793,7 +793,7 @@ Resources:
       Protocol: !Ref ProtocolListenerWorker3
     Type: AWS::ElasticLoadBalancingV2::Listener
  
-  LoadBalancerKubeManager:
+  LoadBalancerKubeMaster:
     Properties: 
       Scheme: internal
       Subnets: 
@@ -863,8 +863,8 @@ Resources:
   RecordSetKube:
     Properties: 
       AliasTarget: 
-        DNSName: !GetAtt LoadBalancerKubeManager.DNSName
-        HostedZoneId: !GetAtt LoadBalancerKubeManager.CanonicalHostedZoneID
+        DNSName: !GetAtt LoadBalancerKubeMaster.DNSName
+        HostedZoneId: !GetAtt LoadBalancerKubeMaster.CanonicalHostedZoneID
       HostedZoneName: !Sub '${HostedZoneName}.'
       Name: !Sub '${RecordSetNameKube}.${HostedZoneName}'
       Type: A
@@ -965,39 +965,39 @@ Resources:
       VpcId: !Ref VPC
     Type: AWS::EC2::RouteTable
 
-  SecurityGroupKubeManager1:
+  SecurityGroupKubeMaster1:
     Properties:
-      GroupDescription: Allow access to the Kubernetes API Server running on Manager 1
+      GroupDescription: Allow access to the Kubernetes API Server running on Master 1
       SecurityGroupIngress:
       - 
         CidrIp: !Ref VPCCidrBlock
-        FromPort: !Ref PortListenerKubeManager
-        IpProtocol: !Ref IpProtocolListenerKubeManager
-        ToPort: !Ref PortListenerKubeManager
+        FromPort: !Ref PortListenerKubeMaster
+        IpProtocol: !Ref IpProtocolListenerKubeMaster
+        ToPort: !Ref PortListenerKubeMaster
       VpcId: !Ref VPC
     Type: AWS::EC2::SecurityGroup
       
-  SecurityGroupKubeManager2:
+  SecurityGroupKubeMaster2:
     Properties:
-      GroupDescription: Allow access to the Kubernetes API Server running on Manager 2
+      GroupDescription: Allow access to the Kubernetes API Server running on Master 2
       SecurityGroupIngress:
       - 
         CidrIp: !Ref VPCCidrBlock
-        FromPort: !Ref PortListenerKubeManager
-        IpProtocol: !Ref IpProtocolListenerKubeManager
-        ToPort: !Ref PortListenerKubeManager
+        FromPort: !Ref PortListenerKubeMaster
+        IpProtocol: !Ref IpProtocolListenerKubeMaster
+        ToPort: !Ref PortListenerKubeMaster
       VpcId: !Ref VPC
     Type: AWS::EC2::SecurityGroup
       
-  SecurityGroupKubeManager3:
+  SecurityGroupKubeMaster3:
     Properties:
-      GroupDescription: Allow access to the Kubernetes API Server running on Manager 3
+      GroupDescription: Allow access to the Kubernetes API Server running on Master 3
       SecurityGroupIngress:
       - 
         CidrIp: !Ref VPCCidrBlock
-        FromPort: !Ref PortListenerKubeManager
-        IpProtocol: !Ref IpProtocolListenerKubeManager
-        ToPort: !Ref PortListenerKubeManager
+        FromPort: !Ref PortListenerKubeMaster
+        IpProtocol: !Ref IpProtocolListenerKubeMaster
+        ToPort: !Ref PortListenerKubeMaster
       VpcId: !Ref VPC
     Type: AWS::EC2::SecurityGroup
       
@@ -1169,14 +1169,14 @@ Resources:
       SubnetId: !Ref SubnetPublic3
     Type: AWS::EC2::SubnetRouteTableAssociation
 
-  TargetGroupKubeManager:
+  TargetGroupKubeMaster:
     Properties: 
-      Port: !Ref PortTargetGroupKubeManager
-      Protocol: !Ref ProtocolTargetGroupKubeManager
+      Port: !Ref PortTargetGroupKubeMaster
+      Protocol: !Ref ProtocolTargetGroupKubeMaster
       Targets: 
-        -   Id: !Ref InstanceManager1
-        -   Id: !Ref InstanceManager2
-        -   Id: !Ref InstanceManager3
+        -   Id: !Ref InstanceMaster1
+        -   Id: !Ref InstanceMaster2
+        -   Id: !Ref InstanceMaster3
       TargetType: instance
       VpcId: !Ref VPC
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
