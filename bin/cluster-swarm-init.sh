@@ -12,7 +12,7 @@ test -n "$stack"	|| exit 100					;
 service=docker								;
 sleep=10								;
 #########################################################################
-targets=" InstanceManager1 " 						;
+targets=" InstanceMaster1 " 						;
 #########################################################################
 service_wait_targets $service $sleep $stack "$targets"			;
 #########################################################################
@@ -34,7 +34,7 @@ token_manager="								\
   )									\
 "									;	
 #########################################################################
-targets=" InstanceManager2 InstanceManager3 " 				;
+targets=" InstanceMaster2 InstanceMaster3 " 				;
 #########################################################################
 service_wait_targets $service $sleep $stack "$targets"			;
 #########################################################################

@@ -21,7 +21,7 @@ test -n "$s3name"		&& export s3name    	    || exit 100 ;
 test -n "$s3region"		&& export s3region    	    || exit 100 ;
 test -n "$stack"                && export stack	            || exit 100	;
 test -n "$template"		&& export template    	    || exit 100 ;
-test -n "$TypeManager"		&& export TypeManager 	    || exit 100 ;
+test -n "$TypeMaster"		&& export TypeMaster 	    || exit 100 ;
 test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
 #########################################################################
 caps=CAPABILITY_IAM							;
@@ -47,7 +47,7 @@ aws cloudformation update-stack 					\
   --capabilities 							\
     $caps 								\
   --parameters 								\
-    ParameterKey=InstanceManagerInstanceType,ParameterValue=$TypeManager\
+    ParameterKey=InstanceMasterInstanceType,ParameterValue=$TypeMaster\
     ParameterKey=InstanceWorkerInstanceType,ParameterValue=$TypeWorker  \
     ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=Identifier,ParameterValue=$Identifier			\
