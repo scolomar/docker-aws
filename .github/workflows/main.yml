@@ -96,10 +96,17 @@ jobs:
     - name: Test the app
       id: test
       run: |
-        sleep 100
-        curl https://rename-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
-        out="$?"
-        echo "::set-output name=result::$(echo ${out})"
+        count=0
+        while true
+        do
+          count=$(( 1 + ${count} ))
+          sleep 100
+          curl https://rename-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
+          out="${?}"
+          echo "::set-output name=result::$(echo ${out})"
+          test ${count} -eq 5 && break
+          test ${out}   -eq 0 && break
+       done
 
     # Runs a set of commands using the runners shell
     - name: Remove the AWS infrastructure
