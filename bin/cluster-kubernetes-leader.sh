@@ -26,7 +26,7 @@ do									\
 		grep enabled                                          	\
 		&& break						\
                                                                         ;
-done									;	
+done									;
 #########################################################################
 echo $ip $kube | tee --append /etc/hosts                           	;
 kubeadm init								\

@@ -17,6 +17,7 @@ test -n "$RecordSetName1"	&& export RecordSetName1    || exit 100 ;
 test -n "$RecordSetName2"	&& export RecordSetName2    || exit 100 ;
 test -n "$RecordSetName3"	&& export RecordSetName3    || exit 100 ;
 test -n "$RecordSetNameKube"	&& export RecordSetNameKube || exit 100 ;
+test -n "$repository_docker_aws"&&export repository_docker_aws||exit 100;
 test -n "$s3name"		&& export s3name    	    || exit 100 ;
 test -n "$s3region"		&& export s3region    	    || exit 100 ;
 test -n "$stack"                && export stack	            || exit 100	;
@@ -26,20 +27,25 @@ test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
 #########################################################################
 caps=CAPABILITY_IAM							;
 NodeInstallUrlPath=https://$domain/$A/bin                      		;
-path=$A/etc/aws								;
 s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$branch_docker_aws/$template		;
 uuid=$( uuidgen )							;
 #########################################################################
-curl --output $uuid https://$domain/$path/$template?$( uuidgen )	;
-aws s3 cp $uuid s3://$s3name/$branch_docker_aws/$template 		;
-rm --force ./$uuid							;
+path=$uuid/etc/aws							;
+#########################################################################
+git clone                                                               \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
+aws s3 cp $path/$template s3://$s3name/$branch_docker_aws/$template 	;
+rm --force --recursive $uuid						;
 #########################################################################
 while true 								;
 do 									\
   aws s3 ls $s3name/$branch_docker_aws/$template			\
   |									\
-    grep $template && break						;
+  grep $template && break						;
   sleep 10 								;
 done									;
 #########################################################################
@@ -75,7 +81,7 @@ do                                                                      \
     --stack-name                                                        \
       $stack                                                            \
   |                                                                     \
-    grep UPDATE_COMPLETE && break                                       ;
+  grep UPDATE_COMPLETE && break                                         ;
   sleep 10                                                              ;
 done                                                                    ;
 #########################################################################

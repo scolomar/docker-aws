@@ -6,23 +6,30 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$apps"                 && export apps           || exit 100    ;
 test -n "$A"	                && export A              || exit 100    ;
+test -n "$apps"                 && export apps           || exit 100    ;
 test -n "$branch_app"           && export branch_app     || exit 100    ;
 test -n "$debug"                && export debug          || exit 100    ;
 test -n "$domain"               && export domain         || exit 100    ;
 test -n "$mode"                 && export mode           || exit 100    ;
 test -n "$repository_app"       && export repository_app || exit 100    ;
+test -n "$repository_docker_aws"&&export repository_docker_aws||exit 100;
 test -n "$stack"                && export stack          || exit 100    ;
 test -n "$username_app"         && export username_app   || exit 100    ;
 #########################################################################
 file=common-functions.sh						;
-path=$A/lib                                 				;
 uuid=$( uuidgen )							;
 #########################################################################
-curl --output $uuid https://$domain/$path/$file?$( uuidgen )            ;
-source ./$uuid                                                          ;
-rm --force ./$uuid							;
+path=$uuid/lib                                 				;
+#########################################################################
+git clone                                                               \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
+chmod +x $path/$file                                                    ;
+source ./$path/$file                                                    ;
+rm --force --recursive $uuid                                            ;
 #########################################################################
 export -f encode_string							;
 export -f exec_remote_file						;
@@ -33,10 +40,10 @@ export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
 file=app-deploy.sh      	                                        ;
-path=$A/bin                                 				;
+path=bin                                 				;
 #########################################################################
 export deploy_file=app-deploy-$mode.sh					;
-export deploy_path=$A/bin						;
+export deploy_path=bin							;
 #########################################################################
 output="								\
   $(									\

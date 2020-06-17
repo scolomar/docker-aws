@@ -6,12 +6,15 @@
 #########################################################################
 set +x && test "$debug" = true && set -x 				;
 #########################################################################
+test -n "$A"                    && export A                 || exit 100 ;
+test -n "$branch_docker_aws"    && export branch_docker_aws || exit 100 ;
+test -n "$domain"               && export domain            || exit 100 ;
+#########################################################################
 test -n "$apps"			|| exit 100				;
 test -n "$branch_app"		|| exit 100				;
 test -n "$debug"		|| exit 100				;
 test -n "$deploy_file"		|| exit 100				;
 test -n "$deploy_path"		|| exit 100				;
-test -n "$domain"		|| exit 100				;
 test -n "$mode"			|| exit 100				;
 test -n "$repository_app"	|| exit 100				;
 test -n "$stack"		|| exit 100				;
@@ -34,9 +37,13 @@ sleep=10								;
 export=" 								\
   $export 								\
   &&									\
+  export A=$A								\
+  &&									\
   export apps=$apps							\
   &&									\
   export branch_app=$branch_app						\
+  &&									\
+  export branch_docker_aws=$branch_docker_aws				\
   &&									\
   export domain=$domain							\
   &&									\

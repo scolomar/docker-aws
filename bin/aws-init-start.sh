@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./bin/aws-init.sh
+#	./bin/aws-init-start.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -7,13 +7,13 @@
 export branch_docker_aws=master                                         ;
 export debug=false                                                      ;
 export debug=true                                                       ;
-export domain=raw.githubusercontent.com                                 ;
+export domain=github.com                                                ;
 export HostedZoneName=sebastian-colomar.com                             ;
 export repository_docker_aws=docker-aws                                 ;
 export stack=master                                                     ;
 export username_docker_aws=secobau                                      ;
 #########################################################################
-export A=$username_docker_aws/$repository_docker_aws/$branch_docker_aws ;
+export A=$username_docker_aws/$repository_docker_aws			;
 #########################################################################
 export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                  ;
 export KeyName=cloud9_mumbai_mgmt                                       ;
@@ -29,14 +29,20 @@ export TypeWorker=t3a.micro                                             ;
 export TypeMaster=t3a.nano                                              ;
 export TypeWorker=t3a.nano                                              ;
 #########################################################################
-date=$( date +%F_%H%M )                                                 ;
 file=aws-init.sh                                                        ;
-path=$A/bin                                                             ;
 #########################################################################
+date=$( date +%F_%H%M )                                                 ;
+uuid=$( uuidgen )                                                       ;
+#########################################################################
+path=$uuid/bin                                                          ;
 mkdir $date                                                             ;
 cd $date                                                                ;
-curl --output $file https://$domain/$path/$file?$( uuidgen )            ;
-chmod +x ./$file                                                        ;
-nohup ./$file                                                           ;
-rm --force ./$file                                                      ;
+git clone                                                               \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
+chmod +x $path/$file                                                    ;
+nohup ./$path/$file                                                     ;
+rm --force --recursive $uuid                                            ;
 #########################################################################

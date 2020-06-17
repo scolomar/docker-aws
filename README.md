@@ -27,7 +27,7 @@ The following command will swap the load balancer so as to point to the BLUE dep
 
 
 #########################################################################
-./bin/aws-target-blue.sh                                                ;
+./bin/aws-target-blue-start.sh                                          ;
 #########################################################################
 
 
@@ -43,7 +43,7 @@ The following command will swap back the load balancer so as to point again to t
 
 
 #########################################################################
-./bin/aws-target-green.sh                                               ;
+./bin/aws-target-green-start.sh                                         ;
 #########################################################################
 
 

@@ -50,7 +50,7 @@ do									\
 		grep enabled                                          	\
 		&& break						\
                                                                         ;
-done									;	
+done									;
 #########################################################################
 $token_token                                            		\
 	$token_discovery                                        	\

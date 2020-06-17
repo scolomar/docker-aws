@@ -11,13 +11,14 @@ test -n "$debug"		|| exit 100				;
 test -n "$domain"		|| exit 100				;
 test -n "$HostedZoneName"	|| exit 100				;
 test -n "$RecordSetNameKube"	|| exit 100				;
+test -n "$repository_docker_aws"|| exit 100				;
 test -n "$stack"		|| exit 100				;
 #########################################################################
 export=" 								\
   export debug=$debug 							\
 "									;
 log=/root/kubernetes-install.log                              		;
-path=$A/bin								;
+path=bin								;
 sleep=10								;
 #########################################################################
 export=" 								\
@@ -26,6 +27,8 @@ export=" 								\
   export A=$A								\
   && 									\
   export domain=$domain							\
+  && 									\
+  export repository_docker_aws=$repository_docker_aws			\
 "									;
 file=cluster-kubernetes-install.sh					;
 targets="								\
