@@ -106,7 +106,7 @@ jobs:
           echo "::set-output name=result::$(echo ${out})"
           test ${count} -eq 5 && break
           test ${out}   -eq 0 && break
-       done
+        done
 
     # Runs a set of commands using the runners shell
     - name: Remove the AWS infrastructure
