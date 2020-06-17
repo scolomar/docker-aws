@@ -74,8 +74,8 @@ jobs:
         export debug=true
         export domain=raw.githubusercontent.com
         export HostedZoneName=sebastian-colomar.com
-        export mode=kubernetes
         export mode=swarm
+        export mode=kubernetes
         export repository_docker_aws=docker-aws
         export stack=rename
         export username_docker_aws=secobau
@@ -90,8 +90,14 @@ jobs:
         export s3region=ap-south-1
         export template=https.yaml
         export TypeMaster=t3a.nano
+        export TypeMaster=t3a.micro
+        export TypeWorker=t3a.micro
         export TypeWorker=t3a.nano
-        export apps=" dockercoins.yaml petclinic.yaml php.yaml "
+        export apps=""
+        export apps=" $apps dockercoins.yaml "
+        export apps=" $apps petclinic.yaml "
+        export apps=""
+        export apps=" $apps php.yaml "
         export branch_app=rename
         export repository_app=docker-aws
         export username_app=secobau
@@ -110,7 +116,7 @@ jobs:
       id: test
       run: |
         sleep 100
-        curl https://test-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
+        curl https://rename-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
         out="$?"
         echo "::set-output name=result::$(echo ${out})"
 
