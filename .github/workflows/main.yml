@@ -89,7 +89,7 @@ jobs:
         export s3name=docker-aws
         export s3region=ap-south-1
         export template=https.yaml
-        export TypeManager=t3a.nano
+        export TypeMaster=t3a.nano
         export TypeWorker=t3a.nano
         export apps=" dockercoins.yaml petclinic.yaml php.yaml "
         export branch_app=rename
