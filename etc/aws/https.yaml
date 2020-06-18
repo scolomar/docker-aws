@@ -19,6 +19,7 @@ Metadata:
         Label:
           default: Cluster Common Configuration
         Parameters:
+          - BranchDockerAWS
           - NodeInstallUrlPath
           - NodeInstallUrlFile
       -
@@ -92,6 +93,8 @@ Metadata:
           - KeyName
           
     ParameterLabels:
+      BranchDockerAWS:
+        default: The branch of the git repo to download the script for the common install of the nodes
       HostedZoneName:
         default: The name of the hosted zone that you want to create records in
       Identifier:
@@ -205,6 +208,12 @@ Metadata:
                 
 Parameters:
 
+  BranchDockerAWS:
+    Default: ""
+    Description: >
+      The branch of the git repo to download the script for the common install of the nodes.
+    Type: String
+    
   HostedZoneName:
     Default: ''
     Description: >
@@ -587,7 +596,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install --assumeyes git && curl --remote-name ${NodeInstallUrlPath}/${NodeInstallUrlFile} && chmod +x ./${NodeInstallUrlFile} && ./${NodeInstallUrlFile} && rm --force ./${NodeInstallUrlFile}
+            sudo yum install --assumeyes git && git clone --single-branch --branch ${BranchDockerAWS} ${NodeInstallUrlPath} GitRepository && chmod +x GitRepository/${NodeInstallUrlFile} && ./GitRepository/${NodeInstallUrlFile} && rm --force --recursive GitRepository
     Type: AWS::EC2::Instance
             
   InstanceMaster2:
@@ -606,7 +615,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install --assumeyes git && curl --remote-name ${NodeInstallUrlPath}/${NodeInstallUrlFile} && chmod +x ./${NodeInstallUrlFile} && ./${NodeInstallUrlFile} && rm --force ./${NodeInstallUrlFile}
+            sudo yum install --assumeyes git && git clone --single-branch --branch ${BranchDockerAWS} ${NodeInstallUrlPath} GitRepository && chmod +x GitRepository/${NodeInstallUrlFile} && ./GitRepository/${NodeInstallUrlFile} && rm --force --recursive GitRepository
     Type: AWS::EC2::Instance
 
   InstanceMaster3:
@@ -625,7 +634,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install --assumeyes git && curl --remote-name ${NodeInstallUrlPath}/${NodeInstallUrlFile} && chmod +x ./${NodeInstallUrlFile} && ./${NodeInstallUrlFile} && rm --force ./${NodeInstallUrlFile}
+            sudo yum install --assumeyes git && git clone --single-branch --branch ${BranchDockerAWS} ${NodeInstallUrlPath} GitRepository && chmod +x GitRepository/${NodeInstallUrlFile} && ./GitRepository/${NodeInstallUrlFile} && rm --force --recursive GitRepository
     Type: AWS::EC2::Instance
 
   InstanceProfile:
@@ -645,7 +654,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install --assumeyes git && curl --remote-name ${NodeInstallUrlPath}/${NodeInstallUrlFile} && chmod +x ./${NodeInstallUrlFile} && ./${NodeInstallUrlFile} && rm --force ./${NodeInstallUrlFile}
+            sudo yum install --assumeyes git && git clone --single-branch --branch ${BranchDockerAWS} ${NodeInstallUrlPath} GitRepository && chmod +x GitRepository/${NodeInstallUrlFile} && ./GitRepository/${NodeInstallUrlFile} && rm --force --recursive GitRepository
     Type: AWS::EC2::Instance
 
   InstanceWorker2:
@@ -660,7 +669,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install --assumeyes git && curl --remote-name ${NodeInstallUrlPath}/${NodeInstallUrlFile} && chmod +x ./${NodeInstallUrlFile} && ./${NodeInstallUrlFile} && rm --force ./${NodeInstallUrlFile}
+            sudo yum install --assumeyes git && git clone --single-branch --branch ${BranchDockerAWS} ${NodeInstallUrlPath} GitRepository && chmod +x GitRepository/${NodeInstallUrlFile} && ./GitRepository/${NodeInstallUrlFile} && rm --force --recursive GitRepository
     Type: AWS::EC2::Instance
 
   InstanceWorker3:
@@ -675,7 +684,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install --assumeyes git && curl --remote-name ${NodeInstallUrlPath}/${NodeInstallUrlFile} && chmod +x ./${NodeInstallUrlFile} && ./${NodeInstallUrlFile} && rm --force ./${NodeInstallUrlFile}
+            sudo yum install --assumeyes git && git clone --single-branch --branch ${BranchDockerAWS} ${NodeInstallUrlPath} GitRepository && chmod +x GitRepository/${NodeInstallUrlFile} && ./GitRepository/${NodeInstallUrlFile} && rm --force --recursive GitRepository
     Type: AWS::EC2::Instance
 
   InternetGateway:

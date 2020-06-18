@@ -25,8 +25,9 @@ test -n "$template"		&& export template    	    || exit 100 ;
 test -n "$TypeMaster"		&& export TypeMaster 	    || exit 100 ;
 test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
 #########################################################################
+BranchDockerAWS=$branch_docker_aws					;
 caps=CAPABILITY_IAM							;
-NodeInstallUrlPath=https://$domain/$A/bin				;
+NodeInstallUrlPath=https://$domain/$A					;
 s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$branch_docker_aws/$template		;
 uuid=$( uuidgen )							;
@@ -53,9 +54,10 @@ aws cloudformation create-stack 					\
   --capabilities 							\
     $caps 								\
   --parameters 								\
+    ParameterKey=BranchDockerAWS,ParameterValue=$BranchDockerAWS	\
+    ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=InstanceMasterInstanceType,ParameterValue=$TypeMaster	\
     ParameterKey=InstanceWorkerInstanceType,ParameterValue=$TypeWorker  \
-    ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=Identifier,ParameterValue=$Identifier			\
     ParameterKey=KeyName,ParameterValue=$KeyName			\
     ParameterKey=NodeInstallUrlPath,ParameterValue=$NodeInstallUrlPath	\
