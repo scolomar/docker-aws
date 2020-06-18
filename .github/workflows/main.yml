@@ -48,8 +48,11 @@ jobs:
       
     - name: Checkout test
       uses: actions/checkout@v2
-      with:
-        ref: test
+#     with:
+#       ref: test
+
+    - name: Check fetched branch
+      run: pwd && ls -l
 
     - name: Install aws + cluster + app
       run: |

@@ -7,16 +7,23 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$A" 		        || exit 100                             ;
+test -n "$branch_docker_aws"	|| exit 100                             ;
 test -n "$debug" 		|| exit 100                             ;
 test -n "$domain"               || exit 100                             ;
 #########################################################################
 file=kubernetes.repo							;
 repos=yum.repos.d							;
 #########################################################################
-path=$A/etc/$repos							;
 uuid=$( uuidgen )							;
-curl --output $uuid https://$domain/$path/$file?$( uuidgen )            ;
-mv $uuid /etc/$repos/$file						;
+#########################################################################
+path=$uuid/etc/$repos							;
+#########################################################################
+git clone                                                               \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
+mv $path/$file /etc/$repos/$file					;
 #########################################################################
 yum install								\
 	--assumeyes							\

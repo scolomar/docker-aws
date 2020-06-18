@@ -26,16 +26,21 @@ test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
 #########################################################################
 caps=CAPABILITY_IAM							;
 NodeInstallUrlPath=https://$domain/$A/bin				;
-path=$A/etc/aws								;
 s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$branch_docker_aws/$template		;
 uuid=$( uuidgen )							;
 #########################################################################
-curl --output $uuid https://$domain/$path/$template?$( uuidgen )	;
-sed --in-place /Weight/s/0/blue/  $uuid					;
-sed --in-place /Weight/s/1/green/ $uuid					;
-sed --in-place /Weight/s/blue/1/  $uuid					;
-sed --in-place /Weight/s/green/0/ $uuid					;
+path=$uuid/etc/aws							;
+#########################################################################
+git clone                                                               \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
+sed --in-place /Weight/s/0/blue/  $path/$template			;
+sed --in-place /Weight/s/1/green/ $path/$template			;
+sed --in-place /Weight/s/blue/1/  $path/$template			;
+sed --in-place /Weight/s/green/0/ $path/$template			;
 aws s3 cp $uuid s3://$s3name/$branch_docker_aws/$template		;
 rm --force ./$uuid							;
 #########################################################################
@@ -43,7 +48,7 @@ while true								;
 do									\
   aws s3 ls $s3name/$branch_docker_aws/$template			\
   |									\
-    grep $template && break						;
+  grep $template && break						;
   sleep 10								;
 done									;
 #########################################################################

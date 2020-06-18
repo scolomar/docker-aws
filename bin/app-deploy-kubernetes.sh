@@ -18,12 +18,14 @@ apps="                                                                  \
     echo                                                                \
       $apps                                                             \
     |                                                                   \
-      base64                                                            \
-        --decode                                                        \
+    base64                                                            	\
+      --decode                                                        	\
   )                                                                     \
 "                                                                       ;
+B=$username_app/$repository_app						;
 kubeconfig=/etc/kubernetes/admin.conf 					;
-path=$username_app/$repository_app/$branch_app/etc/docker/$mode		;
+path=etc/docker/$mode							;
+uuid=$( uuidgen )							;
 #########################################################################
 for config in $( find /run/configs -type f )				;
 do									\
@@ -45,18 +47,22 @@ do									\
   rm --force $secret							; 
 done									;
 #########################################################################
+git clone                                                               \
+  --single-branch --branch $branch_app                     		\
+  https://$domain/$B                                              	\
+  $uuid                                                           	\
+									;
 for app in $apps							;
 do 									\
   prefix=$( echo $app | cut --delimiter . --field 1 )			;
   suffix=$( echo $app | cut --delimiter . --field 2 )			;
   for name in $prefix							;
   do									\
-    uuid=$( uuidgen )							;
-    curl --output $uuid https://$domain/$path/$name.$suffix?$( uuidgen );
-    kubectl apply --filename $uuid --kubeconfig $kubeconfig		;
-    rm --force $uuid							;
+    filename=$uuid/$path/$name.$suffix					;
+    kubectl apply --filename $filename --kubeconfig $kubeconfig		;
   done									;
 done									;
+rm --force --recursive $uuid                                            ;
 #########################################################################
 kubectl get node							;
 kubectl get service							;

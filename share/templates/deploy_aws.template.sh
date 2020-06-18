@@ -19,7 +19,7 @@
 ################################################################################
 branch_docker_aws=v4.3
 debug=<debug>			## values: true, false
-domain=raw.githubusercontent.com
+domain=github.com
 HostedZoneName=<example.com>
 mode=<mode>			## values: kubernetes, swarm
 repository_docker_aws=docker-aws
@@ -88,9 +88,10 @@ date=$( date +%F_%H%M )
 path=$HOME/.${repository_app}/var/
 mkdir --parents ${path}/${date}
 cd	${path}/${date}
-curl --output ${fname} https://${domain}/${fpath}/${fname}?$( uuidgen )
-chmod +x ./${fname}
-nohup	./${fname} &
+test -d ${repository_docker_aws} && rm -rf ${repository_docker_aws}
+git clone https://github.com/${username_docker_aws}/${repository_docker_aws} --single-branch --branch ${branch_docker_aws}
+chmod +x ${repository_docker_aws}/${fpath}/${fname}
+nohup	./${repository_docker_aws}/${fpath}/${fname} &
 
 
 ################################################################################

@@ -19,24 +19,30 @@ apps="									\
     echo								\
       $apps                                      			\
     |                                                               	\
-      base64                                                  		\
-        --decode                                        		\
+    base64                                                  		\
+      --decode                                        			\
   )									\
 "                                                                      	;
-path=$username_app/$repository_app/$branch_app/etc/docker/$mode		;
+B=$username_app/$repository_app                                         ;
+path=docker/$mode							;
+uuid=$( uuidgen )                                                       ;
 #########################################################################
+git clone                                                               \
+  --single-branch --branch $branch_app                                  \
+  https://$domain/$B                                                    \
+  $uuid                                                                 \
+                                                                        ;
 for app in $apps							;
 do 									\
   prefix=$( echo $app | cut --delimiter . --field 1 )			;
   suffix=$( echo $app | cut --delimiter . --field 2 )			;
   for name in $prefix							;
   do									\
-    uuid=$( uuidgen )							;
-    curl --output $uuid https://$domain/$path/$name.$suffix?$( uuidgen );
-    docker stack deploy --compose-file $uuid $name 			;
-    rm --force $uuid							;
+    filename=$uuid/$path/$name.$suffix                                  ;
+    docker stack deploy --compose-file $filename $name 			;
   done									;
 done									;
+rm --force --recursive $uuid                                            ;
 #########################################################################
 docker stack ls								;
 docker service ls							;

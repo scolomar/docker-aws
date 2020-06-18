@@ -7,6 +7,7 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$A"			|| exit 100				;
+test -n "$branch_docker_aws"	|| exit 100				;
 test -n "$debug"		|| exit 100				;
 test -n "$domain"		|| exit 100				;
 test -n "$HostedZoneName"	|| exit 100				;
@@ -17,13 +18,15 @@ export=" 								\
   export debug=$debug 							\
 "									;
 log=/root/kubernetes-install.log                              		;
-path=$A/bin								;
+path=bin								;
 sleep=10								;
 #########################################################################
 export=" 								\
   $export								\
   && 									\
   export A=$A								\
+  && 									\
+  export branch_docker_aws=$branch_docker_aws				\
   && 									\
   export domain=$domain							\
 "									;

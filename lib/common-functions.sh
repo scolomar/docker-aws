@@ -15,14 +15,23 @@ function encode_string {						\
 }									;
 #########################################################################
 function exec_remote_file {						\
+
   local domain=$1							;
   local file=$2								;
   local path=$3								;
+
   local uuid=$( uuidgen )						;
-  curl --output $uuid https://$domain/$path/$file?$( uuidgen )          ;
-  chmod +x ./$uuid                                                      ;
-  ./$uuid                                                               ;
-  rm --force ./$uuid		                              		;
+  path=$uuid/$path                                                      ;
+
+  git clone                                                             \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
+  chmod +x $path/$file                                                  ;
+  ./$path/$file								;
+  rm --force --recursive $uuid                                          ;
+
 }									;
 #########################################################################
 function send_command {							\
@@ -56,12 +65,13 @@ function send_list_command {						\
       --details 							\
       --output text 							\
     | 									\
-      grep [a-zA-Z0-9] && break 					;
+    grep [a-zA-Z0-9] && break 						;
     sleep $sleep							;
   done 									;
 }									;
 #########################################################################
 function send_remote_file {						\
+
   local domain=$1							;
   local export="$2"							;
   local file=$3								;
@@ -69,25 +79,35 @@ function send_remote_file {						\
   local sleep=$5							;
   local stack=$6							;
   local targets="$7"							;
+
   local uuid=$( uuidgen )						;
+  path=$uuid/$path                                                      ;
+
   local command="							\
     $export								\
     &&									\
-    curl --output $uuid https://$domain/$path/$file?$( uuidgen )       	\
-    &&                                                              	\
-    chmod +x $uuid                                              	\
-    &&                                                              	\
-    ./$uuid                                                       	\
+    path=$path                                                          \
+    &&									\
+    git clone                                                           \
+      --single-branch --branch $branch_docker_aws                     	\
+      https://$domain/$A                                              	\
+      $uuid                                                           	\
+    &&									\
+    chmod +x $path/$file                                                \
+    &&									\
+    ./$path/$file                                                       \
       2>&1                                                    		\
     |                                                               	\
-      tee /root/$file.log                                    		\
-      &&                                                              	\
-      rm --force $uuid							\
+    tee /root/$file.log                                    		\
+    &&                                                              	\
+    rm --force --recursive $uuid                                      	\
   "									;
+
   for target in $targets                                                ;
   do                                                                    \
     send_list_command "$command" $sleep $stack $target			;
   done                                                                  ;
+
 }									;
 #########################################################################
 function send_wait_targets {						\

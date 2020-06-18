@@ -30,16 +30,23 @@ test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
 test -n "$username_app"         && export username_app	    || exit 100	;
 #########################################################################
 file=common-functions.sh						;
-path=$A/lib								;
 uuid=$( uuidgen )							;
 #########################################################################
-curl --output $uuid https://$domain/$path/$file?$( uuidgen )            ;
-source ./$uuid                                                          ;
-rm --force ./$uuid							;
+path=$uuid/lib								;
 #########################################################################
-path=$A/bin								;
+git clone                                                               \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
+chmod +x $path/$file                                                    ;
+source ./$path/$file                                                    ;
+rm --force --recursive $uuid                                            ;
+#########################################################################
+path=bin								;
 #########################################################################
 file=aws-init.sh                                               		;
+#########################################################################
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
@@ -48,6 +55,7 @@ output="								\
 echo $output								;
 #########################################################################
 file=cluster-init.sh							;
+#########################################################################
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
@@ -56,6 +64,7 @@ output="								\
 echo $output								;
 #########################################################################
 file=app-init.sh                                               		;
+#########################################################################
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;

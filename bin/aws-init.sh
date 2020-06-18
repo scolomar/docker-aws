@@ -24,22 +24,28 @@ test -n "$template"		&& export template    	    || exit 100 ;
 test -n "$TypeMaster"		&& export TypeMaster 	    || exit 100 ;
 test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
 #########################################################################
+BranchDockerAWS=$branch_docker_aws					;
 caps=CAPABILITY_IAM							;
-NodeInstallUrlPath=https://$domain/$A/bin				;
-path=$A/etc/aws								;
+NodeInstallUrlPath=https://$domain/$A					;
 s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$branch_docker_aws/$template		;
 uuid=$( uuidgen )							;
 #########################################################################
-curl --output $uuid https://$domain/$path/$template?$( uuidgen )	;
-aws s3 cp $uuid s3://$s3name/$branch_docker_aws/$template		;
-rm --force ./$uuid							;
+path=$uuid/etc/aws							;
+#########################################################################
+git clone                                                               \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
+aws s3 cp $path/$template s3://$s3name/$branch_docker_aws/$template	;
+rm --force --recursive ./$uuid						;
 #########################################################################
 while true                                                              ;
 do                                                                      \
   aws s3 ls $s3name/$branch_docker_aws/$template                        \
   |                                                                     \
-    grep $template && break                                             ;
+  grep $template && break                                               ;
   sleep 10                                                              ;
 done                                                                    ;
 #########################################################################
@@ -47,9 +53,10 @@ aws cloudformation create-stack 					\
   --capabilities 							\
     $caps 								\
   --parameters 								\
+    ParameterKey=BranchDockerAWS,ParameterValue=$BranchDockerAWS	\
+    ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=InstanceMasterInstanceType,ParameterValue=$TypeMaster	\
     ParameterKey=InstanceWorkerInstanceType,ParameterValue=$TypeWorker  \
-    ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=Identifier,ParameterValue=$Identifier			\
     ParameterKey=KeyName,ParameterValue=$KeyName			\
     ParameterKey=NodeInstallUrlPath,ParameterValue=$NodeInstallUrlPath	\
@@ -75,7 +82,7 @@ do 									\
     --stack-name 							\
       $stack 								\
   | 									\
-    grep CREATE_COMPLETE && break 					;
+  grep CREATE_COMPLETE && break 					;
   sleep 100 								;
 done									;
 #########################################################################

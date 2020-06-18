@@ -22,14 +22,7 @@ The following command will swap the load balancer so as to point to the BLUE dep
 
 
 #########################################################################
-date=$( date +%F_%H%M )                                                 ;
-file=aws-target-blue.sh                                                 ;
-#########################################################################
-mkdir $date                                                             ;
-cd $date                                                                ;
-curl --output $file https://$domain/$path/$file?$( uuidgen )            ;
-chmod +x ./$file                                                        ;
-nohup ./$file                                                           &
+./bin/aws-target-blue-start.sh                                          ;
 #########################################################################
 
 
@@ -41,18 +34,5 @@ The following command will swap back the load balancer so as to point again to t
 
 
 #########################################################################
-date=$( date +%F_%H%M )                                                 ;
-file=aws-target-green.sh                                                ;
+./bin/aws-target-green-start.sh                                         ;
 #########################################################################
-mkdir $date                                                             ;
-cd $date                                                                ;
-curl --output $file https://$domain/$path/$file?$( uuidgen )            ;
-chmod +x ./$file                                                        ;
-nohup ./$file                                                           &
-#########################################################################
-
-
-
-```
-
-
