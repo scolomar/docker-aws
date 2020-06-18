@@ -309,7 +309,7 @@ Parameters:
     Type: String
     
   NodeInstallUrlFile:
-    Default: aws-node-ami.sh
+    Default: bin/aws-node-ami.sh
     Description: >
       The name of the script for the common install of the nodes.
     Type: String
