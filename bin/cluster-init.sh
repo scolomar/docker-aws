@@ -12,7 +12,6 @@ test -n "$debug" 		&& export debug	            || exit 100	;
 test -n "$domain" 		&& export domain	    || exit 100	;
 test -n "$HostedZoneName"	&& export HostedZoneName    || exit 100 ;
 test -n "$RecordSetNameKube"	&& export RecordSetNameKube || exit 100 ;
-test -n "$repository_docker_aws"&&export repository_docker_aws||exit 100;
 test -n "$mode"                 && export mode	            || exit 100	;
 test -n "$stack"                && export stack	            || exit 100	;
 #########################################################################

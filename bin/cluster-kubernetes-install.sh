@@ -10,7 +10,6 @@ test -n "$A" 		        || exit 100                             ;
 test -n "$branch_docker_aws"	|| exit 100                             ;
 test -n "$debug" 		|| exit 100                             ;
 test -n "$domain"               || exit 100                             ;
-test -n "$repository_docker_aws"|| exit 100				;
 #########################################################################
 file=kubernetes.repo							;
 repos=yum.repos.d							;

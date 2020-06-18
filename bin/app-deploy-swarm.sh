@@ -12,7 +12,6 @@ test -n "$debug"		|| exit 100				;
 test -n "$domain"		|| exit 100				;
 test -n "$mode"			|| exit 100				;
 test -n "$repository_app"	|| exit 100				;
-test -n "$repository_docker_aws"|| exit 100				;
 test -n "$username_app"		|| exit 100				;
 #########################################################################
 apps="									\

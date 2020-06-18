@@ -14,7 +14,6 @@ test -n "$debug" 		&& export debug	            || exit 100	;
 test -n "$domain" 		&& export domain	    || exit 100	;
 test -n "$mode"                 && export mode	            || exit 100	;
 test -n "$repository_app"       && export repository_app    || exit 100	;
-test -n "$repository_docker_aws"&&export repository_docker_aws||exit 100;
 test -n "$stack"                && export stack	            || exit 100	;
 test -n "$username_app"         && export username_app	    || exit 100	;
 #########################################################################

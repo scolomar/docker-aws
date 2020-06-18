@@ -12,7 +12,6 @@ test -n "$debug"		|| exit 100				;
 test -n "$domain"		|| exit 100				;
 test -n "$HostedZoneName"	|| exit 100				;
 test -n "$RecordSetNameKube"	|| exit 100				;
-test -n "$repository_docker_aws"|| exit 100				;
 test -n "$stack"		|| exit 100				;
 #########################################################################
 export=" 								\
@@ -30,8 +29,6 @@ export=" 								\
   export branch_docker_aws=$branch_docker_aws				\
   && 									\
   export domain=$domain							\
-  && 									\
-  export repository_docker_aws=$repository_docker_aws			\
 "									;
 file=cluster-kubernetes-install.sh					;
 targets="								\
