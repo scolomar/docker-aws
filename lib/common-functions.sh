@@ -15,11 +15,14 @@ function encode_string {						\
 }									;
 #########################################################################
 function exec_remote_file {						\
+
   local domain=$1							;
   local file=$2								;
   local path=$3								;
+
   local uuid=$( uuidgen )						;
   path=$uuid/$path                                                      ;
+
   git clone                                                             \
         --single-branch --branch $branch_docker_aws                     \
         https://$domain/$A                                              \
@@ -28,6 +31,7 @@ function exec_remote_file {						\
   chmod +x $path/$file                                                  ;
   ./$path/$file								;
   rm --force --recursive $uuid                                          ;
+
 }									;
 #########################################################################
 function send_command {							\
@@ -67,6 +71,7 @@ function send_list_command {						\
 }									;
 #########################################################################
 function send_remote_file {						\
+
   local domain=$1							;
   local export="$2"							;
   local file=$3								;
@@ -74,11 +79,14 @@ function send_remote_file {						\
   local sleep=$5							;
   local stack=$6							;
   local targets="$7"							;
+
   local uuid=$( uuidgen )						;
+  path=$uuid/$path                                                      ;
+
   local command="							\
     $export								\
     &&									\
-    path=$uuid/$path                                                    \
+    path=$path                                                          \
     &&									\
     git clone                                                           \
       --single-branch --branch $branch_docker_aws                     	\
@@ -94,10 +102,12 @@ function send_remote_file {						\
     &&                                                              	\
     rm --force --recursive $uuid                                      	\
   "									;
+
   for target in $targets                                                ;
   do                                                                    \
     send_list_command "$command" $sleep $stack $target			;
   done                                                                  ;
+
 }									;
 #########################################################################
 function send_wait_targets {						\
