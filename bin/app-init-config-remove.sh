@@ -8,6 +8,7 @@ set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$apps"                 && export apps           || exit 100    ;
 test -n "$A"	                && export A              || exit 100    ;
+test -n "$branch_docker_aws"    && export branch_docker_aws||exit 100   ;
 test -n "$branch_app"           && export branch_app     || exit 100    ;
 test -n "$debug"                && export debug          || exit 100    ;
 test -n "$domain"               && export domain         || exit 100    ;

@@ -65,7 +65,7 @@ function send_list_command {						\
       --details 							\
       --output text 							\
     | 									\
-      grep [a-zA-Z0-9] && break 					;
+    grep [a-zA-Z0-9] && break 						;
     sleep $sleep							;
   done 									;
 }									;
