@@ -7,10 +7,10 @@ function encode_string {						\
   local string="$1"							;
   echo -n $string                                                 	\
   |     	                                                        \
-    sed 's/\\/ /'                                           		\
-    |                                                       		\
-      base64                                          			\
-        --wrap 0                                			\
+  sed 's/\\/ /'                                           		\
+  |                                                       		\
+  base64                                          			\
+    --wrap 0                                				\
 									;
 }									;
 #########################################################################
@@ -98,7 +98,7 @@ function send_remote_file {						\
     ./$path/$file                                                       \
       2>&1                                                    		\
     |                                                               	\
-    tee /root/$file.log                                    		\
+    tee /tmp/$file.log                                    		\
     &&                                                              	\
     rm --force --recursive $uuid                                      	\
   "									;
