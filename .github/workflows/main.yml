@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  aws:
+  kubernetes:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -46,24 +46,23 @@ jobs:
         # The external ID of the role to assume
         role-external-id: # optional
       
-    - name: Checkout test
+    - name: Checkout branch
       uses: actions/checkout@v2
 #     with:
 #       ref: test
 
-    - name: Check fetched branch
-      run: pwd && ls -l
-
-    - name: Install aws + cluster + app
+    - name: Install aws + cluster + app in Kubernetes mode
       run: |
         init=bin/init-start.sh
         chmod +x ${init}
+        sed -i /mode=swarm/d ${init}
+        sed -i /TypeMaster=t3a.nano/d ${init}
+        sed -i /TypeWorker=t3a.micro/d ${init}
         sed -i s/master/test/ ${init}
         ./${init}
         
     # Runs a set of commands using the runners shell
-    - name: Test the app
-      id: test
+    - name: Test the app 
       run: |
         count=0
         while true
@@ -72,7 +71,6 @@ jobs:
           sleep 100
           curl https://test-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
           out="${?}"
-          echo "::set-output name=result::$(echo ${out})"
           test ${count} -eq 5 && break
           test ${out}   -eq 0 && break
         done
@@ -82,11 +80,3 @@ jobs:
       run: |
         export stack=test
         aws cloudformation delete-stack --stack-name $stack
-
-    # Runs a set of commands using the runners shell
-    - name: Return the output of the test
-      run: |
-        export stack=test
-        aws cloudformation delete-stack --stack-name $stack
-        out=${{ steps.test.outputs.result }}
-        test $out -eq 0 && exit 0 || exit 1
