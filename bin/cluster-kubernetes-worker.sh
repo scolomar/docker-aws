@@ -19,15 +19,15 @@ token_discovery="$(							\
 	echo								\
 		$token_discovery					\
 	|								\
-		base64							\
-			--decode					\
+	base64								\
+		--decode						\
 )"							         	;
 token_token="$(								\
 	echo								\
 		$token_token						\
 	|								\
-		base64							\
-			--decode					\
+	base64								\
+		--decode						\
 )"							         	;
 #########################################################################
 echo $ip $kube | tee --append /etc/hosts                           	;
@@ -38,8 +38,8 @@ do									\
 		is-enabled						\
 			kubelet                               		\
 	|								\
-		grep enabled                                          	\
-		&& break						\
+	grep enabled    	                                      	\
+	&& break							\
                                                                         ;
 done									;	
 #########################################################################
@@ -49,6 +49,6 @@ $token_token                                            		\
 		all							\
 	2>&1								\
 	|								\
-		tee $log						\
+	tee $log							\
 									;
 #########################################################################
