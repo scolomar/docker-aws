@@ -21,22 +21,22 @@ token_certificate="$(							\
 	echo								\
 		$token_certificate					\
 	|								\
-		base64							\
-			--decode					\
+	base64								\
+		--decode						\
 )"							         	;
 token_discovery="$(							\
 	echo								\
 		$token_discovery					\
 	|								\
-		base64							\
-			--decode					\
+	base64								\
+		--decode						\
 )"							         	;
 token_token="$(								\
 	echo								\
 		$token_token						\
 	|								\
-		base64							\
-			--decode					\
+	base64								\
+		--decode						\
 )"							         	;
 #########################################################################
 echo $ip $kube | tee --append /etc/hosts                           	;
@@ -47,8 +47,8 @@ do									\
 		is-enabled						\
 			kubelet                               		\
 	|								\
-		grep enabled                                          	\
-		&& break						\
+	grep enabled       	                                   	\
+	&& break							\
                                                                         ;
 done									;
 #########################################################################
@@ -59,7 +59,7 @@ $token_token                                            		\
 		all							\
 	2>&1								\
 	|								\
-		tee $log						\
+	tee $log							\
 									;
 #########################################################################
 userID=1001                                                             ;
@@ -70,8 +70,8 @@ cp /etc/kubernetes/admin.conf $HOME/.kube/config                   	;
 chown -R $userID:$userID $HOME                                     	;
 echo                                                                    \
         'source <(kubectl completion bash)'                             \
-        |                                                               \
-                tee --append $HOME/.bashrc                              \
+|                                      		                        \
+tee --append $HOME/.bashrc                     			        \
                                                                         ;
 #########################################################################
 sed --in-place /$kube/d /etc/hosts                                      ;
