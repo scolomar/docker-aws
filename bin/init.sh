@@ -30,45 +30,21 @@ test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
 test -n "$username_app"         && export username_app	    || exit 100	;
 #########################################################################
 file=common-functions.sh						;
-uuid=$( uuidgen )							;
+path=lib								;
 #########################################################################
-path=$uuid/lib								;
-#########################################################################
-git clone                                                               \
-        --single-branch --branch $branch_docker_aws                     \
-        https://$domain/$A                                              \
-        $uuid                                                           \
-                                                                        ;
 chmod +x $path/$file                                                    ;
 source ./$path/$file                                                    ;
-rm --force --recursive $uuid                                            ;
-#########################################################################
-path=bin								;
 #########################################################################
 file=aws-init.sh                                               		;
+path=bin								;
 #########################################################################
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output								;
+exec_remote_file $domain $file $path				        ;
 #########################################################################
 file=cluster-init.sh							;
 #########################################################################
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output								;
+exec_remote_file $domain $file $path			        	;
 #########################################################################
 file=app-init.sh                                               		;
 #########################################################################
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output								;
+exec_remote_file $domain $file $path		        		;
 #########################################################################
