@@ -49,15 +49,20 @@ do									\
                                                                         ;
 done									;
 #########################################################################
-$token_token                                            		\
-	$token_discovery                                        	\
-	$token_certificate                                      	\
-	--ignore-preflight-errors					\
-		all							\
-	2>&1								\
+while true								;
+do									\
+	sleep 10							;
+	$token_token                                            	\
+		$token_discovery                                        \
+		$token_certificate                                      \
+		--ignore-preflight-errors				\
+			all						\
+		2>&1							\
 	|								\
 	tee $log							\
 									;
+	grep 'This node has joined the cluster' $log && break		;
+done									;
 #########################################################################
 userID=1001                                                             ;
 USER=ssm-user                                                           ;
