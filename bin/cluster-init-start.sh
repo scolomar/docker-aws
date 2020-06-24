@@ -21,6 +21,5 @@ export A=$username_docker_aws/$repository_docker_aws			;
 file=cluster-init.sh                                                    ;
 path=bin                                                                ;
 #########################################################################
-chmod +x $path/$file                                                    ;
 ./$path/$file                                                           ;
 #########################################################################

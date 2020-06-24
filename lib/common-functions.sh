@@ -28,7 +28,6 @@ function exec_remote_file {						\
         https://$domain/$A                                              \
         $uuid                                                           \
                                                                         ;
-  chmod +x $path/$file                                                  ;
   ./$path/$file								;
   rm --force --recursive $uuid                                          ;
 
@@ -92,8 +91,6 @@ function send_remote_file {						\
       --single-branch --branch $branch_docker_aws                     	\
       https://$domain/$A                                              	\
       $uuid                                                           	\
-    &&									\
-    chmod +x $path/$file                                                \
     &&									\
     ./$path/$file                                                       \
       2>&1                                                    		\

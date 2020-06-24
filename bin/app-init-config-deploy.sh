@@ -36,6 +36,5 @@ path=bin                                 				;
 export deploy_file=app-config-deploy.sh                                 ;
 export deploy_path=$path						;
 #########################################################################
-chmod +x $path/$file                                                    ;
 ./$path/$file                                                           ;
 #########################################################################
