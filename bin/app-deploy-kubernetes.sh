@@ -61,9 +61,13 @@ do 									\
     filename=$uuid/$path/$name.$suffix					;
     while true								;
     do									\
-      kubectl apply --filename $filename --kubeconfig $kubeconfig	;
+      kubectl apply --filename $filename 				\
+      	--kubeconfig $kubeconfig					;
       sleep 10								;
-      kubectl get deployment | grep '\([0-9]\)/\1' && break		;
+      kubectl get deployment 						\
+      	--kubeconfig $kubeconfig					\
+      | 								\
+      grep '\([0-9]\)/\1' && break					;
     done								;
   done									;
 done									;
@@ -71,7 +75,7 @@ rm --force --recursive $uuid                                            ;
 #########################################################################
 for resource in node service pod					;
 do									\
-  	kubectl get							\
+	kubectl get							\
 		$resource						\
 		--kubeconfig $kubeconfig				;
 done									;
