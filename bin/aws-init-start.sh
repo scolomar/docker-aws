@@ -30,19 +30,7 @@ export TypeMaster=t3a.nano                                              ;
 export TypeWorker=t3a.nano                                              ;
 #########################################################################
 file=aws-init.sh                                                        ;
+path=bin                                                                ;
 #########################################################################
-date=$( date +%F_%H%M )                                                 ;
-uuid=$( uuidgen )                                                       ;
-#########################################################################
-path=$uuid/bin                                                          ;
-mkdir $date                                                             ;
-cd $date                                                                ;
-git clone                                                               \
-        --single-branch --branch $branch_docker_aws                     \
-        https://$domain/$A                                              \
-        $uuid                                                           \
-                                                                        ;
-chmod +x $path/$file                                                    ;
-nohup ./$path/$file                                                     ;
-rm --force --recursive $uuid                                            ;
+./$path/$file                                                           ;
 #########################################################################

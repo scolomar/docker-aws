@@ -27,11 +27,11 @@ do									\
   kubectl get node							\
     --kubeconfig $kubeconfig						\
   |									\
-    grep Ready								\
-    |									\
-      grep --invert-match NotReady					\
-      &&								\
-      break								\
+  grep Ready								\
+  |									\
+  grep --invert-match NotReady						\
+  &&									\
+  break									\
 									;
   sleep $sleep								;
 done									;

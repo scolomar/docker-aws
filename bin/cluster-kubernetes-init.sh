@@ -17,7 +17,7 @@ test -n "$stack"		|| exit 100				;
 export=" 								\
   export debug=$debug 							\
 "									;
-log=/root/kubernetes-install.log                              		;
+log=/tmp/kubernetes-install.log                              		;
 path=bin								;
 sleep=10								;
 #########################################################################

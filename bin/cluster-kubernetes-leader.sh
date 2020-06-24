@@ -38,8 +38,8 @@ kubeadm init								\
 	--ignore-preflight-errors					\
 		all							\
 	2>&1								\
-	|								\
-		tee --append $log					\
+|									\
+tee --append $log							\
 									;
 #########################################################################
 kubectl apply								\
@@ -48,8 +48,8 @@ kubectl apply								\
 	--kubeconfig							\
                 $kubeconfig						\
 	2>&1								\
-	|								\
-		tee --append $log					\
+|									\
+tee --append $log							\
 									;
 #########################################################################
 userID=1001								;
@@ -60,7 +60,7 @@ cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
 chown -R $userID:$userID $HOME						;
 echo									\
 	'source <(kubectl completion bash)'				\
-	|								\
-		tee --append $HOME/.bashrc				\
+|									\
+tee --append $HOME/.bashrc						\
 									;
 #########################################################################

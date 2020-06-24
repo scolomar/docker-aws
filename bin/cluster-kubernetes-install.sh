@@ -24,6 +24,7 @@ git clone                                                               \
         $uuid                                                           \
                                                                         ;
 mv $path/$file /etc/$repos/$file					;
+rm --recursive --force $uuid						;
 #########################################################################
 yum install								\
 	--assumeyes							\
