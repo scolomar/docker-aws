@@ -1,3 +1,5 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/secobau/docker-aws?style=social)
+
 This project will allow you to deploy a containerized application in a cluster of your choice.
 
 
