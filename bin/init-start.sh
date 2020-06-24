@@ -26,10 +26,8 @@ export RecordSetNameKube=${stack}-kube-apiserver                        ;
 export s3name=docker-aws                                                ;
 export s3region=ap-south-1                                              ;
 export template=https.yaml                                              ;
-export TypeMaster=t3a.nano                                              ;
-export TypeMaster=t3a.micro                                             ;
-export TypeWorker=t3a.micro                                             ;
-export TypeWorker=t3a.nano                                              ;
+export TypeMaster=t3.micro                                              ;
+export TypeWorker=t3.micro                                              ;
 #########################################################################
 export apps=""                                                          ;
 export apps=" $apps dockercoins.yaml "                                  ;
