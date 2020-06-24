@@ -17,6 +17,7 @@ test -n "$stack"		|| exit 100				;
 export=" 								\
   export debug=$debug 							\
 "									;
+kube=$RecordSetNameKube.$HostedZoneName                                 ;
 log=/tmp/kubernetes-install.log                              		;
 path=bin								;
 sleep=10								;
@@ -44,11 +45,9 @@ send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 export=" 								\
   $export								\
   && 									\
-  export HostedZoneName=$HostedZoneName					\
+  export kube=$kube							\
   && 									\
   export log=$log							\
-  && 									\
-  export RecordSetNameKube=$RecordSetNameKube				\
 "									;
 targets="								\
 	InstanceMaster1							\
