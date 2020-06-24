@@ -64,16 +64,10 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Test the app 
       run: |
-        count=0
-        while true
-        do
-          count=$(( 1 + ${count} ))
-          sleep 100
-          curl https://test-php.sebastian-colomar.com/ -I | grep 'HTTP/2 200'
-          out="${?}"
-          test ${count} -eq 5 && break
-          test ${out}   -eq 0 && break
-        done
+        set -x
+        script=bin/check.sh
+        chmod +x $script
+        ./$script
 
     # Runs a set of commands using the runners shell
     - name: Remove the AWS infrastructure
