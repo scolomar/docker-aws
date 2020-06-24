@@ -7,13 +7,10 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
-test -n "$HostedZoneName"       || exit 100                             ;
-test -n "$RecordSetNameKube"    || exit 100                             ;
+test -n "$kube"    		|| exit 100                             ;
 test -n "$log"                	|| exit 100                             ;
 test -n "$token_discovery"      || exit 100                             ;
 test -n "$token_token"          || exit 100                             ;
-#########################################################################
-kube=$RecordSetNameKube.$HostedZoneName					;
 #########################################################################
 token_discovery="$(							\
 	echo								\
@@ -30,7 +27,29 @@ token_token="$(								\
 		--decode						\
 )"							         	;
 #########################################################################
-echo $ip $kube | tee --append /etc/hosts                           	;
+compose=etc/docker/swarm/docker-compose.yaml				;
+uuid=$( uuidgen )							;
+#########################################################################
+git clone 								\
+	--single-branch --branch v1.1					\
+	https://github.com/secobau/nlb 					\
+	$uuid								;
+sed --in-place s/worker/manager/ $uuid/$compose				;
+sudo cp --recursive --verbose $uuid/run/* /run				;
+docker swarm init							;
+docker stack deploy --compose-file $uuid/$compose nlb			;
+while true								;
+do									\
+  sleep 1								;
+  docker service ls | grep '\([0-9]\)/\1' && break			;
+done									;
+sudo rm --recursive --force /run/secrets /run/configs			;
+sed --in-place 								\
+	/$kube/d 							\
+	/etc/hosts   		                                  	;
+sed --in-place 								\
+	/localhost4/s/$/' '$kube/ 					\
+	/etc/hosts          				             	;
 #########################################################################
 while true								;
 do									\

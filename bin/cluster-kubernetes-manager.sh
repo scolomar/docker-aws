@@ -7,15 +7,12 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
-test -n "$HostedZoneName"       || exit 100                             ;
-test -n "$RecordSetNameKube"    || exit 100                             ;
+test -n "$ip_leader"		|| exit 100                             ;
+test -n "$kube"		        || exit 100                             ;
 test -n "$log"                  || exit 100                             ;
 test -n "$token_certificate"    || exit 100                             ;
 test -n "$token_discovery"      || exit 100                             ;
 test -n "$token_token"       	|| exit 100                             ;
-#########################################################################
-ip=10.168.1.100                                                         ;
-kube=$RecordSetNameKube.$HostedZoneName					;
 #########################################################################
 token_certificate="$(							\
 	echo								\
@@ -39,7 +36,7 @@ token_token="$(								\
 		--decode						\
 )"							         	;
 #########################################################################
-echo $ip $kube | tee --append /etc/hosts                           	;
+echo $ip_leader $kube | tee --append /etc/hosts                        	;
 #########################################################################
 while true								;
 do									\
@@ -52,15 +49,20 @@ do									\
                                                                         ;
 done									;
 #########################################################################
-$token_token                                            		\
-	$token_discovery                                        	\
-	$token_certificate                                      	\
-	--ignore-preflight-errors					\
-		all							\
-	2>&1								\
+while true								;
+do									\
+	sleep 10							;
+	$token_token                                            	\
+		$token_discovery                                        \
+		$token_certificate                                      \
+		--ignore-preflight-errors				\
+			all						\
+		2>&1							\
 	|								\
 	tee $log							\
 									;
+	grep 'This node has joined the cluster' $log && break		;
+done									;
 #########################################################################
 userID=1001                                                             ;
 USER=ssm-user                                                           ;
@@ -74,5 +76,10 @@ echo                                                                    \
 tee --append $HOME/.bashrc                     			        \
                                                                         ;
 #########################################################################
-sed --in-place /$kube/d /etc/hosts                                      ;
+sed --in-place 								\
+	/$kube/d 							\
+	/etc/hosts   		                                  	;
+sed --in-place 								\
+	/localhost4/s/$/' '$kube/ 					\
+	/etc/hosts          				             	;
 #########################################################################

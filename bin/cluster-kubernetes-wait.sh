@@ -7,6 +7,7 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
+test -n "$kube"                 || exit 100                             ;
 #########################################################################
 kubeconfig=/etc/kubernetes/admin.conf                   		;
 sleep=10								;
@@ -36,5 +37,10 @@ do									\
   sleep $sleep								;
 done									;
 #########################################################################
-sed --in-place /kube/d /etc/hosts                                     	;
+sed --in-place 								\
+	/$kube/d 							\
+	/etc/hosts   		                                  	;
+sed --in-place 								\
+	/localhost4/s/$/' '$kube/ 					\
+	/etc/hosts          				             	;
 #########################################################################

@@ -11,7 +11,7 @@ export domain=github.com                                                ;
 export mode=kubernetes                                                  ;
 export mode=swarm                                                       ;
 export repository_docker_aws=docker-aws                                 ;
-export stack=master                                                     ;
+export stack=docker                                                     ;
 export username_docker_aws=secobau                                      ;
 #########################################################################
 export A=$username_docker_aws/$repository_docker_aws			;

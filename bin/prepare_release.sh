@@ -36,16 +36,10 @@ update_version()
 	local	old_version=$2
 
 	sed "/branch_app=/s/$old_version/$version/"			\
-			-i ./README-app.md				\
-			-i ./README-aws.md				\
-			-i ./README-cluster.md				\
-			-i ./README.md
+			-i ./bin/*-start.sh	
 
 	sed "/branch_docker_aws=/s/$old_version/$version/"		\
-			-i ./README-app.md				\
-			-i ./README-aws.md				\
-			-i ./README-cluster.md				\
-			-i ./README.md
+			-i ./bin/*-start.sh	
 }
 
 

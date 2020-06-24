@@ -17,7 +17,7 @@
 ################################################################################
 ##	variables							      ##
 ################################################################################
-branch_docker_aws=v4.3
+branch_docker_aws=master
 debug=<debug>			## values: true, false
 domain=github.com
 HostedZoneName=<example.com>

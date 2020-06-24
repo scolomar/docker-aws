@@ -17,6 +17,8 @@ test -n "$stack"		|| exit 100				;
 export=" 								\
   export debug=$debug 							\
 "									;
+ip_leader=10.168.1.100                                                  ;
+kube=$RecordSetNameKube.$HostedZoneName                                 ;
 log=/tmp/kubernetes-install.log                              		;
 path=bin								;
 sleep=10								;
@@ -44,16 +46,17 @@ send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 export=" 								\
   $export								\
   && 									\
-  export HostedZoneName=$HostedZoneName					\
+  export ip_leader=$ip_leader						\
+  && 									\
+  export kube=$kube							\
   && 									\
   export log=$log							\
-  && 									\
-  export RecordSetNameKube=$RecordSetNameKube				\
 "									;
-file=cluster-kubernetes-leader.sh					;
 targets="								\
 	InstanceMaster1							\
 "									;
+#########################################################################
+file=cluster-kubernetes-leader.sh					;
 send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
 file=cluster-kubernetes-wait.sh						;

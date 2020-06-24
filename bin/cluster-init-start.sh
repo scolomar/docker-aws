@@ -13,7 +13,7 @@ export mode=kubernetes                                                  ;
 export mode=swarm                                                       ;
 export RecordSetNameKube=$stack-kube-apiserver                          ;
 export repository_docker_aws=docker-aws                                 ;
-export stack=master                                                     ;
+export stack=docker                                                     ;
 export username_docker_aws=secobau                                      ;
 #########################################################################
 export A=$username_docker_aws/$repository_docker_aws			;

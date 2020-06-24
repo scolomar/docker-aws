@@ -15,6 +15,7 @@ jobs:
 
   kubernetes:
     # The type of runner that the job will run on
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -56,21 +57,22 @@ jobs:
         init=bin/init-start.sh
         chmod +x ${init}
         sed -i /mode=swarm/d ${init}
+        sed -i s/master/test/ ${init}
         sed -i /TypeMaster=t3a.nano/d ${init}
         sed -i /TypeWorker=t3a.micro/d ${init}
-        sed -i s/master/test/ ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=test-${GITHUB_SHA}/ ${init}
         ./${init}
         
     # Runs a set of commands using the runners shell
-    - name: Test the app 
+    - name: Test the app
       run: |
         set -x
-        script=bin/check.sh
-        chmod +x $script
+        export stack=test-${GITHUB_SHA}
+        script=.github/bin/check.sh
         ./$script
 
     # Runs a set of commands using the runners shell
     - name: Remove the AWS infrastructure
       run: |
-        export stack=test
-        aws cloudformation delete-stack --stack-name $stack
+        set -x
+        aws cloudformation delete-stack --stack-name test-${GITHUB_SHA}
