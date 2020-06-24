@@ -4,7 +4,7 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
-export branch_docker_aws=v4.5                                         ;
+export branch_docker_aws=master                                         ;
 export debug=false                                                      ;
 export debug=true                                                       ;
 export domain=github.com						;
