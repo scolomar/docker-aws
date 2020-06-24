@@ -4,7 +4,7 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
-export branch_docker_aws=v4.5                                         ;
+export branch_docker_aws=v4.5                                           ;
 export debug=false                                                      ;
 export debug=true                                                       ;
 export domain=github.com                                                ;
@@ -12,10 +12,10 @@ export HostedZoneName=sebastian-colomar.com                             ;
 export mode=swarm                                                       ;
 export mode=kubernetes                                                  ;
 export repository_docker_aws=docker-aws                                 ;
-export stack=docker                                                     ;
+export stack=stackName                                                  ;
 export username_docker_aws=secobau                                      ;
 #########################################################################
-export A=$username_docker_aws/$repository_docker_aws			;
+export A=$username_docker_aws/$repository_docker_aws                    ;
 #########################################################################
 export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                  ;
 export KeyName=cloud9_mumbai_mgmt                                       ;
@@ -36,7 +36,7 @@ export apps=" $apps dockercoins.yaml "                                  ;
 export apps=" $apps petclinic.yaml "                                    ;
 export apps=""                                                          ;
 export apps=" $apps php.yaml "                                          ;
-export branch_app=v4.5                                                ;
+export branch_app=v4.5                                                  ;
 export repository_app=docker-aws                                        ;
 export username_app=secobau                                             ;
 #########################################################################
