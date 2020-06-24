@@ -7,7 +7,6 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
-test -n "$ip_leader"   		|| exit 100                             ;
 test -n "$kube"    		|| exit 100                             ;
 test -n "$log"                	|| exit 100                             ;
 test -n "$token_discovery"      || exit 100                             ;
@@ -28,7 +27,28 @@ token_token="$(								\
 		--decode						\
 )"							         	;
 #########################################################################
-echo $ip_leader $kube | tee --append /etc/hosts                        	;
+compose=etc/docker/swarm/docker-compose.yaml				;
+uuid=$( uuidgen )							;
+#########################################################################
+git clone 								\
+	--single-branch --branch v1.0					\
+	https://github.com/secobau/nlb 					\
+	$uuid								;
+sed --in-place s/worker/manager/ $uuid/$compose				;
+sudo cp --recursive --verbose $uuid/run/* /run				;
+docker swarm init							;
+docker stack deploy --compose-file $uuid/$compose nlb			;
+while true								;
+do									\
+  sleep 1								;
+  docker service ls | grep '\([0-9]\)/\1' && break			;
+done									;
+sed --in-place 								\
+	/$kube/d 							\
+	/etc/hosts   		                                  	;
+sed --in-place 								\
+	/localhost4/s/$/' '$kube/ 					\
+	/etc/hosts          				             	;
 #########################################################################
 while true								;
 do									\
@@ -49,26 +69,4 @@ $token_token                                            		\
 	|								\
 	tee $log							\
 									;
-#########################################################################
-uuid=$( uuidgen )							;
-git clone 								\
-	--single-branch --branch v1.0					\
-	https://github.com/secobau/nlb 					\
-	$uuid								;
-sudo cp --recursive --verbose $uuid/run/* /run				;
-docker swarm init							;
-docker stack deploy 							\
-	--compose-file $uuid/etc/docker/swarm/docker-compose.yaml	\
-	nlb								;
-while true								;
-do									\
-  sleep 1								;
-  docker service ls | grep '\([0-9]\)/\1' && break			;
-done									;
-sed --in-place 								\
-	/$kube/d 							\
-	/etc/hosts   		                                  	;
-sed --in-place 								\
-	/localhost4/s/$/' '$kube/ 					\
-	/etc/hosts          				             	;
 #########################################################################
