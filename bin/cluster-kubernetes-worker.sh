@@ -31,7 +31,7 @@ compose=etc/docker/swarm/docker-compose.yaml				;
 uuid=$( uuidgen )							;
 #########################################################################
 git clone 								\
-	--single-branch --branch v1.0					\
+	--single-branch --branch v1.1					\
 	https://github.com/secobau/nlb 					\
 	$uuid								;
 sed --in-place s/worker/manager/ $uuid/$compose				;
