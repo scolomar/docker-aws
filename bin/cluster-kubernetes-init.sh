@@ -50,10 +50,11 @@ export=" 								\
   && 									\
   export RecordSetNameKube=$RecordSetNameKube				\
 "									;
-file=cluster-kubernetes-leader.sh					;
 targets="								\
 	InstanceMaster1							\
 "									;
+#########################################################################
+file=cluster-kubernetes-leader.sh					;
 send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
 file=cluster-kubernetes-wait.sh						;
