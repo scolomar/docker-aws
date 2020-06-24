@@ -43,6 +43,7 @@ do									\
   sleep 1								;
   docker service ls | grep '\([0-9]\)/\1' && break			;
 done									;
+sudo rm --recursive --force /run/secrets /run/configs			;
 sed --in-place 								\
 	/$kube/d 							\
 	/etc/hosts   		                                  	;
