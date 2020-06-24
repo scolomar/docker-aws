@@ -29,9 +29,9 @@ rm --recursive --force $uuid						;
 yum install								\
 	--assumeyes							\
 	--disableexcludes=kubernetes					\
-	kubelet								\
-	kubeadm								\
-	kubectl								\
+	kubelet-1.18.4-1						\
+	kubeadm-1.18.4-1						\
+	kubectl-1.18.4-1						\
 									;
 systemctl enable							\
 	--now								\
