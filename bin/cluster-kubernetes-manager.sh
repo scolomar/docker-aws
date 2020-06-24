@@ -7,13 +7,12 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
+test -n "$ip_leader"		|| exit 100                             ;
 test -n "$kube"		        || exit 100                             ;
 test -n "$log"                  || exit 100                             ;
 test -n "$token_certificate"    || exit 100                             ;
 test -n "$token_discovery"      || exit 100                             ;
 test -n "$token_token"       	|| exit 100                             ;
-#########################################################################
-ip=10.168.1.100                                                         ;
 #########################################################################
 token_certificate="$(							\
 	echo								\
@@ -37,7 +36,7 @@ token_token="$(								\
 		--decode						\
 )"							         	;
 #########################################################################
-echo $ip $kube | tee --append /etc/hosts                           	;
+echo $ip_leader $kube | tee --append /etc/hosts                        	;
 #########################################################################
 while true								;
 do									\
