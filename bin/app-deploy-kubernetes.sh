@@ -59,12 +59,22 @@ do 									\
   for name in $prefix							;
   do									\
     filename=$uuid/$path/$name.$suffix					;
-    kubectl apply --filename $filename --kubeconfig $kubeconfig		;
+    while true								;
+    do									\
+      sleep 10								;
+      kubectl apply --filename $filename --kubeconfig $kubeconfig	\
+        2>&1								\
+      |									\
+      grep created && break						;
+    done								;
   done									;
 done									;
 rm --force --recursive $uuid                                            ;
 #########################################################################
-kubectl get node							;
-kubectl get service							;
-kubectl get pod								;
+for resource in node service pod					;
+do									\
+  	kubectl get							\
+		$resource						\
+		--kubeconfig $kubeconfig				;
+done									;
 #########################################################################
