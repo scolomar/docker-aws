@@ -690,16 +690,6 @@ Resources:
   InternetGateway:
     Type: AWS::EC2::InternetGateway
 
-  ListenerKubeMaster:
-    Properties: 
-      DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupKubeMaster
-          Type: forward
-      LoadBalancerArn: !Ref LoadBalancerKubeMaster
-      Port: !Ref PortListenerKubeMaster
-      Protocol: !Ref ProtocolListenerKubeMaster
-    Type: AWS::ElasticLoadBalancingV2::Listener
- 
   ListenerWorker1:
     Properties: 
       Certificates:
@@ -802,16 +792,6 @@ Resources:
       Protocol: !Ref ProtocolListenerWorker3
     Type: AWS::ElasticLoadBalancingV2::Listener
  
-  LoadBalancerKubeMaster:
-    Properties: 
-      Scheme: internal
-      Subnets: 
-        - !Ref SubnetPrivate1
-        - !Ref SubnetPrivate2
-        - !Ref SubnetPrivate3
-      Type: network
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-        
   LoadBalancerWorker1:
     Properties: 
       SecurityGroups:
@@ -869,16 +849,6 @@ Resources:
       SubnetId: !Ref SubnetPublic3
     Type: AWS::EC2::NatGateway
 
-  RecordSetKube:
-    Properties: 
-      AliasTarget: 
-        DNSName: !GetAtt LoadBalancerKubeMaster.DNSName
-        HostedZoneId: !GetAtt LoadBalancerKubeMaster.CanonicalHostedZoneID
-      HostedZoneName: !Sub '${HostedZoneName}.'
-      Name: !Sub '${RecordSetNameKube}.${HostedZoneName}'
-      Type: A
-    Type: AWS::Route53::RecordSet
-      
   RecordSet1:
     Properties: 
       AliasTarget: 
@@ -1177,18 +1147,6 @@ Resources:
       RouteTableId: !Ref RouteTablePublic
       SubnetId: !Ref SubnetPublic3
     Type: AWS::EC2::SubnetRouteTableAssociation
-
-  TargetGroupKubeMaster:
-    Properties: 
-      Port: !Ref PortTargetGroupKubeMaster
-      Protocol: !Ref ProtocolTargetGroupKubeMaster
-      Targets: 
-        -   Id: !Ref InstanceMaster1
-        -   Id: !Ref InstanceMaster2
-        -   Id: !Ref InstanceMaster3
-      TargetType: instance
-      VpcId: !Ref VPC
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
 
   TargetGroupWorker1A:
     Properties: 
