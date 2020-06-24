@@ -57,20 +57,21 @@ jobs:
         init=bin/init-start.sh
         chmod +x ${init}
         sed -i /mode=swarm/d ${init}
-        sed -i /TypeMaster=t3a.nano/d ${init}
-        sed -i /TypeWorker=t3a.micro/d ${init}
         sed -i s/master/test/ ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${GITHUB_SHA}/ ${init}
         ./${init}
         
     # Runs a set of commands using the runners shell
-    - name: Test the app 
+    - name: Test the app
       run: |
         set -x
+        export stack=${GITHUB_SHA}
         script=.github/bin/check.sh
         ./$script
 
     # Runs a set of commands using the runners shell
     - name: Remove the AWS infrastructure
       run: |
-        export stack=test
+        set -x
+        stack=${GITHUB_SHA}
         aws cloudformation delete-stack --stack-name $stack
