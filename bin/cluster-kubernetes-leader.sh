@@ -7,14 +7,12 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
-test -n "$HostedZoneName"       || exit 100                             ;
-test -n "$RecordSetNameKube"    || exit 100                             ;
+test -n "$kube" 	        || exit 100                             ;
 test -n "$log"                  || exit 100                             ;
 #########################################################################
 calico=https://docs.projectcalico.org/v3.14/manifests			;
 cidr=192.168.0.0/16							;
 ip=10.168.1.100                                                         ;
-kube=$RecordSetNameKube.$HostedZoneName                                 ;
 kubeconfig=/etc/kubernetes/admin.conf 					;
 #########################################################################
 while true								;
