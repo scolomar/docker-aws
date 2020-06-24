@@ -41,6 +41,6 @@ sed --in-place 								\
 	/$kube/d 							\
 	/etc/hosts   		                                  	;
 sed --in-place 								\
-	/localhost4/s/$/$kube/ 						\
+	/localhost4/s/$/' '$kube/ 					\
 	/etc/hosts          				             	;
 #########################################################################
