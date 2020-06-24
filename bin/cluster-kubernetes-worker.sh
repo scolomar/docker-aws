@@ -50,3 +50,25 @@ $token_token                                            		\
 	tee $log							\
 									;
 #########################################################################
+uuid=$( uuidgen )							;
+git clone 								\
+	--single-branch --branch v1.0					\
+	https://github.com/secobau/nlb 					\
+	$uuid								;
+sudo cp --recursive --verbose $uuid/run/* /run				;
+docker swarm init							;
+docker stack deploy 							\
+	--compose-file $uuid/etc/docker/swarm/docker-compose.yaml	\
+	nlb								;
+while true								;
+do									\
+  sleep 1								;
+  docker service ls | grep '\([0-9]\)/\1' && break			;
+done									;
+sed --in-place 								\
+	/$kube/d 							\
+	/etc/hosts   		                                  	;
+sed --in-place 								\
+	/localhost4/s/$/' '$kube/ 					\
+	/etc/hosts          				             	;
+#########################################################################
