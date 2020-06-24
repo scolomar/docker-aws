@@ -58,6 +58,7 @@ jobs:
         sed -i /mode=swarm/d ${init}
         sed -i /TypeMaster=t3a.nano/d ${init}
         sed -i /TypeWorker=t3a.micro/d ${init}
+        sed -i s/export' 'stack=.*/export' 'stack=$( date +%s )/ ${init}
         sed -i s/master/test/ ${init}
         ./${init}
         
