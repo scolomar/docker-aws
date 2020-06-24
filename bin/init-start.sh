@@ -4,7 +4,7 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
-export branch_docker_aws=master                                         ;
+export branch_docker_aws=v4.5                                         ;
 export debug=false                                                      ;
 export debug=true                                                       ;
 export domain=github.com                                                ;
@@ -12,7 +12,7 @@ export HostedZoneName=sebastian-colomar.com                             ;
 export mode=swarm                                                       ;
 export mode=kubernetes                                                  ;
 export repository_docker_aws=docker-aws                                 ;
-export stack=master                                                     ;
+export stack=docker                                                     ;
 export username_docker_aws=secobau                                      ;
 #########################################################################
 export A=$username_docker_aws/$repository_docker_aws			;
@@ -36,7 +36,7 @@ export apps=" $apps dockercoins.yaml "                                  ;
 export apps=" $apps petclinic.yaml "                                    ;
 export apps=""                                                          ;
 export apps=" $apps php.yaml "                                          ;
-export branch_app=master                                                ;
+export branch_app=v4.5                                                ;
 export repository_app=docker-aws                                        ;
 export username_app=secobau                                             ;
 #########################################################################
