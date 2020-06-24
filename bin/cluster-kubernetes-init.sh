@@ -17,6 +17,7 @@ test -n "$stack"		|| exit 100				;
 export=" 								\
   export debug=$debug 							\
 "									;
+ip_leader=10.168.1.100                                                  ;
 kube=$RecordSetNameKube.$HostedZoneName                                 ;
 log=/tmp/kubernetes-install.log                              		;
 path=bin								;
@@ -46,6 +47,8 @@ export=" 								\
   $export								\
   && 									\
   export kube=$kube							\
+  && 									\
+  export ip_leader=$ip_leader						\
   && 									\
   export log=$log							\
 "									;
