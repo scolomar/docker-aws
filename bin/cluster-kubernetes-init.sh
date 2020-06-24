@@ -46,9 +46,9 @@ send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 export=" 								\
   $export								\
   && 									\
-  export kube=$kube							\
-  && 									\
   export ip_leader=$ip_leader						\
+  && 									\
+  export kube=$kube							\
   && 									\
   export log=$log							\
 "									;
