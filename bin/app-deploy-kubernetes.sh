@@ -61,11 +61,9 @@ do 									\
     filename=$uuid/$path/$name.$suffix					;
     while true								;
     do									\
+      kubectl apply --filename $filename --kubeconfig $kubeconfig	;
       sleep 10								;
-      kubectl apply --filename $filename --kubeconfig $kubeconfig	\
-        2>&1								\
-      |									\
-      grep created && break						;
+      kubectl get deployment | grep '\([0-9]\)/\1' && break		;
     done								;
   done									;
 done									;
