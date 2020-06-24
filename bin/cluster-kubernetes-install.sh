@@ -14,12 +14,17 @@ test -n "$domain"               || exit 100                             ;
 file=kubernetes.repo							;
 repos=yum.repos.d							;
 #########################################################################
-path=etc/$repos								;
+uuid=$( uuidgen )							;
 #########################################################################
-pwd
-ls -l
-id
+path=$uuid/etc/$repos							;
+#########################################################################
+git clone                                                               \
+        --single-branch --branch $branch_docker_aws                     \
+        https://$domain/$A                                              \
+        $uuid                                                           \
+                                                                        ;
 mv $path/$file /etc/$repos/$file					;
+rm --recursive --force $uuid						;
 #########################################################################
 yum install								\
 	--assumeyes							\
