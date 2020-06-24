@@ -65,8 +65,7 @@ jobs:
     - name: Test the app 
       run: |
         set -x
-        script=bin/check.sh
-        chmod +x $script
+        script=.github/bin/check.sh
         ./$script
 
     # Runs a set of commands using the runners shell
