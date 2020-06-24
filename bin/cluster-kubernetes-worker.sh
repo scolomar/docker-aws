@@ -7,13 +7,10 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
-test -n "$HostedZoneName"       || exit 100                             ;
-test -n "$RecordSetNameKube"    || exit 100                             ;
+test -n "$kube"    		|| exit 100                             ;
 test -n "$log"                	|| exit 100                             ;
 test -n "$token_discovery"      || exit 100                             ;
 test -n "$token_token"          || exit 100                             ;
-#########################################################################
-kube=$RecordSetNameKube.$HostedZoneName					;
 #########################################################################
 token_discovery="$(							\
 	echo								\
@@ -30,7 +27,7 @@ token_token="$(								\
 		--decode						\
 )"							         	;
 #########################################################################
-echo $ip $kube | tee --append /etc/hosts                           	;
+#########################echo $ip $kube | tee --append /etc/hosts                           	;
 #########################################################################
 while true								;
 do									\
