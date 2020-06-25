@@ -1,78 +1,211 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   #push:
   #  branches: [ master ]
   pull_request:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  kubernetes:
-    # The type of runner that the job will run on
+  swarm-http:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+    env:
+      stackName: swarm-http
+
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    #- name: Checkout
-    #  uses: actions/checkout@v2
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    #- uses: actions/checkout@v2
     - name: "Configure AWS Credentials"
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        # AWS Session Token
         aws-session-token: # optional
-        # AWS Region, e.g. us-east-2
         aws-region: ap-south-1
-        # Whether to set the AWS account ID for these credentials as a secret value, so that it is masked in logs. Valid values are 'true' and 'false'. Defaults to true
         mask-aws-account-id: true
-        # Use the provided credentials to assume an IAM role and configure the Actions environment with the assumed role credentials rather than with the provided credentials
         role-to-assume: # optional
-        # Role duration in seconds (default: 6 hours)
         role-duration-seconds: # optional
-        # Role session name (default: GitHubActions)
         role-session-name: # optional
-        # The external ID of the role to assume
         role-external-id: # optional
       
     - name: Checkout branch
       uses: actions/checkout@v2
-#     with:
-#       ref: test
 
-    - name: Install aws + cluster + app in Kubernetes mode
+    - name: Install aws + cluster + app in Swarm mode and HTTP only
+      run: |
+        init=bin/init-start.sh
+        chmod +x ${init}
+        sed -i /mode=kubernetes/d ${init}
+        sed -i /template=https/d ${init}
+        sed -i /template=http-3/d ${init}
+        sed -i /template=http-2/d ${init}
+        sed -i s/master/test/ ${init}
+        sed -i /TypeMaster=t3a.micro/d ${init}
+        sed -i /TypeWorker=t3a.micro/d ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${stackName}-${GITHUB_SHA}/ ${init}
+        ./${init}
+        
+    - name: Test the app in HTTP only
+      run: |
+        set -x
+        export stack=${stackName}-${GITHUB_SHA}
+        script=.github/bin/check-http.sh
+        ./$script
+
+    - name: Remove the AWS infrastructure
+      run: |
+        set -x
+        aws cloudformation delete-stack --stack-name ${stackName}-${GITHUB_SHA}
+
+  kubernetes-http:
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+    env:
+      stackName: kubernetes-http
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: "Configure AWS Credentials"
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: # optional
+        aws-region: ap-south-1
+        mask-aws-account-id: true
+        role-to-assume: # optional
+        role-duration-seconds: # optional
+        role-session-name: # optional
+        role-external-id: # optional
+      
+    - name: Checkout branch
+      uses: actions/checkout@v2
+
+    - name: Install aws + cluster + app in Kubernetes mode and HTTP only
       run: |
         init=bin/init-start.sh
         chmod +x ${init}
         sed -i /mode=swarm/d ${init}
+        sed -i /template=https/d ${init}
+        sed -i /template=http-3/d ${init}
+        sed -i /template=http-2/d ${init}
         sed -i s/master/test/ ${init}
         sed -i /TypeMaster=t3a.nano/d ${init}
         sed -i /TypeWorker=t3a.micro/d ${init}
-        sed -i s/export' 'stack=.*$/export' 'stack=test-${GITHUB_SHA}/ ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${stackName}-${GITHUB_SHA}/ ${init}
         ./${init}
         
-    # Runs a set of commands using the runners shell
-    - name: Test the app
+    - name: Test the app in HTTP only
       run: |
         set -x
-        export stack=test-${GITHUB_SHA}
-        script=.github/bin/check.sh
+        export stack=${stackName}-${GITHUB_SHA}
+        script=.github/bin/check-http.sh
         ./$script
 
-    # Runs a set of commands using the runners shell
     - name: Remove the AWS infrastructure
       run: |
         set -x
-        aws cloudformation delete-stack --stack-name test-${GITHUB_SHA}
+        aws cloudformation delete-stack --stack-name ${stackName}-${GITHUB_SHA}
+
+  swarm-https:
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+    env:
+      stackName: swarm-https
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: "Configure AWS Credentials"
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: # optional
+        aws-region: ap-south-1
+        mask-aws-account-id: true
+        role-to-assume: # optional
+        role-duration-seconds: # optional
+        role-session-name: # optional
+        role-external-id: # optional
+      
+    - name: Checkout branch
+      uses: actions/checkout@v2
+
+    - name: Install aws + cluster + app in Swarm mode in HTTPS only
+      run: |
+        init=bin/init-start.sh
+        chmod +x ${init}
+        sed -i /mode=kubernetes/d ${init}
+        sed -i /template=http-/d ${init}
+        sed -i /template=https-3/d ${init}
+        sed -i /template=https-2/d ${init}
+        sed -i s/master/test/ ${init}
+        sed -i /TypeMaster=t3a.micro/d ${init}
+        sed -i /TypeWorker=t3a.micro/d ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${stackName}-${GITHUB_SHA}/ ${init}
+        ./${init}
+        
+    - name: Test the app in HTTPS only
+      run: |
+        set -x
+        export stack=${stackName}-${GITHUB_SHA}
+        script=.github/bin/check-https.sh
+        ./$script
+
+    - name: Remove the AWS infrastructure
+      run: |
+        set -x
+        aws cloudformation delete-stack --stack-name ${stackName}-${GITHUB_SHA}
+
+  kubernetes-https:
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+    env:
+      stackName: kubernetes-https
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: "Configure AWS Credentials"
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: # optional
+        aws-region: ap-south-1
+        mask-aws-account-id: true
+        role-to-assume: # optional
+        role-duration-seconds: # optional
+        role-session-name: # optional
+        role-external-id: # optional
+      
+    - name: Checkout branch
+      uses: actions/checkout@v2
+
+    - name: Install aws + cluster + app in Kubernetes mode in HTTPS only
+      run: |
+        init=bin/init-start.sh
+        chmod +x ${init}
+        sed -i /mode=swarm/d ${init}
+        sed -i /template=http-/d ${init}
+        sed -i /template=https-3/d ${init}
+        sed -i /template=https-2/d ${init}
+        sed -i s/master/test/ ${init}
+        sed -i /TypeMaster=t3a.nano/d ${init}
+        sed -i /TypeWorker=t3a.micro/d ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${stackName}-${GITHUB_SHA}/ ${init}
+        ./${init}
+        
+    - name: Test the app in HTTPS only
+      run: |
+        set -x
+        export stack=${stackName}-${GITHUB_SHA}
+        script=.github/bin/check-https.sh
+        ./$script
+
+    - name: Remove the AWS infrastructure
+      run: |
+        set -x
+        aws cloudformation delete-stack --stack-name ${stackName}-${GITHUB_SHA}

@@ -24,7 +24,7 @@ apps="									\
   )									\
 "                                                                      	;
 B=$username_app/$repository_app                                         ;
-path=docker/$mode							;
+path=etc/docker/$mode							;
 uuid=$( uuidgen )                                                       ;
 #########################################################################
 git clone                                                               \

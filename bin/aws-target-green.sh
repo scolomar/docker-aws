@@ -30,15 +30,9 @@ s3domain=$s3name.s3.$s3region.amazonaws.com				;
 template_url=https://$s3domain/$branch_docker_aws/$template		;
 uuid=$( uuidgen )							;
 #########################################################################
-path=$uuid/etc/aws							;
+path=etc/aws				 				;
 #########################################################################
-git clone                                                               \
-        --single-branch --branch $branch_docker_aws                     \
-        https://$domain/$A                                              \
-        $uuid                                                           \
-                                                                        ;
 aws s3 cp $path/$template s3://$s3name/$branch_docker_aws/$template 	;
-rm --force --recursive $uuid						;
 #########################################################################
 while true 								;
 do 									\
