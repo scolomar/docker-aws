@@ -9,11 +9,11 @@ export debug=false                                                      ;
 export debug=true                                                       ;
 export domain=github.com                                                ;
 export HostedZoneName=sebastian-colomar.com                             ;
-export mode=kubernetes                                                  ;
 export mode=swarm                                                       ;
+export mode=kubernetes                                                  ;
 export RecordSetNameKube=$stack-kube-apiserver                          ;
 export repository_docker_aws=docker-aws                                 ;
-export stack=docker                                                     ;
+export stack=${repository_docker_aws}-$( date +%s )                     ;
 export username_docker_aws=secobau                                      ;
 #########################################################################
 export A=$username_docker_aws/$repository_docker_aws			;

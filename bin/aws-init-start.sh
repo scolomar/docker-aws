@@ -10,7 +10,7 @@ export debug=true                                                       ;
 export domain=github.com                                                ;
 export HostedZoneName=sebastian-colomar.com                             ;
 export repository_docker_aws=docker-aws                                 ;
-export stack=docker                                                     ;
+export stack=${repository_docker_aws}-$( date +%s )                     ;
 export username_docker_aws=secobau                                      ;
 #########################################################################
 export A=$username_docker_aws/$repository_docker_aws			;
@@ -23,10 +23,15 @@ export RecordSetName3=$stack-php                                        ;
 export RecordSetNameKube=$stack-kube-apiserver                          ;
 export s3name=docker-aws                                                ;
 export s3region=ap-south-1                                              ;
-export template=https.yaml                                              ;
+export template=http-3.yaml                                             ;
+export template=http-2.yaml                                             ;
+export template=http-1.yaml                                             ;
+export template=https-3.yaml                                            ;
+export template=https-2.yaml                                            ;
+export template=https-1.yaml                                            ;
+export TypeMaster=t3a.nano                                              ;
 export TypeMaster=t3a.micro                                             ;
 export TypeWorker=t3a.micro                                             ;
-export TypeMaster=t3a.nano                                              ;
 export TypeWorker=t3a.nano                                              ;
 #########################################################################
 file=aws-init.sh                                                        ;
