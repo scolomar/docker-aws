@@ -11,7 +11,7 @@ jobs:
   swarm-http:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     env:
-      stack: swarm-http
+      stackName: swarm-http
 
     runs-on: ubuntu-latest
 
@@ -44,25 +44,25 @@ jobs:
         sed -i s/master/test/ ${init}
         sed -i /TypeMaster=t3a.micro/d ${init}
         sed -i /TypeWorker=t3a.micro/d ${init}
-        sed -i s/export' 'stack=.*$/export' 'stack=${stack}-${GITHUB_SHA}/ ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${stackName}-${GITHUB_SHA}/ ${init}
         ./${init}
         
     - name: Test the app in HTTP only
       run: |
         set -x
-        export stack=${stack}-${GITHUB_SHA}
+        export stack=${stackName}-${GITHUB_SHA}
         script=.github/bin/check-http.sh
         ./$script
 
     - name: Remove the AWS infrastructure
       run: |
         set -x
-        aws cloudformation delete-stack --stack-name ${stack}-${GITHUB_SHA}
+        aws cloudformation delete-stack --stack-name ${stackName}-${GITHUB_SHA}
 
   kubernetes-http:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     env:
-      stack: kubernetes-http
+      stackName: kubernetes-http
     runs-on: ubuntu-latest
 
     steps:
@@ -94,25 +94,25 @@ jobs:
         sed -i s/master/test/ ${init}
         sed -i /TypeMaster=t3a.nano/d ${init}
         sed -i /TypeWorker=t3a.micro/d ${init}
-        sed -i s/export' 'stack=.*$/export' 'stack=${stack}-${GITHUB_SHA}/ ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${stackName}-${GITHUB_SHA}/ ${init}
         ./${init}
         
     - name: Test the app in HTTP only
       run: |
         set -x
-        export stack=${stack}-${GITHUB_SHA}
+        export stack=${stackName}-${GITHUB_SHA}
         script=.github/bin/check-http.sh
         ./$script
 
     - name: Remove the AWS infrastructure
       run: |
         set -x
-        aws cloudformation delete-stack --stack-name ${stack}-${GITHUB_SHA}
+        aws cloudformation delete-stack --stack-name ${stackName}-${GITHUB_SHA}
 
   swarm-https:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     env:
-      stack: swarm-https
+      stackName: swarm-https
 
     runs-on: ubuntu-latest
 
@@ -145,25 +145,25 @@ jobs:
         sed -i s/master/test/ ${init}
         sed -i /TypeMaster=t3a.micro/d ${init}
         sed -i /TypeWorker=t3a.micro/d ${init}
-        sed -i s/export' 'stack=.*$/export' 'stack=${stack}-${GITHUB_SHA}/ ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${stackName}-${GITHUB_SHA}/ ${init}
         ./${init}
         
     - name: Test the app in HTTPS only
       run: |
         set -x
-        export stack=${stack}-${GITHUB_SHA}
+        export stack=${stackName}-${GITHUB_SHA}
         script=.github/bin/check-https.sh
         ./$script
 
     - name: Remove the AWS infrastructure
       run: |
         set -x
-        aws cloudformation delete-stack --stack-name ${stack}-${GITHUB_SHA}
+        aws cloudformation delete-stack --stack-name ${stackName}-${GITHUB_SHA}
 
   kubernetes-https:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     env:
-      stack: kubernetes-https
+      stackName: kubernetes-https
     runs-on: ubuntu-latest
 
     steps:
@@ -195,17 +195,17 @@ jobs:
         sed -i s/master/test/ ${init}
         sed -i /TypeMaster=t3a.nano/d ${init}
         sed -i /TypeWorker=t3a.micro/d ${init}
-        sed -i s/export' 'stack=.*$/export' 'stack=${stack}-${GITHUB_SHA}/ ${init}
+        sed -i s/export' 'stack=.*$/export' 'stack=${stackName}-${GITHUB_SHA}/ ${init}
         ./${init}
         
     - name: Test the app in HTTPS only
       run: |
         set -x
-        export stack=${stack}-${GITHUB_SHA}
+        export stack=${stackName}-${GITHUB_SHA}
         script=.github/bin/check-https.sh
         ./$script
 
     - name: Remove the AWS infrastructure
       run: |
         set -x
-        aws cloudformation delete-stack --stack-name ${stack}-${GITHUB_SHA}
+        aws cloudformation delete-stack --stack-name ${stackName}-${GITHUB_SHA}
