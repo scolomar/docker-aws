@@ -134,7 +134,7 @@ metadata:
 spec:
   ports:
   -
-    nodePort: 30001
+    nodePort: 30003
     port: 80
   selector:
     service: webui
