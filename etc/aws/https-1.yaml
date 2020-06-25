@@ -50,7 +50,10 @@ Metadata:
           - PrivateIpAddressInstanceMaster3
           - ProtocolListenerWorker1
           - ProtocolTargetGroupWorker1
+          - RecordSetNameKube
           - RecordSetName1
+          - RecordSetName2
+          - RecordSetName3
           - SecurityGroupCidrIpWorker1
           - SubnetCidrBlockPrivate1
           - SubnetCidrBlockPrivate2
@@ -109,8 +112,14 @@ Metadata:
         default: The protocol for Listener Worker 1
       ProtocolTargetGroupWorker1:
         default: The internal protocol for Target Group Worker 1
+      RecordSetNameKube:
+        default: The name of the Record Set for Kubernetes API Server
       RecordSetName1:
         default: The name of the Record Set for service 1
+      RecordSetName2:
+        default: The name of the Record Set for service 2
+      RecordSetName3:
+        default: The name of the Record Set for service 3
       SecurityGroupCidrIpWorker1:
         default: Allowed CIDR for ALB 1 Cluster Worker Access
       SubnetCidrBlockPrivate1:
@@ -259,11 +268,29 @@ Parameters:
     Description: >
       The internal protocol for Target Group Worker 1.
     Type: String
-    
+
+  RecordSetNameKube:
+    Default: ''
+    Description: >
+      The name of the Record Set for service 1.
+    Type: String
+  
   RecordSetName1:
     Default: service-1
     Description: >
       The name of the Record Set for service 1.
+    Type: String
+  
+  RecordSetName2:
+    Default: service-2
+    Description: >
+      The name of the Record Set for service 2.
+    Type: String
+
+  RecordSetName3:
+    Default: service-3
+    Description: >
+      The name of the Record Set for service 3.
     Type: String
     
   SecurityGroupCidrIpWorker1:
