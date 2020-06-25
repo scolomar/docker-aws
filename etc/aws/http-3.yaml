@@ -39,21 +39,18 @@ Metadata:
           default: Network Configuration
         Parameters:
           - HostedZoneName
-          - IpProtocolListenerKubeMaster
           - IpProtocolListenerWorker1
           - IpProtocolListenerWorker2
           - IpProtocolListenerWorker3
           - HttpCodeTargetGroupWorker1
           - HttpCodeTargetGroupWorker2
           - HttpCodeTargetGroupWorker3
-          - PortListenerKubeMaster
           - PortListenerWorker1
           - PortListenerWorker1QA
           - PortListenerWorker2
           - PortListenerWorker2QA
           - PortListenerWorker3
           - PortListenerWorker3QA
-          - PortTargetGroupKubeMaster
           - PortTargetGroupWorker1A
           - PortTargetGroupWorker1B
           - PortTargetGroupWorker2A
@@ -63,11 +60,9 @@ Metadata:
           - PrivateIpAddressInstanceMaster1
           - PrivateIpAddressInstanceMaster2
           - PrivateIpAddressInstanceMaster3
-          - ProtocolListenerKubeMaster
           - ProtocolListenerWorker1
           - ProtocolListenerWorker2
           - ProtocolListenerWorker3
-          - ProtocolTargetGroupKubeMaster
           - ProtocolTargetGroupWorker1
           - ProtocolTargetGroupWorker2
           - ProtocolTargetGroupWorker3
@@ -107,8 +102,6 @@ Metadata:
         default: AMI to use for Cluster Worker Instances
       InstanceWorkerInstanceType:
         default: Cluster Worker Instance Size
-      IpProtocolListenerKubeMaster:
-        default: The IP protocol for Listener Master Kubernetes API Server
       IpProtocolListenerWorker1:
         default: The IP protocol for Listener Worker 1
       IpProtocolListenerWorker2:
@@ -127,8 +120,6 @@ Metadata:
         default: The URL path to download the script for the common install of the nodes
       NodeInstallUrlFile:
         default: The name of the script for the common install of the nodes
-      PortListenerKubeMaster:
-        default: The listening port for Listener Master Kubernetes API Server
       PortListenerWorker1:
         default: The listening port for Listener Worker 1
       PortListenerWorker1QA:
@@ -141,8 +132,6 @@ Metadata:
         default: The listening port for Listener Worker 3
       PortListenerWorker3QA:
         default: The listening port for Listener Worker 3 - QA
-      PortTargetGroupKubeMaster:
-        default: The internal listening port for Target Group Master Kubernetes API Server
       PortTargetGroupWorker1A:
         default: The internal listening port for Target Group Worker 1 - Deployment A
       PortTargetGroupWorker1B:
@@ -161,16 +150,12 @@ Metadata:
         default: The private IP address for Master 2
       PrivateIpAddressInstanceMaster3:
         default: The private IP address for Master 3
-      ProtocolListenerKubeMaster:
-        default: The protocol for Listener Master Kubernetes API Server
       ProtocolListenerWorker1:
         default: The protocol for Listener Worker 1
       ProtocolListenerWorker2:
         default: The protocol for Listener Worker 2
       ProtocolListenerWorker3:
         default: The protocol for Listener Worker 3
-      ProtocolTargetGroupKubeMaster:
-        default: The internal protocol for Target Group Master Kubernetes API Server
       ProtocolTargetGroupWorker1:
         default: The internal protocol for Target Group Worker 1
       ProtocolTargetGroupWorker2:
@@ -254,12 +239,6 @@ Parameters:
       Select Amazon EC2 instance type for the Cluster Worker instances.
     Type: String
     
-  IpProtocolListenerKubeMaster:
-    Default: tcp
-    Description: >
-      The IP protocol for Listener Master Kubernetes API Server.
-    Type: String
-    
   IpProtocolListenerWorker1:
     Default: tcp
     Description: >
@@ -314,12 +293,6 @@ Parameters:
       The name of the script for the common install of the nodes.
     Type: String
     
-  PortListenerKubeMaster:
-    Default: 6443
-    Description: >
-      The listening port for Listener Master Kubernetes API Server.
-    Type: Number
-    
   PortListenerWorker1:
     Default: 80
     Description: >
@@ -354,12 +327,6 @@ Parameters:
     Default: 8080
     Description: >
       The listening port for Listener Worker 3 - QA.
-    Type: Number
-    
-  PortTargetGroupKubeMaster:
-    Default: 6443
-    Description: >
-      The internal listening port for Target Group Master Kubernetes API Server.
     Type: Number
     
   PortTargetGroupWorker1A:
@@ -416,12 +383,6 @@ Parameters:
       The private IP address for Master 3.
     Type: String
     
-  ProtocolListenerKubeMaster:
-    Default: TCP
-    Description: >
-      The protocol for Listener Master Kubernetes API Server.
-    Type: String
-    
   ProtocolListenerWorker1:
     Default: HTTP
     Description: >
@@ -438,12 +399,6 @@ Parameters:
     Default: HTTP
     Description: >
       The protocol for Listener Worker 3.
-    Type: String
-    
-  ProtocolTargetGroupKubeMaster:
-    Default: TCP
-    Description: >
-      The internal protocol for Target Group Master Kubernetes API Server.
     Type: String
     
   ProtocolTargetGroupWorker1:
@@ -589,7 +544,6 @@ Resources:
       PrivateIpAddress: !Ref PrivateIpAddressInstanceMaster1
       SecurityGroupIds:
         - !GetAtt VPC.DefaultSecurityGroup
-        - !Ref SecurityGroupKubeMaster1
       SubnetId: !Ref SubnetPrivate1
       UserData:
         "Fn::Base64":
@@ -608,7 +562,6 @@ Resources:
       PrivateIpAddress: !Ref PrivateIpAddressInstanceMaster2
       SecurityGroupIds:
         - !GetAtt VPC.DefaultSecurityGroup
-        - !Ref SecurityGroupKubeMaster2
       SubnetId: !Ref SubnetPrivate2
       UserData:
         "Fn::Base64":
@@ -627,7 +580,6 @@ Resources:
       PrivateIpAddress: !Ref PrivateIpAddressInstanceMaster3
       SecurityGroupIds:
         - !GetAtt VPC.DefaultSecurityGroup
-        - !Ref SecurityGroupKubeMaster3
       SubnetId: !Ref SubnetPrivate3
       UserData:
         "Fn::Base64":
@@ -690,16 +642,6 @@ Resources:
   InternetGateway:
     Type: AWS::EC2::InternetGateway
 
-  ListenerKubeMaster:
-    Properties: 
-      DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupKubeMaster
-          Type: forward
-      LoadBalancerArn: !Ref LoadBalancerKubeMaster
-      Port: !Ref PortListenerKubeMaster
-      Protocol: !Ref ProtocolListenerKubeMaster
-    Type: AWS::ElasticLoadBalancingV2::Listener
- 
   ListenerWorker1:
     Properties: 
       DefaultActions: 
@@ -790,16 +732,6 @@ Resources:
       Protocol: !Ref ProtocolListenerWorker3
     Type: AWS::ElasticLoadBalancingV2::Listener
  
-  LoadBalancerKubeMaster:
-    Properties: 
-      Scheme: internal
-      Subnets: 
-        - !Ref SubnetPrivate1
-        - !Ref SubnetPrivate2
-        - !Ref SubnetPrivate3
-      Type: network
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-        
   LoadBalancerWorker1:
     Properties: 
       SecurityGroups:
@@ -857,16 +789,6 @@ Resources:
       SubnetId: !Ref SubnetPublic3
     Type: AWS::EC2::NatGateway
 
-  RecordSetKube:
-    Properties: 
-      AliasTarget: 
-        DNSName: !GetAtt LoadBalancerKubeMaster.DNSName
-        HostedZoneId: !GetAtt LoadBalancerKubeMaster.CanonicalHostedZoneID
-      HostedZoneName: !Sub '${HostedZoneName}.'
-      Name: !Sub '${RecordSetNameKube}.${HostedZoneName}'
-      Type: A
-    Type: AWS::Route53::RecordSet
-      
   RecordSet1:
     Properties: 
       AliasTarget: 
@@ -962,42 +884,6 @@ Resources:
       VpcId: !Ref VPC
     Type: AWS::EC2::RouteTable
 
-  SecurityGroupKubeMaster1:
-    Properties:
-      GroupDescription: Allow access to the Kubernetes API Server running on Master 1
-      SecurityGroupIngress:
-      - 
-        CidrIp: !Ref VPCCidrBlock
-        FromPort: !Ref PortListenerKubeMaster
-        IpProtocol: !Ref IpProtocolListenerKubeMaster
-        ToPort: !Ref PortListenerKubeMaster
-      VpcId: !Ref VPC
-    Type: AWS::EC2::SecurityGroup
-      
-  SecurityGroupKubeMaster2:
-    Properties:
-      GroupDescription: Allow access to the Kubernetes API Server running on Master 2
-      SecurityGroupIngress:
-      - 
-        CidrIp: !Ref VPCCidrBlock
-        FromPort: !Ref PortListenerKubeMaster
-        IpProtocol: !Ref IpProtocolListenerKubeMaster
-        ToPort: !Ref PortListenerKubeMaster
-      VpcId: !Ref VPC
-    Type: AWS::EC2::SecurityGroup
-      
-  SecurityGroupKubeMaster3:
-    Properties:
-      GroupDescription: Allow access to the Kubernetes API Server running on Master 3
-      SecurityGroupIngress:
-      - 
-        CidrIp: !Ref VPCCidrBlock
-        FromPort: !Ref PortListenerKubeMaster
-        IpProtocol: !Ref IpProtocolListenerKubeMaster
-        ToPort: !Ref PortListenerKubeMaster
-      VpcId: !Ref VPC
-    Type: AWS::EC2::SecurityGroup
-      
   SecurityGroupWorker1:
     Properties:
       GroupDescription: Allow access to the applications running on the cluster of workers for Service 1
@@ -1165,18 +1051,6 @@ Resources:
       RouteTableId: !Ref RouteTablePublic
       SubnetId: !Ref SubnetPublic3
     Type: AWS::EC2::SubnetRouteTableAssociation
-
-  TargetGroupKubeMaster:
-    Properties: 
-      Port: !Ref PortTargetGroupKubeMaster
-      Protocol: !Ref ProtocolTargetGroupKubeMaster
-      Targets: 
-        -   Id: !Ref InstanceMaster1
-        -   Id: !Ref InstanceMaster2
-        -   Id: !Ref InstanceMaster3
-      TargetType: instance
-      VpcId: !Ref VPC
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
 
   TargetGroupWorker1A:
     Properties: 
