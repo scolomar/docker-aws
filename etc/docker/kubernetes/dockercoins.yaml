@@ -1,8 +1,7 @@
-#########################################################################
-#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
-#      SPDX-License-Identifier:  GPL-2.0-only                           #
-#########################################################################
----
+################################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza             #
+#      SPDX-License-Identifier:  GPL-2.0-only                                  #
+################################################################################
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -97,13 +96,89 @@ spec:
         image: secobau/dockercoins:worker-1.0
         name: worker
 ---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: hasher
+spec:
+  podSelector:
+    matchLabels:
+      service: hasher
+  ingress:
+    -
+      from:
+        -
+          podSelector:
+            matchLabels:
+              service: worker
+      ports:
+        -
+          protocol: TCP
+          port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: redis
+spec:
+  podSelector:
+    matchLabels:
+      service: redis
+  ingress:
+    -
+      from:
+        -
+          podSelector:
+            matchLabels:
+              service: webui
+        -
+          podSelector:
+            matchLabels:
+              service: worker
+      ports:
+        -
+          protocol: TCP
+          port: 6379
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: rng
+spec:
+  podSelector:
+    matchLabels:
+      service: rng
+  ingress:
+    -
+      from:
+        -
+          podSelector:
+            matchLabels:
+              service: worker
+      ports:
+        -
+          protocol: TCP
+          port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: worker
+spec:
+  podSelector:
+    matchLabels:
+      service: worker
+  policyTypes:
+  - Ingress
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: hasher
 spec:
   ports:
-  - port: 80
+  -
+    port: 80
   selector:
     service: hasher
 ---
@@ -113,7 +188,8 @@ metadata:
   name: redis
 spec:
   ports:
-  - port: 6379
+  -
+    port: 6379
   selector:
     service: redis
 ---
@@ -123,7 +199,8 @@ metadata:
   name: rng
 spec:
   ports:
-  - port: 80
+  -
+    port: 80
   selector:
     service: rng
 ---
@@ -139,5 +216,4 @@ spec:
   selector:
     service: webui
   type: NodePort
----
-#########################################################################
+################################################################################
