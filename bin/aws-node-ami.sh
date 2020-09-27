@@ -7,7 +7,7 @@
 set +x 	&& test "$debug" = true	&& set -x				;
 #########################################################################
 yum update -y								;
-amazon-linux-extras install docker git -y					;
+amazon-linux-extras install docker -y					;
 systemctl enable docker							;
 systemctl start docker							;
 while true								;
