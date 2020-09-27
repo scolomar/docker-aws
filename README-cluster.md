@@ -28,6 +28,7 @@ The following script will create the cluster in AWS. You can choose between Kube
 
 You need to run the following commands from a terminal in a Cloud9 environment with enough privileges.
 You may also configure the variables so as to customize the setup:
+* [AWS configuration](etc/conf.d/aws.conf)
 
 ```BASH 
 
