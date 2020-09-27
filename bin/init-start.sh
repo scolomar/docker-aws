@@ -4,50 +4,9 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
-export branch_docker_aws=master                                         ;
-export debug=false                                                      ;
-export debug=true                                                       ;
-export domain=github.com                                                ;
-export HostedZoneName=sebastian-colomar.com                             ;
-export mode=kubernetes                                                  ;
-export mode=swarm                                                       ;
-export repository_docker_aws=docker-aws                                 ;
-export stack=${repository_docker_aws}-${mode}-$( date +%s )             ;
-export username_docker_aws=secobau                                      ;
+source ./etc/conf.d/aws.conf                                            ;
 #########################################################################
-export A=$username_docker_aws/$repository_docker_aws                    ;
-#########################################################################
-export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                  ;
-export Identifier=31ea6050-d1a0-4e91-a37b-ed862904188c                  ;
-export KeyName=cloud9_mumbai_mgmt                                       ;
-export RecordSetName3=${stack}-dockercoins                              ;
-export RecordSetName2=${stack}-petclinic                                ;
-export RecordSetName1=${stack}-php                                      ;
-export RecordSetNameKube=${stack}-kube-apiserver                        ;
-export s3name=docker-aws                                                ;
-export s3region=ap-south-1                                              ;
-export template=http-3.yaml                                             ;
-export template=http-2.yaml                                             ;
-export template=http-1.yaml                                             ;
-export template=http-0.yaml                                             ;
-export template=https-3.yaml                                            ;
-export template=https-2.yaml                                            ;
-export template=https-1.yaml                                            ;
-export TypeMaster=t3a.nano                                              ;
-export TypeMaster=t3a.micro                                             ;
-export TypeMaster=t2.micro                                              ;
-export TypeWorker=t3a.micro                                             ;
-export TypeWorker=t3a.nano                                              ;
-export TypeWorker=t2.micro                                              ;
-#########################################################################
-export apps=""                                                          ;
-export apps=" $apps dockercoins.yaml "                                  ;
-export apps=" $apps petclinic.yaml "                                    ;
-export apps=""                                                          ;
-export apps=" $apps php.yaml "                                          ;
-export branch_app=master                                                ;
-export repository_app=docker-aws                                        ;
-export username_app=secobau                                             ;
+source ./etc/conf.d/app.conf                                            ;
 #########################################################################
 file=init.sh                                                            ;
 path=bin                                                                ;
