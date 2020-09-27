@@ -2,6 +2,8 @@ This project will allow you to deploy a containerized application in AWS on a pr
 
 The following script will deploy your application in a previously created cluster. You need to run the following commands from a terminal in a Cloud9 environment with enough privileges.
 You may also configure the variables so as to customize the setup:
+* [AWS configuration](etc/conf.d/aws.conf)
+* [APP configuration](etc/conf.d/app.conf)
 
 ```BASH 
 
