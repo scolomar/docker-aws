@@ -2,6 +2,7 @@ This project will allow you to deploy a production-grade highly available and se
 
 The following script will first create the infrastructure in AWS. You need to run the following commands from a terminal in a Cloud9 environment with enough privileges.
 You may also configure the variables so as to customize the setup:
+* [AWS configuration](etc/conf.d/aws.conf)
 
 ```BASH 
 
