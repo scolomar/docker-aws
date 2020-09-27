@@ -18,6 +18,7 @@ export username_docker_aws=secobau                                      ;
 export A=$username_docker_aws/$repository_docker_aws                    ;
 #########################################################################
 export Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                  ;
+export Identifier=31ea6050-d1a0-4e91-a37b-ed862904188c                  ;
 export KeyName=cloud9_mumbai_mgmt                                       ;
 export RecordSetName3=${stack}-dockercoins                              ;
 export RecordSetName2=${stack}-petclinic                                ;
@@ -28,13 +29,16 @@ export s3region=ap-south-1                                              ;
 export template=http-3.yaml                                             ;
 export template=http-2.yaml                                             ;
 export template=http-1.yaml                                             ;
+export template=http-0.yaml                                             ;
 export template=https-3.yaml                                            ;
 export template=https-2.yaml                                            ;
 export template=https-1.yaml                                            ;
 export TypeMaster=t3a.nano                                              ;
 export TypeMaster=t3a.micro                                             ;
+export TypeMaster=t2.micro                                              ;
 export TypeWorker=t3a.micro                                             ;
 export TypeWorker=t3a.nano                                              ;
+export TypeWorker=t2.nano                                               ;
 #########################################################################
 export apps=""                                                          ;
 export apps=" $apps dockercoins.yaml "                                  ;
