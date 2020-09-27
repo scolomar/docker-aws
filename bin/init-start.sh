@@ -12,7 +12,7 @@ export HostedZoneName=sebastian-colomar.com                             ;
 export mode=kubernetes                                                  ;
 export mode=swarm                                                       ;
 export repository_docker_aws=docker-aws                                 ;
-export stack=${repository_docker_aws}-$( date +%s )                     ;
+export stack=${repository_docker_aws}-${mode}-$( date +%s )             ;
 export username_docker_aws=secobau                                      ;
 #########################################################################
 export A=$username_docker_aws/$repository_docker_aws                    ;
