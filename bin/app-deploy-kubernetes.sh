@@ -27,12 +27,17 @@ kubeconfig=/etc/kubernetes/admin.conf 					;
 path=etc/docker/$mode							;
 uuid=$( uuidgen )							;
 #########################################################################
+kubectl create namespace $repository_app				\
+    --kubeconfig $kubeconfig						\
+									; 
+#########################################################################
 for config in $( find /run/configs -type f )				;
 do									\
   file=$( basename $config )						;
   kubectl create configmap $file 					\
     --from-file $config 						\
     --kubeconfig $kubeconfig						\
+    --namespace $repository_app						\
 									; 
   rm --force $config							; 
 done									;
@@ -43,6 +48,7 @@ do									\
   kubectl create secret generic $file 					\
     --from-file $secret 						\
     --kubeconfig $kubeconfig						\
+    --namespace $repository_app						\
 									;
   rm --force $secret							; 
 done									;
@@ -62,10 +68,13 @@ do 									\
     while true								;
     do									\
       kubectl apply --filename $filename 				\
-      	--kubeconfig $kubeconfig					;
+      	--kubeconfig $kubeconfig					\
+      	--namespace $repository_app					\
+									;
       sleep 10								;
       kubectl get deployment 						\
       	--kubeconfig $kubeconfig					\
+      	--namespace $repository_app					\
       | 								\
       grep '\([0-9]\)/\1' && break					;
     done								;
@@ -77,6 +86,8 @@ for resource in node service pod					;
 do									\
 	kubectl get							\
 		$resource						\
-		--kubeconfig $kubeconfig				;
+		--kubeconfig $kubeconfig				\
+		--namespace $repository_app				\
+									;
 done									;
 #########################################################################
