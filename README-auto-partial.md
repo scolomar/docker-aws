@@ -1,4 +1,4 @@
-This project will allow you to deploy a containerized application in a cluster of your choice.
+This project will help you create a cluster in AWS.
 
 The following instructions will help you create the infrastructure in AWS:
 * [AWS infrastructure](README-aws.md)
