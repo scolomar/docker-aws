@@ -27,33 +27,24 @@ You might need the following documentation if you want to connect to the machine
 The following script will create the cluster in AWS. You can choose between Kubernetes and Swarm as the orchestrator of your cluster.
 
 You need to run the following commands from a terminal in a Cloud9 environment with enough privileges.
+
 You may also configure the variables so as to customize the setup:
 * [AWS configuration](etc/conf.d/aws.conf)
 
-```BASH 
+Afterwards you may run the script to initialize the cluster of your choice in the existing infrastructure in AWS:
+* [Cluster initialization script](bin/cluster-init-start.sh)
 
+```BASH 
 #########################################################################
 ./bin/cluster-init-start.sh                                             ;
 #########################################################################
-
-
-
 ```
-
 
 You can optionally remove the AWS infrastructure created in CloudFormation otherwise you might be charged for any created object:
 
-
 ```BASH
-
-
 #########################################################################
 ## TO REMOVE THE CLOUDFORMATION STACK                                   #
 aws cloudformation delete-stack --stack-name $stack                     ;
 #########################################################################
-
-
 ```
-
-
-

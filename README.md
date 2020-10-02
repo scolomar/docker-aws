@@ -1,74 +1,9 @@
-This project will allow you to deploy a containerized application in a cluster of your choice.
+This project will show you how to deploy a Docker cluster in AWS.
 
+You will be able to deploy two different orchestrators of your choice: Swarm and Kubernetes.
 
-The following script will first create the infrastructure and then deploy your application. 
-In order to customize the setup you should modify the variables in these files:
-* [AWS configuration](etc/conf.d/aws.conf)
-* [APP configuration](etc/conf.d/app.conf)
+The cluster will be highly available (HA) with 3 masters and 3 workers evenly distributed in 3 different availability zones located in the same AWS region.
 
-You need to run the following commands from a terminal with enough AWS privileges:
-
-```BASH
-
-
-
-#########################################################################
-./bin/init-start.sh                                                     ;
-#########################################################################
-
-
-
-```
-
-
-If you are running a BLUE/GREEN deployment the following commands will be useful.
-
-
-The following command will swap the load balancer so as to point to the BLUE deployment:
-```BASH
-
-
-
-#########################################################################
-./bin/aws-target-blue-start.sh                                          ;
-#########################################################################
-
-
-
-```
-
-
-The following command will swap back the load balancer so as to point again to the GREEN deployment:
-
-
-```BASH
-
-
-
-#########################################################################
-./bin/aws-target-green-start.sh                                         ;
-#########################################################################
-
-
-
-```
-
-
-You can optionally remove the AWS infrastructure created in CloudFormation otherwise you might be charged for any created object:
-
-
-```BASH
-
-
-
-#########################################################################
-## TO REMOVE THE CLOUDFORMATION STACK                                   #
-aws cloudformation delete-stack --stack-name $stack                     ;
-#########################################################################
-
-
-
-```
-
-
-
+You may choose deploying manually or with the help of a fully automated script:
+* [Automated installation in AWS](README-auto.md)
+* [Manual installation in AWS](README-manual.md)
