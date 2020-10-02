@@ -1,6 +1,6 @@
 This project will help you deploy a Docker cluster in AWS.
 
-You will be able to choose the orchestrator to control your Docker cluster:
+You will be able to choose the orchestrator to manage your Docker cluster:
 * Swarm
 * Kubernetes.
 
