@@ -2,7 +2,7 @@ This project will allow you to deploy a containerized application in a cluster o
 
 
 The following script will first create the infrastructure and then deploy your application. 
-In order to customize the setup you should modify the variables in these files:
+In order to customize the setup you should first modify the variables in these files:
 * [AWS configuration](etc/conf.d/aws.conf)
 * [APP configuration](etc/conf.d/app.conf)
 
