@@ -167,19 +167,19 @@ Metadata:
 Parameters:
 
   BranchDockerAWS:
-    Default: ""
+    Default: "master"
     Description: >
       The branch of the git repo to download the script for the common install of the nodes.
     Type: String
     
   HostedZoneName:
-    Default: ''
+    Default: 'sebastian-colomar.com'
     Description: >
       The name of the hosted zone that you want to create records in.
     Type: String
 
   Identifier:
-    Default: ''
+    Default: '31ea6050-d1a0-4e91-a37b-ed862904188c'
     Description: >
       The Identifier of the certificate you want to use.
     Type: String
@@ -193,7 +193,7 @@ Parameters:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     
   InstanceMasterInstanceType:
-    Default: ''
+    Default: 't2.micro'
     Description: >
       Select Amazon EC2 instance type for the Cluster Master instances.
     Type: String
@@ -207,7 +207,7 @@ Parameters:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     
   InstanceWorkerInstanceType:
-    Default: ''
+    Default: 't2.micro'
     Description: >
       Select Amazon EC2 instance type for the Cluster Worker instances.
     Type: String
@@ -225,7 +225,7 @@ Parameters:
     Type: String
     
   KeyName:
-    Default: ''
+    Default: 'cloud9_mumbai_mgmt'
     Description: >
       The name of the key pair. You can create a key pair using CreateKeyPair or ImportKeyPair.
     Type: String
@@ -243,7 +243,7 @@ Parameters:
     Type: String
     
   NodeInstallUrlPath:
-    Default: ""
+    Default: "https://github.com/secobau/docker-aws"
     Description: >
       The URL path to download the script for the common install of the nodes.
     Type: String
@@ -345,7 +345,7 @@ Parameters:
     Type: String
     
   RecordSetNameKube:
-    Default: ''
+    Default: 'service-kube'
     Description: >
       The name of the Record Set for service 1.
     Type: String
