@@ -35,8 +35,6 @@ RecordSetName1=<service-1>	## subdomain 1
 RecordSetName2=<service-2>
 RecordSetName3=<service-3>
 RecordSetNameKube=<service-kube>	## hostname for the kube API server
-s3name=docker-aws
-s3region=<region>		## ap-south-1
 template=https.yaml		## Cloudformation templates are in $A/etc/aws
 TypeMaster=<type>		## minimum t3a.nano for Swarm or t3a.micro for Kubernetes
 TypeWorker=<type>		## minimum t3a.nano
@@ -67,8 +65,6 @@ export RecordSetName1
 export RecordSetName2
 export RecordSetName3
 export RecordSetNameKube
-export s3name
-export s3region
 export template
 export TypeMaster
 export TypeWorker

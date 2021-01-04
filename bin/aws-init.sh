@@ -17,8 +17,6 @@ test -n "$RecordSetName1"	&& export RecordSetName1    || exit 100 ;
 test -n "$RecordSetName2"	&& export RecordSetName2    || exit 100 ;
 test -n "$RecordSetName3"	&& export RecordSetName3    || exit 100 ;
 test -n "$RecordSetNameKube"	&& export RecordSetNameKube || exit 100 ;
-test -n "$s3name"		&& export s3name    	    || exit 100 ;
-test -n "$s3region"		&& export s3region    	    || exit 100 ;
 test -n "$stack"                && export stack	            || exit 100	;
 test -n "$template"		&& export template    	    || exit 100 ;
 test -n "$TypeMaster"		&& export TypeMaster 	    || exit 100 ;
@@ -27,20 +25,8 @@ test -n "$TypeWorker"		&& export TypeWorker 	    || exit 100 ;
 BranchDockerAWS=$branch_docker_aws					;
 caps=CAPABILITY_IAM							;
 NodeInstallUrlPath=https://$domain/$A					;
-s3domain=$s3name.s3.$s3region.amazonaws.com				;
-template_url=https://$s3domain/$branch_docker_aws/$template		;
 #########################################################################
 path=etc/aws								;
-#########################################################################
-aws s3 cp $path/$template s3://$s3name/$branch_docker_aws/$template	;
-#########################################################################
-while true                                                              ;
-do                                                                      \
-  aws s3 ls $s3name/$branch_docker_aws/$template                        \
-  |                                                                     \
-  grep $template && break                                               ;
-  sleep 10                                                              ;
-done                                                                    ;
 #########################################################################
 aws cloudformation create-stack 					\
   --capabilities 							\
@@ -59,8 +45,8 @@ aws cloudformation create-stack 					\
     ParameterKey=RecordSetNameKube,ParameterValue=$RecordSetNameKube	\
   --stack-name 								\
     $stack 								\
-  --template-url 						 	\
-    $template_url							\
+  --template-body                                                       \
+    file://$path/$template                                              \
   --output 								\
     text 								\
 									;
